@@ -1,11 +1,13 @@
 import React from 'react';
+import Header from './Header.js'
 import logo from './assets/logo.svg';
 
-const Home = () => {
+const Profile = () => {
     return (
         
         <div className="h-screen flex flex-col">
 
+            <Header />
             <div className="flex flex-row h-screen z-0">
                 <section className="bg-blue-200 w-2/3" id="left-up">
                     <div className="pt-4" id="documention-nav">
@@ -75,4 +77,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default Profile;
