@@ -1,6 +1,6 @@
 import './App.css';
-import Home from './Home.js';
-import Profile from './Profile.js';
+import Home from './pages/Home.js';
+import Profile from './pages/Profile.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
