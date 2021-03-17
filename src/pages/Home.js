@@ -24,8 +24,10 @@ const Home = () => {
 
                 <section className="bg-green-200 w-1/3" id="right-up">
                     <div className="flex flex-row pl-16 pt-12 mb-16" id="logo">
-                        <img src={logo} alt="Logo"/>
-                        <h1 className="flex items-end text-5xl py-4">ygeia</h1>
+                        <a href="/profile" className="flex flex-row">
+                            <img src={logo} alt="Logo"/>
+                            <h1 className="flex items-end text-5xl py-4">ygeia</h1>
+                        </a>
                     </div>
 
                     <div className="flex w-full mb-5">
