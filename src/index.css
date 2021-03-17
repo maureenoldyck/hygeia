@@ -27,7 +27,7 @@ body #root {
   width: 100vw;
 }
 
-footer {
+#footer {
 
   background-image: url('assets/footer.svg');
 }

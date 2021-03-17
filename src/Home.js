@@ -59,7 +59,7 @@ const Home = () => {
                 </section>
             </div>
 
-            <footer className="bg-cover w-full h-1/4 absolute bottom-0 left-0">
+            <footer className="bg-cover w-full h-1/4 absolute bottom-0 left-0" id="footer">
                 <div className="flex flex-row w-full relative transform rotate-contact translate-y-20 justify-around " id="sponsors">
                     <img src="" alt="img1"/>
                     <img src="" alt="img2"/>
