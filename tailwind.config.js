@@ -18,6 +18,9 @@ module.exports = {
       },
       scale: {
         25: '.25'
+      },
+      height: {
+        ten: '10%'
       }
     },
   },

@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from './Header.js'
-import logo from './assets/logo.svg';
+import Header from './Header.js';
+import Footer from './Footer.js';
 
 const Profile = () => {
     return (
@@ -8,6 +8,7 @@ const Profile = () => {
         <div className="h-screen flex flex-col">
 
             <Header />
+            
             <div className="flex flex-row h-screen z-0">
                 <section className="bg-yellow-banana w-2/3" id="left-up">
                 </section>
@@ -16,11 +17,7 @@ const Profile = () => {
                 </section>
             </div>
 
-            <footer className="bg-cover bg-green-footer w-full h-1/6 absolute bottom-0 left-0">
-                <div className="absolute w-full text-center bottom-0 " id="copyright">
-                    <p>©Hygeia - 2021</p>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 }
