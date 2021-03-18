@@ -1,6 +1,6 @@
 import './App.css';
 import Home from './pages/Home.js';
-import Profile from './pages/Profile.js';
+import MyProfile from './pages/MyProfile.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
@@ -13,7 +13,7 @@ function App() {
           <Router>
             <Switch>
               <Route path="/" exact component={Home} />
-              <Route path="/profile" exact component={Profile}/>
+              <Route path="/profile" exact component={MyProfile}/>
             </Switch>
           </Router>
         </div>

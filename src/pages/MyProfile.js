@@ -1,8 +1,10 @@
 import React from 'react';
+import Profile from '../components/Profile.js';
 import Header from '../components/Header.js';
 import Footer from '../components/Footer.js';
 
-const Profile = () => {
+
+const MyProfile = () => {
     return (
         <>
             <div>
@@ -16,11 +18,11 @@ const Profile = () => {
 
                         <div className="flex justify-around items-center flex-col w-full">
                             <div className="bg-green-profilebg bg-opacity-25 w-nine h-2/5 my-6" id="profile">
-                                
+                                <Profile />
                             </div>
         
                             <div className="bg-green-profiledeets w-nine h-3/5 my-6" id="details">
-    
+
                             </div>
                         </div>
 
@@ -48,4 +50,4 @@ const Profile = () => {
     );
 }
 
-export default Profile;
+export default MyProfile;
