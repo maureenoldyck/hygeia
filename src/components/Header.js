@@ -1,20 +1,20 @@
 import React from 'react';
-import logo from '../assets/logo.svg';
-import feed from '../assets/feed.svg';
-import chatroom from '../assets/chatroom.svg';
-import forums from '../assets/forums.svg';
+import logo from '../assets/images/logo.svg';
+import feed from '../assets/images/feed.svg';
+import chatroom from '../assets/images/chatroom.svg';
+import forums from '../assets/images/forums.svg';
 
-import notifications from '../assets/notifications-none.svg';
-import messages from '../assets/messages-none.svg';
+import notifications from '../assets/images/notifications-none.svg';
+import messages from '../assets/images/messages-none.svg';
 
-import search from '../assets/search.svg';
-import finger from '../assets/finger.svg';
+import search from '../assets/images/search.svg';
+import finger from '../assets/images/finger.svg';
 //TODO: Add dropdown menu to the profile div
 
 const Header = () => {
     return (
         
-        <div className="absolute h-auto bg-green-100 z-50 flex flex-row p-4 w-full">
+        <div className="absolute top-0 left-0 h-20 bg-green-100 z-50 flex flex-row p-4 w-full">
             <div className="flex flex-row" id="logo">
                 <a href="/" className="flex flex-row h-10">
                     <img src={logo} alt="Logo"/>

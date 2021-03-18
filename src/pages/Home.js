@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/logo.svg';
+import logo from '../assets/images/logo.svg';
 
 const Home = () => {
     return (
@@ -70,7 +70,7 @@ const Home = () => {
                     <img src="" alt="img5"/>
                 </div>
                 <div className="absolute w-full text-center bottom-0 " id="copyright">
-                    <p>©Hygeia - 2021</p>
+                    <p>©Hygeia - 2021 | <a href="#">Terms of service</a></p>
                 </div>
             </footer>
         </div>

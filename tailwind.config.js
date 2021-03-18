@@ -7,7 +7,9 @@ module.exports = {
         green: {
           vrt: '#38f34b',
           vrtdark: '#38e34b',
-          footer: '#DEFFB4'
+          footer: '#DEFFB4',
+          profilebg: '#94FFBF',
+          profiledeets: '#D9F8EC'
         },
         yellow: {
           banana: '#F4FFE5'
@@ -20,7 +22,12 @@ module.exports = {
         25: '.25'
       },
       height: {
-        ten: '10%'
+        ten: '10%',
+        nine: '90%'
+      },
+      width: {
+        ten: '10%',
+        nine: '90%'
       }
     },
   },
