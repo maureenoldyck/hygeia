@@ -1,7 +1,10 @@
 import React from 'react';
 import Profile from '../components/Profile.js';
+import Profile_form from '../components/Profile_form.js';
 import Header from '../components/Header.js';
 import Footer from '../components/Footer.js';
+
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
 const MyProfile = () => {
@@ -18,7 +21,12 @@ const MyProfile = () => {
 
                         <div className="flex justify-around items-center flex-col w-full">
                             <div className="bg-green-profilebg bg-opacity-25 w-nine h-2/5 my-6" id="profile">
-                                <Profile />
+                                <Router>
+                                    <Switch>
+                                        <Route path="/profile" exact component={Profile} />
+                                        <Route path="/profile/edit/profile" exact component={Profile_form}/>
+                                    </Switch>
+                                </Router>
                             </div>
         
                             <div className="bg-green-profiledeets w-nine h-3/5 my-6" id="details">
