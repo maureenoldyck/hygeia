@@ -1,13 +1,11 @@
 import React from 'react';
-import Header from './Header.js'
-import logo from './assets/logo.svg';
+import logo from '../assets/images/logo.svg';
 
-const Profile = () => {
+const Home = () => {
     return (
         
         <div className="h-screen flex flex-col">
 
-            <Header />
             <div className="flex flex-row h-screen z-0">
                 <section className="bg-blue-200 w-2/3" id="left-up">
                     <div className="pt-4" id="documention-nav">
@@ -26,8 +24,10 @@ const Profile = () => {
 
                 <section className="bg-green-200 w-1/3" id="right-up">
                     <div className="flex flex-row pl-16 pt-12 mb-16" id="logo">
-                        <img src={logo} alt="Logo"/>
-                        <h1 className="flex items-end text-5xl py-4">ygeia</h1>
+                        <a href="/profile" className="flex flex-row">
+                            <img src={logo} alt="Logo"/>
+                            <h1 className="flex items-end text-5xl py-4">ygeia</h1>
+                        </a>
                     </div>
 
                     <div className="flex w-full mb-5">
@@ -61,7 +61,7 @@ const Profile = () => {
                 </section>
             </div>
 
-            <footer className="bg-cover w-full h-1/4 absolute bottom-0 left-0">
+            <footer className="bg-cover w-full h-1/4 absolute bottom-0 left-0" id="footer">
                 <div className="flex flex-row w-full relative transform rotate-contact translate-y-20 justify-around " id="sponsors">
                     <img src="" alt="img1"/>
                     <img src="" alt="img2"/>
@@ -70,11 +70,11 @@ const Profile = () => {
                     <img src="" alt="img5"/>
                 </div>
                 <div className="absolute w-full text-center bottom-0 " id="copyright">
-                    <p>©Hygeia - 2021</p>
+                    <p>©Hygeia - 2021 | <a href="#">Terms of service</a></p>
                 </div>
             </footer>
         </div>
     );
 }
 
-export default Profile;
+export default Home;

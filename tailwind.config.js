@@ -6,11 +6,28 @@ module.exports = {
       colors: {
         green: {
           vrt: '#38f34b',
-          vrtdark: '#38e34b'
+          vrtdark: '#38e34b',
+          footer: '#DEFFB4',
+          profilebg: '#94FFBF',
+          profiledeets: '#D9F8EC'
         },
+        yellow: {
+          banana: '#F4FFE5'
+        }
       },
       rotate: {
         contact: '-4.4deg'
+      },
+      scale: {
+        25: '.25'
+      },
+      height: {
+        ten: '10%',
+        nine: '90%'
+      },
+      width: {
+        ten: '10%',
+        nine: '90%'
       }
     },
   },
