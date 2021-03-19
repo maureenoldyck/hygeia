@@ -68,7 +68,8 @@ const Chatroom = () => {
 
                                 <div className="relative flex flex-col w-full h-full text-xl" id="chatrooms">
                                     <div className="absolute right-0 top-0">
-                                        <button>Create Chatroom</button>
+                                        <button className="bg-green-vrt hover:bg-green-vrtdark text-white w-18 h-12 py-2 px-4 rounded-full">Create chatroom</button>
+
                                     </div>
 
                                     <div className="flex justify-around w-full">
