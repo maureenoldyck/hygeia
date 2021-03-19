@@ -66,10 +66,9 @@ const Chatroom = () => {
 
                             <div className="bg-transparent w-full h-full " id="rooms">
 
-                                <div className="relative flex flex-col w-full h-full text-xl" id="chatrooms">
+                                <div className="relative flex flex-col w-full h-full text-sm" id="chatrooms">
                                     <div className="absolute right-0 top-0">
-                                        <button className="bg-green-vrt hover:bg-green-vrtdark text-white w-18 h-12 py-2 px-4 rounded-full">Create chatroom</button>
-
+                                    <button className="bg-green-vrt hover:bg-green-vrtdark text-white p-2 rounded-full">Create Room</button>
                                     </div>
 
                                     <div className="flex justify-around w-full">
