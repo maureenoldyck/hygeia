@@ -1,8 +1,8 @@
 import React from 'react';
-import tetris from '../assets/images/tetris.jpg';
-import wave from '../assets/images/wave.svg';
+import tetris from '../../assets/images/tetris.jpg';
+import wave from '../../assets/images/wave.svg';
 
-const Profile_form = () => {
+const ProfileForm = () => {
 
     return (
 
@@ -42,4 +42,4 @@ const Profile_form = () => {
     )
 }
 
-export default Profile_form;
+export default ProfileForm;

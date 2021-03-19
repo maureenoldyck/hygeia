@@ -1,5 +1,5 @@
 import React from 'react';
-import settings from '../assets/images/settings.svg';
+import settings from '../../assets/images/settings.svg';
 
 
 const Details = () => {

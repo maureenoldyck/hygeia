@@ -34,7 +34,7 @@ const Header = () => {
                     <ul className="flex flex-row w-full justify-center mr-24">
                         <li><a href="/profile"><img src={feed} alt="Feed" className="h-8 w-8 mx-16"/></a></li>
                         <li><a href="/profile"><img src={forums} alt="forums" className="h-8 w-8 mx-16"/></a></li>
-                        <li><a href="/profile"><img src={chatroom} alt="chatroom" className="h-8 w-8 mx-16"/></a></li>
+                        <li><a href="/chatroom"><img src={chatroom} alt="chatroom" className="h-8 w-8 mx-16"/></a></li>
                     </ul>
 
                     <ul className="flex flex-row mr-6 justify-end">
