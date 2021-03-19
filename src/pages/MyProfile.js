@@ -28,9 +28,9 @@ const MyProfile = () => {
                                     </Switch>
                                 </Router>
                             </div>
-        
-                            <div className="bg-green-profiledeets w-nine h-3/5 my-6" id="details">
 
+                            <div className="bg-green-profiledeets w-nine h-3/5 my-6" id="details">
+                            
                             </div>
                         </div>
 
