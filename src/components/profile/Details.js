@@ -1,13 +1,13 @@
 import React from 'react';
-import settings from '../assets/images/settings.svg';
+import settings from '../../assets/images/settings.svg';
 
 
 const Details = () => {
 
     return (    
         <div className="flex flex-col w-full h-full text-xl" id="detailsCard">
-          
-            <div className="flex flex-row justify-between pt-2 mr-6 ml-1 mb-2">
+        
+            <div className="flex flex-row justify-between pt-2 mr-6 ml-4 mb-2">
                 <h2 className="text-3xl">Details</h2>
                 <a href="/profile/edit/details"><img src={settings} alt="Edit" className="h-6 w-6 mt-1"/></a>
             </div>

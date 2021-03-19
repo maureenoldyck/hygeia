@@ -1,14 +1,14 @@
 import React from 'react';
-import tetris from '../assets/images/tetris.jpg';
-import wave from '../assets/images/wave.svg';
+import tetris from '../../assets/images/tetris.jpg';
+import wave from '../../assets/images/wave.svg';
 
-const Profile_form = () => {
+const ProfileForm = () => {
 
     return (
 
         <>
             <form action="/profile" method="">
-                <div className="flex flex-row w-full h-full text-xl" id="profileCard">
+                <div className="flex flex-row w-full h-full" id="profileCard">
                     <div className=" flex flex-col w-1/3 pt-2 items-center">
                         <h2 className="text-3xl pb-8">My profile</h2>
                         <div id="picture">
@@ -19,16 +19,16 @@ const Profile_form = () => {
 
                     <div className="flex flex-col pt-10 w-1/3">
                         <label>Name:</label>
-                        <input type="text" placeholder="Your name here"/>
+                        <input className="bg-transparent mt-1 pl-1 block w-full rounded-md border border-black" type="text" placeholder="Your name here"/>
                         <label> Select role:</label>
-                        <select name="" id="">
+                        <select name="" id="" className="bg-transparent mt-1 pl-1 block w-full rounded-md border border-black">
                             <option value="">---</option>
                             <option value="visitor">No roles, thanks</option>
                             <option value="helper">I think I can help</option>
                             <option value="seeker">I would love some help</option>
                         </select>
-                        <label>Add a Quote to your profile:</label>
-                        <textarea name="" id="" cols="10" rows="2"></textarea>
+                        <label>A quote:</label>
+                        <textarea className="bg-transparent mt-1 pl-1 block w-full rounded-md border border-black" name="" id="" cols="10" rows="2"></textarea>
                     </div>
 
                     <div className="flex flex-col w-1/3 pt-4">
@@ -42,4 +42,4 @@ const Profile_form = () => {
     )
 }
 
-export default Profile_form;
+export default ProfileForm;

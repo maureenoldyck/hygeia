@@ -1,7 +1,7 @@
 import React from 'react';
-import tetris from '../assets/images/tetris.jpg';
-import settings from '../assets/images/settings.svg';
-import wave from '../assets/images/wave.svg';
+import tetris from '../../assets/images/tetris.jpg';
+import settings from '../../assets/images/settings.svg';
+import wave from '../../assets/images/wave.svg';
 
 const Profile = () => {
 

@@ -1,10 +1,13 @@
 import React from 'react';
-import Profile from '../components/Profile.js';
-import Profile_form from '../components/Profile_form.js';
+import Profile from '../components/profile/Profile.js';
+import ProfileForm from '../components/profile/Profile_form.js';
+import Details from '../components/profile/Details.js';
+import DetailsForm from '../components/profile/Details_form.js';
+import Settings from '../components/profile/Settings.js';
+import SettingsForm from '../components/profile/Settings_form.js';
 import Header from '../components/Header.js';
 import Footer from '../components/Footer.js';
-import Details from '../components/Details.js';
-import DetailsForm from '../components/Details_form.js';
+import MoodTracker from '../components/MoodTracker.js';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -24,36 +27,44 @@ const MyProfile = () => {
                         <div className="flex justify-around items-center flex-col w-full">
                             <div className="bg-green-profilebg bg-opacity-25 w-nine h-2/5 my-6" id="profile">
                                 <Router>
-                                <Switch>
-                                    <Route path="/profile" exact component={Profile} />
-                                    <Route path="/profile/edit/profile" exact component={Profile_form}/>
-                                </Switch>
+                                    <Switch>
+                                        <Route path="/profile/edit/details" exact component={Profile} />
+                                        <Route path="/profile/edit/settings" exact component={Profile} />
+                                        <Route path="/profile" exact component={Profile} />
+                                        <Route path="/profile/edit/profile" exact component={ProfileForm} />
+                                    </Switch>
+
                                 </Router>
                             </div>
-        
+
                             <div className="bg-green-profiledeets w-nine h-3/5 my-6" id="details">
                                 <Router>
-                                <Switch>
-                                    <Route path="/profile" exact component={Details} />
-                                    <Route path="/profile/edit/details" exact component={DetailsForm}/>
-                                </Switch>
+                                    <Switch>
+                                        <Route path="/profile/edit/profile" exact component={Details} />
+                                        <Route path="/profile/edit/settings" exact component={Details} />
+                                        <Route path="/profile" exact component={Details} />
+                                        <Route path="/profile/edit/details" exact component={DetailsForm} />
+                                    </Switch>
                                 </Router>
                             </div>
                         </div>
 
                         <div className="flex justify-around items-center w-full my-6">
                             <div className="bg-green-profiledeets w-nine h-full " id="settings">
-
+                            <Router>
+                                    <Switch>
+                                        <Route path="/profile/edit/profile" exact component={Settings} />
+                                        <Route path="/profile/edit/details" exact component={Settings} />
+                                        <Route path="/profile" exact component={Settings} />
+                                        <Route path="/profile/edit/settings" exact component={SettingsForm} />
+                                    </Switch>
+                                </Router>
                             </div>
                         </div>
 
                     </section>
 
-                    <section className="flex bg-green-profilebg bg-opacity-25 w-1/3 h-screen" id="right">
-                        <div className="flex justify-around items-center w-full my-6">
-                            <div className="flex bg-green-profilebg bg-opacity-25 w-3/5 h-full my-6"></div>
-                        </div>
-                    </section>
+                    <MoodTracker />
                 </div>
 
             </div>
