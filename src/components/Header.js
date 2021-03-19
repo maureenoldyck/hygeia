@@ -45,7 +45,7 @@ const Header = () => {
                 </nav>
 
                 <div id="logout">
-                    <img src={finger} alt="finger" className="h-8 w-8 mx-16"/>
+                    <a href="/profile"><img src={finger} alt="finger" className="h-8 w-8 mx-16"/></a>
                     
                     {/* <a href="/profile">Profile</a>
                     <a href="/">Logout</a> */}

@@ -7,7 +7,7 @@ import Footer from '../../components/Footer.js';
 
 
 
-const Recovery = () => {
+const Whatis = () => {
     
     return (
         <>
@@ -31,4 +31,4 @@ const Recovery = () => {
     );
 }
 
-export default Recovery;
+export default Whatis;
