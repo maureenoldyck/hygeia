@@ -23,11 +23,15 @@ module.exports = {
       },
       height: {
         ten: '10%',
-        nine: '90%'
+        nine: '90%',
+        moodTracker: '600px'
       },
       width: {
         ten: '10%',
         nine: '90%'
+      },
+      maxHeight: {
+        moodTracker: '600px'
       }
     },
   },
