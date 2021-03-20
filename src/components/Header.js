@@ -38,8 +38,8 @@ const Header = () => {
                     </ul>
 
                     <ul className="flex flex-row mr-6 justify-end">
-                        <li><a href="/profile"><img src={notifications} alt="notifications" className="h-8 w-8 ml-6"/></a></li>
-                        <li><a href="/profile"><img src={messages} alt="messages" className="h-8 w-8 ml-6"/></a></li>
+                        <li><a href=""><img src={notifications} alt="notifications" className="h-8 w-8 ml-6"/></a></li>
+                        <li><a href=""><img src={messages} alt="messages" className="h-8 w-8 ml-6"/></a></li>
                     </ul>
 
                 </nav>
