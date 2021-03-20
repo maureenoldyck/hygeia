@@ -21,7 +21,7 @@ const DetailsForm = () => {
                             </ul>
                         </div>
                         <div className="bg-green-profilebg bg-opacity-25 w-3/5 p-2 rounded-md">
-                            <select name="" className="bg-transparent mt-1 block w-full rounded-md">
+                            <select name="" className="bg-transparent mt-1 block w-full border border-black rounded-md">
                                 <option value="12-20 y/o">12-20 y/o</option>
                                 <option value="21-30 y/o">21-30 y/o</option>
                                 <option value="31-40 y/o">31-40 y/o</option>

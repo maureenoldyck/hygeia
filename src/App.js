@@ -2,6 +2,8 @@ import './App.css';
 import Home from './pages/Home.js';
 import MyProfile from './pages/MyProfile.js';
 import Chatroom from './pages/Chatroom.js';
+import Forum from './pages/Forum.js';
+import Feed from './pages/Feed.js';
 import Help from './pages/documentation/Help.js';
 import Whatis from './pages/documentation/WhatIs.js';
 import Recovery from './pages/documentation/Recovery.js';
@@ -22,6 +24,8 @@ function App() {
               <Route path="/help" component={Help}/> 
               <Route path="/whatis" component={Whatis}/> 
               <Route path="/recovery" component={Recovery}/> 
+              <Route path="/forums" component={Forum}/> 
+              <Route path="/feed" component={Feed}/> 
             </Switch>
           </Router>
         </div>
