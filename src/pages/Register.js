@@ -1,25 +1,14 @@
 import React from 'react';
 import logo from '../assets/images/logo.svg';
 
-const Home = () => {
+const Register = () => {
     return (
         
         <div className="h-screen flex flex-col">
 
             <div className="flex flex-row h-screen z-0">
                 <section className="bg-blue-200 w-2/3" id="left-up">
-                    <div className="pt-4" id="documention-nav">
-                        <nav>
-                            <ul className="flex flex-row justify-around">
-                                <li><a href="/whatis">What is mental Health?</a></li>
-                                <li><a href="/help">How can I (get) help?</a></li>
-                                <li><a href="/recovery">Can I recover?</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div id="carrousel">
-                        <p>ne carrousel da we nog moeten make euh of vinden ofzo dink.</p>
-                    </div>
+                   
                 </section>
 
                 <section className="bg-green-200 w-1/3" id="right-up">
@@ -32,11 +21,14 @@ const Home = () => {
 
                     <div className="flex w-full mb-5">
                         <form className="flex flex-col w-full ml-16 mr-32 text-2xl">
-                            <label className="mb-1">Name/email</label>
-                            <input placeholder="Your Name ..." className="bg-red-100 pl-2 py-2 mb-6 rounded-lg"/>
+                            <label className="mb-1">Email</label>
+                            <input placeholder="Your Email ..." className="bg-red-100 pl-2 py-2 mb-6 rounded-lg"/>
 
                             <label className="mb-1">Password</label>
                             <input type="password" placeholder="Your password ..." className="bg-red-100 pl-2 py-2 rounded-lg"/>
+
+                            <label className="mb-1">Confirm Password</label>
+                            <input type="password" placeholder="Confirm password ..." className="bg-red-100 pl-2 py-2 rounded-lg"/>
 
                             <a href="/" className="flex justify-end text-base mb-4"><span>Forgot password?</span></a>
 
@@ -47,7 +39,7 @@ const Home = () => {
 
                             <div className="flex flex-row my-6 justify-around">
                                 <button className="bg-green-vrt hover:bg-green-vrtdark text-white w-32 py-2 px-4 rounded-full">Login</button>
-                                <a href="/register" className="bg-blue-500 hover:bg-blue-700 text-white w-40 py-2 px-4 rounded-full">Register</a>
+                                <button className="bg-blue-500 hover:bg-blue-700 text-white w-40 py-2 px-4 rounded-full">Register</button>
                             </div>
                         </form>
                     </div>
@@ -61,7 +53,7 @@ const Home = () => {
                 </section>
             </div>
 
-            <footer className="bg-cover w-full h-1/4 absolute bottom-0 left-0" id="footer">
+            <footer className="bg-cover w-full h-1/4 -mt-1/4 absolute  left-0  inset-x-0 bottom-0" id="footer">
                 <div className="flex flex-row w-full relative transform rotate-contact translate-y-20 justify-around " id="sponsors">
                     <img src="" alt="img1"/>
                     <img src="" alt="img2"/>
@@ -77,4 +69,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default Register;
