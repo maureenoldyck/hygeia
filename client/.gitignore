@@ -24,3 +24,6 @@ yarn-error.log*
 
 # Workspace
 /.vscode/
+
+# database config
+/config

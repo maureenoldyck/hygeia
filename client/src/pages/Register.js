@@ -8,7 +8,7 @@ const Register = () => {
 
             <div className="flex flex-row h-screen z-0">
                 <section className="bg-blue-200 w-2/3" id="left-up">
-                   
+                    
                 </section>
 
                 <section className="bg-green-200 w-1/3" id="right-up">

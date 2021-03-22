@@ -2,13 +2,13 @@
   "name": "hygeia",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@craco/craco": "^6.1.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "express": "^4.17.1",
-    "expressjs": "^1.0.1",
     "joi": "^17.4.0",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.7",
@@ -46,6 +46,6 @@
     "@tailwindcss/postcss7-compat": "^2.0.3",
     "autoprefixer": "^9",
     "postcss": "^7",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
 }
