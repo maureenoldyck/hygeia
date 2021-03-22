@@ -32,20 +32,20 @@ const Header = () => {
                     </div>
 
                     <ul className="flex flex-row w-full justify-center mr-24">
-                        <li><a href="/profile"><img src={feed} alt="Feed" className="h-8 w-8 mx-16"/></a></li>
-                        <li><a href="/profile"><img src={forums} alt="forums" className="h-8 w-8 mx-16"/></a></li>
+                        <li><a href="/feed"><img src={feed} alt="Feed" className="h-8 w-8 mx-16"/></a></li>
+                        <li><a href="/forums"><img src={forums} alt="forums" className="h-8 w-8 mx-16"/></a></li>
                         <li><a href="/chatroom"><img src={chatroom} alt="chatroom" className="h-8 w-8 mx-16"/></a></li>
                     </ul>
 
                     <ul className="flex flex-row mr-6 justify-end">
-                        <li><a href="/profile"><img src={notifications} alt="notifications" className="h-8 w-8 ml-6"/></a></li>
-                        <li><a href="/profile"><img src={messages} alt="messages" className="h-8 w-8 ml-6"/></a></li>
+                        <li><a href=""><img src={notifications} alt="notifications" className="h-8 w-8 ml-6"/></a></li>
+                        <li><a href=""><img src={messages} alt="messages" className="h-8 w-8 ml-6"/></a></li>
                     </ul>
 
                 </nav>
 
                 <div id="logout">
-                    <img src={finger} alt="finger" className="h-8 w-8 mx-16"/>
+                    <a href="/profile"><img src={finger} alt="finger" className="h-8 w-8 mx-16"/></a>
                     
                     {/* <a href="/profile">Profile</a>
                     <a href="/">Logout</a> */}

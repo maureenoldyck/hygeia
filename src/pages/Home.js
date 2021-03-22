@@ -11,9 +11,9 @@ const Home = () => {
                     <div className="pt-4" id="documention-nav">
                         <nav>
                             <ul className="flex flex-row justify-around">
-                                <li><a href="/">What is mental Health?</a></li>
-                                <li><a href="/">How can I (get) help?</a></li>
-                                <li><a href="/">Can I recover?</a></li>
+                                <li><a href="/whatis">What is mental Health?</a></li>
+                                <li><a href="/help">How can I (get) help?</a></li>
+                                <li><a href="/recovery">Can I recover?</a></li>
                             </ul>
                         </nav>
                     </div>
