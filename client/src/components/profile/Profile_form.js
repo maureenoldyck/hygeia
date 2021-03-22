@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import tetris from '../../assets/images/tetris.jpg';
 import wave from '../../assets/images/wave.svg';
 
 const ProfileForm = () => {
 
+    const handleSubmit = event => {
+
+        // Lookingfor a redirect in a function
+        
+        event.preventDefault();
+        alert('You have submitted the form.');
+        
+    }
+
     return (
 
         <>
-            <form action="/profile" method="">
+            <form action="/profile" method="" onSubmit={handleSubmit}>
                 <div className="flex flex-row w-full h-full" id="profileCard">
                     <div className=" flex flex-col w-1/3 pt-2 items-center">
                         <h2 className="text-3xl pb-8">My profile</h2>
@@ -33,7 +42,7 @@ const ProfileForm = () => {
 
                     <div className="flex flex-col w-1/3 pt-4">
                         <div className=" w-full h-full flex flex-row-reverse pr-6" id="edit">
-                        <button className="bg-green-vrt hover:bg-green-vrtdark text-white w-18 h-12 py-2 px-4 rounded-full">Save</button>
+                        <button type="submit" className="bg-green-vrt hover:bg-green-vrtdark text-white w-18 h-12 py-2 px-4 rounded-full">Save</button>
                         </div>
                     </div>
                 </div>
