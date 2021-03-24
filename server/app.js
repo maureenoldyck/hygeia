@@ -26,17 +26,40 @@ app.use((req, res, next) => {
 });
 
 app.get("/api", (req, res) => {
+    res.send("hello");
+})
+
+app.get("/api/profile", (req, res) => {
     res.send("helo");
 })
 
-app.post("/api", (req, res) => {
+app.post("/api/profile", (req, res) => {
 
     const name = req.body.name
     const role = req.body.role
     const quote = req.body.quote
 
-    const sqlInsert = "INSERT INTO user_list (name, role, quote) VALUES (?,?,?);"
-    database.query(sqlInsert,[name, role, quote] , (err, result) => {
+    const sqlProfileEdit = "INSERT INTO user_list (name, role, quote) VALUES (?,?,?);"
+    database.query(sqlProfileEdit,[name, role, quote] , (err, result) => {
+        console.log(result)
+    });
+});
+
+app.get("/api/details", (req, res) => {
+    res.send("helo");
+})
+
+app.post("/api/details", (req, res) => {
+
+    const age = req.body.age
+    const gender = req.body.gender
+    const languages = req.body.languages
+    const experiences = req.body.experiences
+    const website = req.body.website
+    const social = req.body.social
+
+    const sqlDetailsEdit = "INSERT INTO user_list (age, gender, language, experience_id, my_web, my_soc) VALUES (?,?,?,?,?,?);"
+    database.query(sqlDetailsEdit,[age, gender, languages, experiences, website, social] , (err, result) => {
         console.log(result)
     });
 });
