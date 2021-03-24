@@ -10,8 +10,8 @@ const ProfileForm = () => {
 
     const handleProfileSubmit = () => {
         
-        // Lookingfor a redirect in a function
-        fetch("http://localhost:8080/api", {
+        
+        fetch("http://localhost:8080/api/profile", {
             method: 'POST',
             body: JSON.stringify({
                 name: name,
@@ -25,8 +25,6 @@ const ProfileForm = () => {
         })
         .then(res => res.json())
         .then(res => console.log(res));
-
-        
     }
 
     return (
