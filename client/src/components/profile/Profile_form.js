@@ -19,6 +19,7 @@ const ProfileForm = () => {
                 quote: quote
             }),
             headers: {
+                'Accept': 'application/json',
                 'Content-type': 'application/json; charset=UTF-8'
             }
 
@@ -31,7 +32,7 @@ const ProfileForm = () => {
 
         <>
             <form action="/profile">
-                <div className="flex flex-row w-full h-full" id="profileCard">
+                <div className="flex flex-row w-full h-full" id="profile-form">
                     <div className=" flex flex-col w-1/3 pt-2 items-center">
                         <h2 className="text-3xl pb-8">My profile</h2>
                         <div id="picture">
@@ -44,7 +45,7 @@ const ProfileForm = () => {
                         <label>Name:</label>
                         <input className="bg-transparent mt-1 pl-1 block w-full rounded-md border border-black" type="text" placeholder="Your name here" onChange={(e) => {setName(e.target.value)}}/>
                         <label> Select role:</label>
-                        <select name="" id="" className="bg-transparent mt-1 pl-1 block w-full rounded-md border border-black" onChange={(e) => {setRole(e.target.value)}}>
+                        <select name="" className="bg-transparent mt-1 pl-1 block w-full rounded-md border border-black" onChange={(e) => {setRole(e.target.value)}}>
                             <option value="">---</option>
                             <option value="visitor">No roles, thanks</option>
                             <option value="helper">I think I can help</option>

@@ -24,6 +24,7 @@ const DetailsForm = () => {
                 social: social,
             }),
             headers: {
+                'Accept': 'application/json',
                 'Content-type': 'application/json; charset=UTF-8'
             }
 
