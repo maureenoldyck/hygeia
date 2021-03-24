@@ -9,7 +9,7 @@ const database = mysql.createPool({
     database: "hygeia",
 });
 
-app.get("/", (req, res) => {
+app.post("/profile/edit/insert", (req, res) => {
     const sqlInsert = "INSERT INTO user_list (name, role, quote) VALUES ('Basile', 'helper', 'I love Pizza!');"
     database.query(sqlInsert, (err, result) => {
         res.send("Hi John!")
