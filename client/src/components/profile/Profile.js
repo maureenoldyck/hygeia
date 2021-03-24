@@ -5,18 +5,6 @@ import wave from '../../assets/images/wave.svg';
 
 const Profile = () => {
 
-    const handleClick = () => {
-        fetch("http://localhost:3000/api/dev/test", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-type': 'application/json; charset=UTF-8'
-            }
-        })
-        .then(res => res.json())
-        .then(res => console.log(res));
-    }
-
     return (
         <div className="flex flex-row w-full h-full text-xl" id="profileCard">
 
@@ -36,7 +24,7 @@ const Profile = () => {
 
             <div className="flex flex-col w-1/3 pt-4">
                 <div className=" w-full h-full flex flex-row-reverse pr-6" id="edit">
-                    <a href="/profile/edit/profile" onClick={handleClick}><img src={settings} alt="Edit" className="h-6 w-6"/></a>
+                    <a href="/profile/edit/profile"><img src={settings} alt="Edit" className="h-6 w-6"/></a>
                 </div>
 
                 <div className=" w-full h-full flex flex-row-reverse pr-6 pt-24" id="wave">

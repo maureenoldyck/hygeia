@@ -3,6 +3,12 @@ import React, { useState } from 'react';
 
 const DetailsForm = () => {
 
+
+    //==========================================================================================//
+    //                                 Set Variables + useState()                               //
+    //==========================================================================================//
+
+
     const [age, setAge] = useState('');
     const [gender, setGender] = useState('');
     const [languages, setLanguages] = useState('');
@@ -10,9 +16,20 @@ const DetailsForm = () => {
     const [website, setWebsite] = useState('');
     const [social, setSocial] = useState('');
 
+
+    //==========================================================================================//
+    //                                 HandleSubmit: Button event                               //
+    //==========================================================================================//
+
+
     const handleDetailsSubmit = () => {
-        
-        
+
+
+        //======================================================================================//
+        //                         Fetch API location + POST body-properties                    //
+        //======================================================================================//
+
+
         fetch("http://localhost:3000/api/details", {
             method: 'POST',
             body: JSON.stringify({

@@ -3,6 +3,14 @@ const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
 
+
+//==========================================================================================//
+//                                  Create connection + config                              //
+//==========================================================================================//
+
+//TODO: Need to find a way to change this hard coding into a variable
+
+// Instead of using the const "database", "pool" will be the one 
 const pool = mysql.createPool({
     connectionLimit : 10,
     host            : 'localhost',
@@ -26,30 +34,19 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/api/profile", (req, res) => {
-    res.send("hello");
-})
-app.get("/api/dev/test", (req, res) => {
-    res.send("hello");
-})
+
+//==========================================================================================//
+//                                 Create queries + req, res                                //
+//==========================================================================================//
+
+
+// Problem (FIXED): use backticks when naming the tabel collumns!
+
+// when you want a new app.post(), use "api/<your component>"
 
 app.post("/api/dev/test", (req, res) => {
     res.send("stuff");
     const sqlInsert = "INSERT INTO test (`name`) VALUE ('test');"
-    // pool.getConnection(function(err, connection) {
-    //     if (err) throw err; // not connected!
-    
-    //     // Use the connection
-    //     connection.query(sqlInsert , (err, result) => {
-    //         console.log(err);
-    //         console.log(__dirname)
-
-    //         connection.release();
-
-    //         if (error) throw error;
-    //     });
-        
-    // });
 })
 
 app.post("/api/profile", (req, res) => {
@@ -59,13 +56,10 @@ app.post("/api/profile", (req, res) => {
     const quote = req.body.quote
 
     const sqlInsert = "INSERT INTO user_list (`name`, `role`, `quote`) VALUES (?,?,?);"
+
     pool.query(sqlInsert, [name, role, quote] , (err, result) => {
         console.log(result)
     });
-    console.log(name);
-    console.log(role);
-    console.log(quote);
-
 });
 
 app.post("/api/details", (req, res) => {
@@ -78,17 +72,17 @@ app.post("/api/details", (req, res) => {
     const social = req.body.social
 
     const sqlInsert = "INSERT INTO user_list (`age`, `gender`, `language`, `experience_id`, `my_web`, `my_soc`) VALUES (?,?,?,?,?,?);"
+
     pool.query(sqlInsert, [age, gender, languages, experiences, website, social] , (err, result) => {
         console.log(result)
     });
-    console.log(age);
-    console.log(gender);
-    console.log(languages);
-    console.log(experiences);
-    console.log(website);
-    console.log(social);
-
 });
+
+
+//==========================================================================================//
+//                                      API Listener                                        //
+//==========================================================================================//
+
 
 app.listen(3000, () => {
     console.log("Running..")
