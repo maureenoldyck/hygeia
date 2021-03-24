@@ -32,3 +32,19 @@ body #root {
 
   background-image: url('assets/images/footer.svg');
 }
+
+
+input[type="radio"].happy:checked + svg{
+  fill: #059669;
+  color: #059669;
+}
+
+input[type="radio"].neutral:checked + svg{
+  fill: #F59E0B;
+  color: #F59E0B;
+}
+
+input[type="radio"].sad:checked + svg{
+  fill: #EF4444;
+  color: #EF4444;
+}
