@@ -3,12 +3,12 @@ const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
 
-
-const database = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "root",
-    database: "hygeia",
+const pool = mysql.createPool({
+    connectionLimit : 10,
+    host            : 'localhost',
+    user            : 'root',
+    password        : 'root',
+    database        : 'hygeia'
 });
 
 app.use(cors());
@@ -18,7 +18,7 @@ app.use(express.urlencoded({
 }));
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://localhost:3000");
+    res.setHeader("Access-Control-Allow-Origin", "https://localhost:3001");
     res.header(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept"
@@ -26,8 +26,30 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/api/*", (req, res) => {
+app.get("/api/profile", (req, res) => {
     res.send("hello");
+})
+app.get("/api/dev/test", (req, res) => {
+    res.send("hello");
+})
+
+app.post("/api/dev/test", (req, res) => {
+    res.send("stuff");
+    const sqlInsert = "INSERT INTO test (`name`) VALUE ('test');"
+    // pool.getConnection(function(err, connection) {
+    //     if (err) throw err; // not connected!
+    
+    //     // Use the connection
+    //     connection.query(sqlInsert , (err, result) => {
+    //         console.log(err);
+    //         console.log(__dirname)
+
+    //         connection.release();
+
+    //         if (error) throw error;
+    //     });
+        
+    // });
 })
 
 app.post("/api/profile", (req, res) => {
@@ -36,10 +58,14 @@ app.post("/api/profile", (req, res) => {
     const role = req.body.role
     const quote = req.body.quote
 
-    const sqlInsert = "INSERT INTO user_list (name, role, quote) VALUES (?,?,?);"
-    database.query(sqlInsert,[name, role, quote] , (err, result) => {
+    const sqlInsert = "INSERT INTO user_list (`name`, `role`, `quote`) VALUES (?,?,?);"
+    pool.query(sqlInsert, [name, role, quote] , (err, result) => {
         console.log(result)
     });
+    console.log(name);
+    console.log(role);
+    console.log(quote);
+
 });
 
 app.post("/api/details", (req, res) => {
@@ -51,13 +77,19 @@ app.post("/api/details", (req, res) => {
     const website = req.body.website
     const social = req.body.social
 
-    const sqlInsert = "INSERT INTO user_list (age, gender, language, experience_id, my_web, my_soc) VALUES (?,?,?,?,?,?);"
-    database.query(sqlInsert,[age, gender, languages, experiences, website, social] , (err, result) => {
+    const sqlInsert = "INSERT INTO user_list (`age`, `gender`, `language`, `experience_id`, `my_web`, `my_soc`) VALUES (?,?,?,?,?,?);"
+    pool.query(sqlInsert, [age, gender, languages, experiences, website, social] , (err, result) => {
         console.log(result)
     });
-    res.send(age, gender, languages, experiences, website, social)
+    console.log(age);
+    console.log(gender);
+    console.log(languages);
+    console.log(experiences);
+    console.log(website);
+    console.log(social);
+
 });
 
-app.listen(8080, () => {
+app.listen(3000, () => {
     console.log("Running..")
 })

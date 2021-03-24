@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import tetris from '../../assets/images/tetris.jpg';
-import wave from '../../assets/images/wave.svg';
+
 
 const ProfileForm = () => {
 
@@ -11,12 +11,12 @@ const ProfileForm = () => {
     const handleProfileSubmit = () => {
         
         
-        fetch("http://localhost:8080/api/profile", {
+        fetch("http://localhost:3000/api/profile", {
             method: 'POST',
             body: JSON.stringify({
                 name: name,
                 role: role,
-                quote: quote
+                quote: quote,
             }),
             headers: {
                 'Accept': 'application/json',

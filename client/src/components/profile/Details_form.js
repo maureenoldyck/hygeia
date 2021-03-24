@@ -1,4 +1,4 @@
-import React, { useState , useRef } from 'react';
+import React, { useState } from 'react';
 
 
 const DetailsForm = () => {
@@ -13,7 +13,7 @@ const DetailsForm = () => {
     const handleDetailsSubmit = () => {
         
         
-        fetch("http://localhost:8080/api/details", {
+        fetch("http://localhost:3000/api/details", {
             method: 'POST',
             body: JSON.stringify({
                 age: age,
