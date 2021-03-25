@@ -1,7 +1,5 @@
 import React from 'react';
-import tetris from '../../assets/images/tetris.jpg';
-import settings from '../../assets/images/settings.svg';
-import wave from '../../assets/images/wave.svg';
+
 
 const Settings = () => {
 
@@ -120,7 +118,7 @@ const Settings = () => {
                             <ul>
                                 <h1>Blocked Users</h1>
                                 <li>
-                                    <p>Username <span className="text-sm align-text-top"><a className="text-blue-600 text" href="">Remove</a></span></p>
+                                    <p>Username <span className="text-sm align-text-top"><a className="text-blue-600 text" href="#">Remove</a></span></p>
                                 </li>
 
                             </ul>
