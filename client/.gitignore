@@ -27,3 +27,7 @@ yarn-error.log*
 
 # database config
 /config
+
+.gitignore
+package-lock.json
+package.json
