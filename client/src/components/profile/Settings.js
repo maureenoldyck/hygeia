@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import tetris from '../../assets/images/tetris.jpg';
 import settings from '../../assets/images/settings.svg';
 import wave from '../../assets/images/wave.svg';
@@ -10,7 +11,7 @@ const Settings = () => {
         
             <div className="flex flex-row justify-between pt-2 mr-6 ml-4 mb-2">
                 <h2 className="text-3xl">Settings</h2>
-                <a href="/profile/edit/settings"><img src={settings} alt="Edit" className="h-6 w-6 mt-1"/></a>
+                <Link to="/profile/edit/settings"><img src={settings} alt="Edit" className="h-6 w-6 mt-1"/></Link>
             </div>
 
             <div className="flex flex-col w-full m-auto"> 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
 const DetailsForm = () => {
@@ -55,7 +56,7 @@ const DetailsForm = () => {
             <form action="/profile" method="" className="w-full h-full flex flex-col">
                 <div className="flex flex-row justify-between pt-2 mr-6 ml-1 mb-2">
                     <h2 className="text-3xl">Details</h2>
-                    <button className="bg-green-vrt hover:bg-green-vrtdark text-white w-18 h-12 py-2 px-4 rounded-full" onClick={handleDetailsSubmit}>Save</button>
+                    <button className="bg-green-vrt hover:bg-green-vrtdark text-white w-18 h-12 py-2 px-4 rounded-full" onClick={handleDetailsSubmit}><Link to="/profile">Save</Link></button>
 
                 </div>
                 <div className="flex flex-col w-full m-auto"> 

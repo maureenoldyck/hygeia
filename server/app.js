@@ -17,8 +17,8 @@ const pool = mysql.createPool({
     user            : 'root',
     password        : 'root',
     database        : 'hygeia',
-    port: 3306,
-    insecureAuth: true,
+    port            : 3306,
+    insecureAuth    : true,
 });
 
 app.use(cors());
@@ -57,10 +57,10 @@ app.post("/api/profile", (req, res) => {
     const role = req.body.role
     const quote = req.body.quote
 
-    const sqlInsert = "INSERT INTO user_list (`name`, `role`, `quote`) VALUES (?,?,?);"
+    const sqlInsert = "INSERT INTO user_profile (`name`, `role`, `quote`) VALUES (?,?,?);"
 
     pool.query(sqlInsert, [name, role, quote] , (err, result) => {
-        console.log(result)
+        console.log(err)
     });
 });
 
@@ -73,7 +73,7 @@ app.post("/api/details", (req, res) => {
     const website = req.body.website
     const social = req.body.social
 
-    const sqlInsert = "INSERT INTO user_list (`age`, `gender`, `language`, `experience_id`, `my_web`, `my_soc`) VALUES (?,?,?,?,?,?);"
+    const sqlInsert = "INSERT INTO user_profile (`age`, `gender`, `language`, `experience_id`, `my_web`, `my_soc`) VALUES (?,?,?,?,?,?);"
 
     pool.query(sqlInsert, [age, gender, languages, experiences, website, social] , (err, result) => {
         console.log(result)

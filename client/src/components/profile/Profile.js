@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import tetris from '../../assets/images/tetris.jpg';
 import settings from '../../assets/images/settings.svg';
 import wave from '../../assets/images/wave.svg';
@@ -24,7 +25,7 @@ const Profile = () => {
 
             <div className="flex flex-col w-1/3 pt-4">
                 <div className=" w-full h-full flex flex-row-reverse pr-6" id="edit">
-                    <a href="/profile/edit/profile"><img src={settings} alt="Edit" className="h-6 w-6"/></a>
+                    <Link to="/profile/edit/profile"><img src={settings} alt="Edit" className="h-6 w-6"/></Link>
                 </div>
 
                 <div className=" w-full h-full flex flex-row-reverse pr-6 pt-24" id="wave">

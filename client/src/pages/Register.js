@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/images/logo.svg';
 
 const Register = () => {
@@ -13,10 +14,10 @@ const Register = () => {
 
                 <section className="bg-green-200 w-1/3" id="right-up">
                     <div className="flex flex-row pl-16 pt-12 mb-16" id="logo">
-                        <a href="/profile" className="flex flex-row">
+                        <Link to="/profile" className="flex flex-row">
                             <img src={logo} alt="Logo"/>
                             <h1 className="flex items-end text-5xl py-4">ygeia</h1>
-                        </a>
+                        </Link>
                     </div>
 
                     <div className="flex w-full mb-5">
@@ -30,7 +31,7 @@ const Register = () => {
                             <label className="mb-1">Confirm Password</label>
                             <input type="password" placeholder="Confirm password ..." className="bg-red-100 pl-2 py-2 rounded-lg"/>
 
-                            <a href="/" className="flex justify-end text-base mb-4"><span>Forgot password?</span></a>
+                            <Link to="/" className="flex justify-end text-base mb-4"><span>Forgot password?</span></Link>
 
                             <div className="flex flex-row items-center">
                                 <input type="checkbox" className="w-5 h-5 mr-2" />
@@ -46,8 +47,8 @@ const Register = () => {
 
                     <div className="transform rotate-contact" id="about-us">
                         <ul className="flex flex-row justify-around">
-                            <li><a href="/">About us!</a></li>
-                            <li><a href="/">Contact us!</a></li>
+                            <li><Link to="/">About us!</Link></li>
+                            <li><Link to="/">Contact us!</Link></li>
                         </ul>
                     </div>
                 </section>
@@ -62,7 +63,7 @@ const Register = () => {
                     <img src="" alt="img5"/>
                 </div>
                 <div className="absolute w-full text-center bottom-0 " id="copyright">
-                    <p>©Hygeia - 2021 | <a href="?#">Terms of service</a></p>
+                    <p>©Hygeia - 2021 | <Link to="?#">Terms of service</Link></p>
                 </div>
             </footer>
         </div>
