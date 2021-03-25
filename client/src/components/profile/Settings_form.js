@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 const Settings = () => {
@@ -10,7 +11,7 @@ const Settings = () => {
             
                 <div className="flex flex-row justify-between pt-2 mr-6 ml-4 mb-2">
                     <h2 className="text-3xl">Settings</h2>
-                    <button className="bg-green-vrt hover:bg-green-vrtdark text-white w-18 h-12 py-2 px-4 rounded-full">Save</button>
+                    <button className="bg-green-vrt hover:bg-green-vrtdark text-white w-18 h-12 py-2 px-4 rounded-full"><Link to="/profile">Save</Link></button>
                 </div>
 
                 <div className="flex flex-col w-full m-auto"> 
