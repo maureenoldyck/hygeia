@@ -46,9 +46,12 @@ app.use((req, res, next) => {
 
 // when you want a new app.post(), use "api/<your component>"
 
-app.post("/api/dev/test", (req, res) => {
+app.get("/api/dev/test", (req, res) => {
     res.send("stuff");
-    const sqlInsert = "INSERT INTO test (`name`) VALUE ('test');"
+    const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`, `u_id`) VALUE ('test@email.com', 'password', '22');"
+    pool.query(sqlInsert , (err, result) => {
+        console.log(err)
+    });
 })
 
 app.post("/api/profile", (req, res) => {
