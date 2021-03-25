@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/images/logo.svg';
 import feed from '../assets/images/feed.svg';
 import chatroom from '../assets/images/chatroom.svg';
@@ -16,10 +17,10 @@ const Header = () => {
         
         <div className="absolute top-0 left-0 h-20 bg-green-100 z-50 flex flex-row p-4 w-full">
             <div className="flex flex-row" id="logo">
-                <a href="/" className="flex flex-row h-10">
+                <Link to="/" className="flex flex-row h-10">
                     <img src={logo} alt="Logo"/>
                     <h1 className="flex py-1 text-2xl">ygeia</h1>
-                </a>
+                </Link>
             </div>
 
             <div className="flex flex-row w-full justify-between">
@@ -32,20 +33,20 @@ const Header = () => {
                     </div>
 
                     <ul className="flex flex-row w-full justify-center mr-24">
-                        <li><a href="/feed"><img src={feed} alt="Feed" className="h-8 w-8 mx-16"/></a></li>
-                        <li><a href="/forums"><img src={forums} alt="forums" className="h-8 w-8 mx-16"/></a></li>
-                        <li><a href="/chatroom"><img src={chatroom} alt="chatroom" className="h-8 w-8 mx-16"/></a></li>
+                        <li><Link to="/feed"><img src={feed} alt="Feed" className="h-8 w-8 mx-16"/></Link></li>
+                        <li><Link to="/forums"><img src={forums} alt="forums" className="h-8 w-8 mx-16"/></Link></li>
+                        <li><Link to="/chatroom"><img src={chatroom} alt="chatroom" className="h-8 w-8 mx-16"/></Link></li>
                     </ul>
 
                     <ul className="flex flex-row mr-6 justify-end">
-                        <li><a href=""><img src={notifications} alt="notifications" className="h-8 w-8 ml-6"/></a></li>
-                        <li><a href=""><img src={messages} alt="messages" className="h-8 w-8 ml-6"/></a></li>
+                        <li><Link to=""><img src={notifications} alt="notifications" className="h-8 w-8 ml-6"/></Link></li>
+                        <li><Link to=""><img src={messages} alt="messages" className="h-8 w-8 ml-6"/></Link></li>
                     </ul>
 
                 </nav>
 
                 <div id="logout">
-                    <a href="/profile"><img src={finger} alt="finger" className="h-8 w-8 mx-16"/></a>
+                    <Link to="/profile"><img src={finger} alt="finger" className="h-8 w-8 mx-16"/></Link>
                     
                     {/* <a href="/profile">Profile</a>
                     <a href="/">Logout</a> */}

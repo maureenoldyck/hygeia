@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 //TODO: Add dropdown menu to the profile div
 
@@ -13,27 +14,27 @@ const DocNav = () => {
                     <div className="bg-green-profilebg bg-opacity-25 w-full h-2/5 my-6" id="doc-nav">
                         <ul className="ml-8 mt-4 w-full">
                             <h1 className="text-xl font-bold mb-4">Documentation:</h1>
-                            <li><a className="font-semibold" href="/whatis/mental-health">What is mental health?</a>
+                            <li><Link className="font-semibold" to="/whatis/mental-health">What is mental health?</Link>
                                 <ul className="ml-4 mb-4">
-                                    <li><a href={"/whatis/mental-health"} >Mental health</a></li>
-                                    <li><a href={"/whatis/list"}>A list</a></li>
-                                    <li><a href={"/whatis/how-to-recognize"} >How to recognize</a></li>
+                                    <li><Link to={"/whatis/mental-health"} >Mental health</Link></li>
+                                    <li><Link to={"/whatis/list"}>A list</Link></li>
+                                    <li><Link to={"/whatis/how-to-recognize"} >How to recognize</Link></li>
                                 </ul>
                             </li>
 
-                            <li><a className="font-semibold" href="/recovery/can-it-go-away">Recovery</a>
+                            <li><Link className="font-semibold" to="/recovery/can-it-go-away">Recovery</Link>
                                 <ul className="ml-4 mb-4">
-                                    <li><a href={"/recovery/can-it-go-away"} >Can it go away?</a></li>
-                                    <li><a href={"/recovery/things-to-look-out-for"}>Things to look out for</a></li>
-                                    <li><a href={"/recovery/what-can-i-do"} >What can I do</a></li>
+                                    <li><Link to={"/recovery/can-it-go-away"} >Can it go away?</Link></li>
+                                    <li><Link to={"/recovery/things-to-look-out-for"}>Things to look out for</Link></li>
+                                    <li><Link to={"/recovery/what-can-i-do"} >What can I do</Link></li>
                                 </ul>
                             </li>
 
-                            <li><a className="font-semibold" href="/help/professional-help">How to find help?</a>
+                            <li><Link className="font-semibold" to="/help/professional-help">How to find help?</Link>
                                 <ul className="ml-4 mb-4">
-                                    <li><a href={"/help/professional-help"}>Professional help</a></li>
-                                    <li><a href={"/help/help-from-friends"}>Help from friends</a></li>
-                                    <li><a href={"/help/at-home"}>At home</a></li>
+                                    <li><Link to={"/help/professional-help"}>Professional help</Link></li>
+                                    <li><Link to={"/help/help-from-friends"}>Help from friends</Link></li>
+                                    <li><Link to={"/help/at-home"}>At home</Link></li>
                                 </ul>
                             </li>
                         </ul>

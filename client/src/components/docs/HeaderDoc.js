@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
 
 import search from '../../assets/images/search.svg';
@@ -9,10 +10,10 @@ const HeaderDoc = () => {
         
         <div className="absolute top-0 left-0 h-20 bg-green-100 z-50 flex flex-row p-4 w-full">
             <div className="flex flex-row" id="logo">
-                <a href="/" className="flex flex-row h-10">
+                <Link to="/" className="flex flex-row h-10">
                     <img src={logo} alt="Logo"/>
                     <h1 className="flex py-1 text-2xl">ygeia</h1>
-                </a>
+                </Link>
             </div>
 
             <div className="flex flex-row w-full justify-between">

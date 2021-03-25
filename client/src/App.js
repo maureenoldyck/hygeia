@@ -15,28 +15,28 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App w-screen h-auto">
-      
-      <div>
-        <div className="">
-          <Router>
-            <Switch>
-              <Route path="/" exact component={Home} />
-              <Route path="/home" exact component={HomeTest} />
-              <Route path="/profile" component={MyProfile}/>
-              <Route path="/chatroom" component={Chatroom}/>
-              <Route path="/help" component={Help}/> 
-              <Route path="/whatis" component={Whatis}/> 
-              <Route path="/recovery" component={Recovery}/> 
-              <Route path="/forums" component={Forum}/> 
-              <Route path="/feed" component={Feed}/>
-              <Route path="/register" component={Register}/>
-            </Switch>
-          </Router>
+    <Router>
+      <div className="App w-screen h-auto">
+        
+        <div>
+          <div className="">
+              <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/home" exact component={HomeTest} />
+                <Route path="/profile" component={MyProfile}/>
+                <Route path="/chatroom" component={Chatroom}/>
+                <Route path="/help" component={Help}/> 
+                <Route path="/whatis" component={Whatis}/> 
+                <Route path="/recovery" component={Recovery}/> 
+                <Route path="/forums" component={Forum}/> 
+                <Route path="/feed" component={Feed}/>
+                <Route path="/register" component={Register}/>
+              </Switch>
+          </div>
         </div>
+        
       </div>
-      
-    </div>
+    </Router>
   );
 }
 
