@@ -6,11 +6,10 @@ import Community from '../components/home/Community';
 import FooterHome from '../components/home/FooterHome';
 
 
-
 const HomeTest = () => {
     return (
         <div className="min-h-screen bg-brown-sand">
-    
+            
             <HeaderHome/>
             <Intro/>
             <About/>
