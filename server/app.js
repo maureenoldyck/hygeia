@@ -15,8 +15,15 @@ const pool = mysql.createPool({
     connectionLimit : 10,
     host            : 'localhost',
     user            : 'root',
+<<<<<<< HEAD
     password        : '',
     database        : 'hygeia'
+=======
+    password        : 'root',
+    database        : 'hygeia',
+    port: 3306,
+    insecureAuth: true,
+>>>>>>> 5638b1e5c32c93be5c82044317b5893619bc7cec
 });
 
 app.use(cors());

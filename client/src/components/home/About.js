@@ -26,22 +26,22 @@ const About = () => {
             <div className="bg-white rounded-xl shadow-md h-1/4 lg:w-1/4 w-nine mb-5">
                 <div className="flex flex-col">
                     <div className="flex justify-center">
-                        <img className="h-48 object-fill w-48" src={PrivacySVG} alt="Privacy"/>
+                        <img className="h-48 object-fill w-48" src={DocumentationSVG} alt="Documentation"/>
                     </div>
                     <div className="p-8">
-                        <div className="uppercase text-sm text-brown-yellow font-semibold"> <a href="/terms-and-privacy" className="hover:underline"> Privacy Guaranteed! </a></div>
-                        <p className="mt-2 text-gray-500">We value the privacy of our users. Our platform is designed that you can decide everything about your profile settings.</p>
+                        <div className="uppercase text-sm text-brown-yellow font-semibold"> <a href="/documentation" className="hover:underline"> Read up on mental health </a></div>
+                        <p className="mt-2 text-gray-500">Hyegia provides you documentation about everything mental health. Are you just wondering how to get help or how to help a friend in need? You can find it in our documentation! </p>
                     </div>
                 </div>
             </div>
             <div className="bg-white rounded-xl shadow-md h-1/4 lg:w-1/4 w-nine mb-5">
                 <div className="flex flex-col">
                     <div className="flex justify-center">
-                        <img className="h-48 object-fill w-48" src={DocumentationSVG} alt="Documentation"/>
+                        <img className="h-48 object-fill w-48" src={PrivacySVG} alt="Privacy"/>
                     </div>
                     <div className="p-8">
-                        <div className="uppercase text-sm text-brown-yellow font-semibold"> <a href="/documentation" className="hover:underline"> Read up on mental health </a></div>
-                        <p className="mt-2 text-gray-500">Hyegia provides you documentation about everything mental health. Are you just wondering how to get help or how to help a friend in need? You can find it in our documentation! </p>
+                        <div className="uppercase text-sm text-brown-yellow font-semibold"> <a href="/terms-and-privacy" className="hover:underline"> Privacy Guaranteed! </a></div>
+                        <p className="mt-2 text-gray-500">We value the privacy of our users. Our platform is designed that you can decide everything about your profile settings.</p>
                     </div>
                 </div>
             </div>
