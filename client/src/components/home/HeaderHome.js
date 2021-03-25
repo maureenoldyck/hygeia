@@ -18,18 +18,18 @@ const HeaderHome = () => {
     return (
         <div>
             <nav className="bg-brown-clay text-white">
-                <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+                <div className="mx-auto px-2 sm:px-6 lg:px-8">
                     <div className="relative flex items-center justify-between h-16">
-                        <div className="md:flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                            <div className="flex-shrink-0 flex items-center">
+                        <div className="md:flex-1 flex items-center justify-center sm:justify-start">
+                            <div className="flex items-center">
                                 <div className="flex flex-row" id="logo">
                                     <Link to="/" className="flex flex-row h-10">
                                         <img src={logo} alt="Logo"/>
                                         <h1 className="flex py-1 text-2xl">ygeia</h1>
                                     </Link>
-                                    <div className="flex flex-row w-1/3 md:w-full" id="search">
-                                        <input type="search" placeholder="Search.." className="rounded-xl pl-4"/>
-                                        <img src={search} alt="search" className="h-8 w-8 ml-2 mt-2"/>
+                                    <div className="flex flex-row md:w-full" id="search">
+                                        <input type="search" placeholder="Search.." className="rounded-xl pl-4 w-2/5 md:w-full"/>
+                                        <img src={search} alt="search" className="h-6 sm:h-8 sm:w-8 ml-2 mt-2"/>
                                     </div>
                                 </div>
                             </div>

@@ -12,7 +12,7 @@ const Community = () => {
         </div>
         <div className="md:text-right 2xl:w-2/5 md:w-3/5">
             <div className="w-nine right-0">
-                <h1 className="text-6xl mb-4 md:text-4xl">  Our Community </h1>
+                <h1 className="text-4xl sm:text-6xl mb-4 md:text-4xl">  Our Community </h1>
                 <h5 className="text-2xl ml-3 md:text-xl"> Join many others on their mental health care journey, talk with professionals, give help yourself.</h5>
                 <div className="mt-7"> 
                     <div className="flex flex-col md:ml-20 md:text-2xl w-full mb-5 md:transform md:scale-90">
