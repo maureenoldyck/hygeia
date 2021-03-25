@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 
 import HeaderDoc from '../../components/docs/HeaderDoc.js';
 import DocNav from '../../components/docs/DocNav.js';
@@ -16,10 +17,10 @@ const Recovery = () => {
             </div>
 
             <div>
-                <section className="h-screen mt-20 mb-24 bg-yellow-banana">
+                <section className="min-h-screen mt-20 mb-24 bg-yellow-banana">
                     <div className="flex flex-row w-full">
                         <DocNav />
-                        <Article />
+                        <Route path={"/recovery/:slug"} component={Article}/>
                     </div>
                 </section>
             </div>

@@ -13,6 +13,16 @@ module.exports = {
         },
         yellow: {
           banana: '#F4FFE5'
+        },
+        brown: {
+          sand: '#D5C7BA',
+          clay: '#AC6C53',
+          yellow: '#C5874B',
+          white: '#F2F2F2'
+        },
+        blue: {
+          ocean: '#31596D',
+          naval: '#2F3E4C',
         }
       },
       rotate: {
