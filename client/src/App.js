@@ -9,6 +9,7 @@ import Whatis from './pages/documentation/WhatIs.js';
 import Recovery from './pages/documentation/Recovery.js';
 import Register from './pages/Register.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import HomeTest from './pages/HomeTest';
 
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
               <Route path="/forums" component={Forum}/> 
               <Route path="/feed" component={Feed}/>
               <Route path="/register" component={Register}/>
+              <Route path="/home" component={HomeTest}/>
+              
 
             </Switch>
           </Router>
