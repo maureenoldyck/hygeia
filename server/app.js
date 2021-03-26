@@ -46,9 +46,12 @@ app.use((req, res, next) => {
 
 // when you want a new app.post(), use "api/<your component>"
 
-app.post("/api/dev/test", (req, res) => {
+app.get("/api/dev/test", (req, res) => {
     res.send("stuff");
-    const sqlInsert = "INSERT INTO test (`name`) VALUE ('test');"
+    const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`, `u_id`) VALUE ('test@email.com', 'password', '22');"
+    pool.query(sqlInsert , (err, result) => {
+        console.log(err)
+    });
 })
 
 app.post("/api/profile", (req, res) => {
@@ -57,7 +60,7 @@ app.post("/api/profile", (req, res) => {
     const role = req.body.role
     const quote = req.body.quote
 
-    const sqlInsert = "INSERT INTO user_list (`name`, `role`, `quote`) VALUES (?,?,?);"
+    const sqlInsert = "INSERT INTO user_profile (`name`, `role`, `quote`) VALUES (?,?,?);"
 
     pool.query(sqlInsert, [name, role, quote] , (err, result) => {
         console.log(err)
@@ -73,7 +76,7 @@ app.post("/api/details", (req, res) => {
     const website = req.body.website
     const social = req.body.social
 
-    const sqlInsert = "INSERT INTO user_list (`age`, `gender`, `language`, `experience_id`, `my_web`, `my_soc`) VALUES (?,?,?,?,?,?);"
+    const sqlInsert = "INSERT INTO user_profile (`age`, `gender`, `language`, `experience_id`, `my_web`, `my_soc`) VALUES (?,?,?,?,?,?);"
 
     pool.query(sqlInsert, [age, gender, languages, experiences, website, social] , (err, result) => {
         console.log(result)
