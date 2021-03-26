@@ -44,7 +44,7 @@ const HeaderHome = () => {
         <div>
             <div id="loginModal" className="hidden">
                 <Modal>
-                    <span onClick={closeModal} className="close text-2xl ml-3 text-red-500 hover:font-bold cursor-pointer">&times;</span>
+                    <span onClick={closeModal} className="close text-2xl ml-3 text-red-400  hover:text-red-500 cursor-pointer">&times;</span>
                     <Login/>
                 </Modal>
             </div>

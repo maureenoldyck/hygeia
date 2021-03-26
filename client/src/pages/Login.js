@@ -1,7 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
+
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+
+    const handleLogIn = () => {
+        
+
+        //======================================================================================//
+        //                         Fetch API location + POST body-properties                    //
+        //======================================================================================//
+        
+
+        fetch("http://localhost:5000/api/login", {
+            method: 'POST',
+            body: JSON.stringify({
+                u_email: email,
+                u_password: password,
+            }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json; charset=UTF-8'
+            }
+
+        })
+        .then(res => res.json())
+        .then(res => console.log(res));
+    }
+
+
     return (
         
         <div className="flex flex-col text-blue-naval">
@@ -13,10 +44,10 @@ const Register = () => {
                         <h1 className="text-4xl text-center mt-8 mb-16">Log In</h1>
                     
                         <label className="mb-1">Email</label>
-                        <input placeholder="Your Email ..." className="pl-2 py-2 mb-6 rounded-lg"/>
+                        <input placeholder="Your Email ..." className="pl-2 py-2 mb-6 rounded-lg" onChange={(e) => {setEmail(e.target.value)}}/>
 
                         <label className="mb-1">Password</label>
-                        <input type="password" placeholder="Your password ..." className="pl-2 py-2 rounded-lg"/>
+                        <input type="password" placeholder="Your password ..." className="pl-2 py-2 rounded-lg" onChange={(e) => {setPassword(e.target.value)}}/>
 
                         <Link to="/" className="flex justify-end text-base mb-4"><span>Forgot password?</span></Link>
 
@@ -26,7 +57,7 @@ const Register = () => {
                         </div>
 
                         <div className="flex flex-row my-6 justify-around">
-                            <button className="text-brown-white hover:underline bg-brown-yellow rounded-br-lg rounded-tl-lg p-3 2xl:text-lg 2xl:p-4 mb-3">Login</button>
+                            <button className="text-brown-white hover:underline bg-brown-yellow rounded-br-lg rounded-tl-lg p-3 2xl:text-lg 2xl:p-4 mb-3" onClick={handleLogIn}>Log In</button>
                         </div>
                        
                     </div>
