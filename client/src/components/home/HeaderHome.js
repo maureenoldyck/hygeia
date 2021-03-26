@@ -34,12 +34,12 @@ const HeaderHome = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 hidden lg:block">
+                        <div className="absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 hidden lg:block">
                             <div className="flex space-x-4">
                                 <Link className="hover:underline mt-1" to="/about-us">about us</Link>
                                 <Link className="hover:underline mt-1" to="/contact-us">contact us</Link>
                                 <Link className="hover:underline mt-1" to="/documentation">mental health documentation</Link>
-                                <Link className="hover:underline border rounded-lg px-3 py-1" to="/profile"> sign up </Link>
+                                <Link className="hover:underline border rounded-lg px-3 py-1" to="/register"> sign up </Link>
                                 <Link className="hover:underline border rounded-lg px-3 py-1 bg-brown-yellow" to="/profile"> sign in </Link>
                             </div>
                         </div>
