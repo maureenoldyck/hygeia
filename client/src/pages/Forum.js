@@ -16,7 +16,7 @@ const Forum = () => {
                 <Header />
             </div>
 
-            <div className="flex justify-around bg-yellow-banana flex-col min-h-full ">
+            <div className="flex justify-around bg-brown-white flex-col min-h-full ">
 
                 <div className="flex justify-around flex-row h-screen z-0 mb-32 mt-28 px-12" >
 
