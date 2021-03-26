@@ -2,9 +2,31 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
 import search from '../../assets/images/search.svg';
+import Modal from '../Modal';
+import Login from '../../pages/Login';
 
 
 const HeaderHome = () => {
+
+  
+    const showModal = () => {
+        const modal = document.getElementById("loginModal");
+
+        if (modal.className === "hidden") {
+            modal.className += "block";
+        } else {
+            modal.className = "hidden";
+        }
+    }
+    window.onclick = (event) => {
+
+    const modalClose = document.getElementById("loginModal");
+
+      if (event.target === modalClose) {
+            modalClose.className = "hidden";
+        }
+    }
+    
 
     const seeMenu = () => {
         const x = document.getElementById("mobile-menu");
@@ -14,9 +36,16 @@ const HeaderHome = () => {
             x.className = "hidden";
         }
     }
+  
 
     return (
         <div>
+            <div id="loginModal" className="hidden">
+                <Modal>
+                    <Login/>
+                </Modal>
+            </div>
+
             <nav className="bg-brown-clay text-white">
                 <div className="mx-auto px-2 sm:px-6 lg:px-8">
                     <div className="relative flex items-center justify-between h-16">
@@ -36,11 +65,11 @@ const HeaderHome = () => {
                         </div>
                         <div className="absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 hidden lg:block">
                             <div className="flex space-x-4">
-                                <Link className="hover:underline mt-1" to="/about-us">about us</Link>
-                                <Link className="hover:underline mt-1" to="/contact-us">contact us</Link>
-                                <Link className="hover:underline mt-1" to="/documentation">mental health documentation</Link>
-                                <Link className="hover:underline border rounded-lg px-3 py-1" to="/register"> sign up </Link>
-                                <Link className="hover:underline border rounded-lg px-3 py-1 bg-brown-yellow" to="/profile"> sign in </Link>
+                                <Link className="hover:underline mt-2" to="/about-us">about us</Link>
+                                <Link className="hover:underline mt-2" to="/contact-us">contact us</Link>
+                                <Link className="hover:underline mt-2" to="/documentation">mental health documentation</Link>
+                                <Link className="hover:underline border rounded-lg px-3 py-2" to="/register"> sign up </Link>
+                                <button id="loginButton" className="hover:underline border rounded-lg px-3 py-2 bg-brown-yellow" onClick={showModal}> log in </button>
                             </div>
                         </div>
                         <div className="absolute inset-y-0 right-0 flex items-center lg:hidden">
@@ -61,7 +90,7 @@ const HeaderHome = () => {
                         <Link className="hover:underline" to="/contact-us">contact us</Link>
                         <Link className="hover:underline" to="/documentation">mental health documentation</Link>
                         <Link className="hover:underline border rounded-lg px-3 py-2" to="/profile"> sign up </Link>
-                        <Link className="hover:underline border rounded-lg px-3 py-2 bg-brown-yellow" to="/profile"> sign in </Link>
+                        <button className="hover:underline border rounded-lg px-3 py-2 bg-brown-yellow"> log in </button>
                     </div>
                 </div>
             </nav>

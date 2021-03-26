@@ -48,3 +48,7 @@ input[type="radio"].sad:checked + svg{
   fill: #EF4444;
   color: #EF4444;
 }
+
+.modal {
+  display: hidden;
+}

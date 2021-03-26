@@ -8,7 +8,7 @@ import search from '../../assets/images/search.svg';
 const HeaderDoc = () => {
     return (
         
-        <div className="absolute top-0 left-0 h-20 bg-green-100 z-50 flex flex-row p-4 w-full">
+        <div className="absolute top-0 left-0 h-20 bg-brown-clay z-50 flex flex-row p-4 w-full">
             <div className="flex flex-row" id="logo">
                 <Link to="/" className="flex flex-row h-10">
                     <img src={logo} alt="Logo"/>
