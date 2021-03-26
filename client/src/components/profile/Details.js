@@ -21,7 +21,7 @@ const Details = () => {
                             <li>Languages: </li>
                         </ul>
                     </div>
-                    <div className="bg-green-profilebg bg-opacity-25 w-3/5 p-4">
+                    <div className="bg-gray-input rounded-xl bg-opacity-25 w-3/5 p-4">
                         <ul>
                             <li>12-20 y/o</li>
                             <li>Undefined</li>
@@ -38,7 +38,7 @@ const Details = () => {
                                 <li>My Social: </li>
                             </ul>
                     </div>
-                    <div className="bg-green-profilebg bg-opacity-25 w-3/5 p-4 overflow-hidden">
+                    <div className="bg-gray-input rounded-xl bg-opacity-25 w-3/5 p-4 overflow-hidden">
                         <ul>
                             <li className="h-7 overflow-x-auto">Social Anxiety, Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, iusto.</li>
                             <li>N/A</li>

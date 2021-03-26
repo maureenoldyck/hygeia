@@ -19,13 +19,13 @@ const MyProfile = () => {
                 <Header />
             </div>
 
-            <div className="flex justify-around bg-yellow-banana flex-col">
+            <div className="flex justify-around bg-brown-white flex-col">
 
                 <div className="flex justify-around flex-row min-h-screen z-0 mb-32 mt-28 px-12" >
-                    <section className="bg-green-profilebg bg-opacity-25 justify-around w-screen min-h-full h-auto flex flex-row" id="left">
+                    <section className="bg-brown-sand bg-opacity-25 justify-around w-screen min-h-full h-auto flex flex-row" id="left">
 
                         <div className="flex justify-around items-center flex-col w-full">
-                            <div className="bg-green-profilebg bg-opacity-25 w-nine h-2/5 my-6" id="profile">
+                            <div className="bg-brown-sand bg-opacity-25 w-nine h-2/5 my-6 rounded-xl" id="profile">
                                 <Router>
                                     <Switch>
                                         <Route path="/profile/edit/details" exact component={Profile} />
@@ -37,7 +37,7 @@ const MyProfile = () => {
                                 </Router>
                             </div>
 
-                            <div className="bg-green-profiledeets w-nine h-3/5 my-6" id="details">
+                            <div className="bg-brown-white rounded-xl w-nine h-3/5 my-6" id="details">
                                 <Router>
                                     <Switch>
                                         <Route path="/profile/edit/profile" exact component={Details} />
@@ -50,7 +50,7 @@ const MyProfile = () => {
                         </div>
 
                         <div className="flex justify-around items-center w-full my-6">
-                            <div className="bg-green-profiledeets w-nine min-h-full h-auto " id="settings">
+                            <div className="bg-brown-white w-nine min-h-full h-auto rounded-xl" id="settings">
                             <Router>
                                     <Switch>
                                         <Route path="/profile/edit/profile" exact component={Settings} />

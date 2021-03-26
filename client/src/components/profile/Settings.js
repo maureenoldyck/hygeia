@@ -24,7 +24,7 @@ const Settings = () => {
                         </ul>
                     </div>
 
-                    <div className="bg-green-profilebg bg-opacity-25 w-3/5 p-4">
+                    <div className="bg-gray-input rounded-xl bg-opacity-25 w-3/5 p-4">
                         <ul>
                             <li>YES</li>
                             <li>Visible</li>
@@ -42,7 +42,7 @@ const Settings = () => {
                         </ul>
                     </div>
 
-                    <div className="bg-green-profilebg bg-opacity-25 w-3/5 p-4">
+                    <div className="bg-gray-input rounded-xl bg-opacity-25 w-3/5 p-4">
                         <ul>
                             <li>Only contacts and professionals</li>
                         </ul>
@@ -58,7 +58,7 @@ const Settings = () => {
                         </ul>
                     </div>
 
-                    <div className="bg-green-profilebg bg-opacity-25 w-3/5 p-4">
+                    <div className="bg-gray-input rounded-xl bg-opacity-25 w-3/5 p-4">
                         <ul>
                             <li>All</li>
                             <li>Mail</li>
@@ -75,7 +75,7 @@ const Settings = () => {
                         </ul>
                     </div>
 
-                    <div className="bg-green-profilebg bg-opacity-25 w-3/5 p-4">
+                    <div className="bg-gray-input rounded-xl bg-opacity-25 w-3/5 p-4">
                         <ul>
                             <li>List of Blocked users</li>
 
@@ -90,7 +90,7 @@ const Settings = () => {
                                 <li>Your bio:</li>
                             </ul>
                     </div>
-                    <div className="bg-green-profilebg bg-opacity-25 w-3/5 p-4 overflow-hidden">
+                    <div className="bg-gray-input rounded-xl bg-opacity-25 w-3/5 p-4 overflow-hidden">
                         <textarea className="bg-transparent" readOnly name="" id="" cols="25" rows="4">Lorem ipsum dolor sit amet consectetur adipisicing elit.</textarea>
                     </div>
                 </div>
@@ -103,7 +103,7 @@ const Settings = () => {
                         </ul>
                     </div>
 
-                    <div className="bg-green-profilebg bg-opacity-25 w-3/5 p-4">
+                    <div className="bg-gray-input rounded-xl bg-opacity-25 w-3/5 p-4">
                         <ul>
                             <li>Delete or Hide account</li>
 
