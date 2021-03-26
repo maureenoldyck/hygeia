@@ -28,7 +28,7 @@ app.use(express.urlencoded({
 }));
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://localhost:3001");
+    res.setHeader("Access-Control-Allow-Origin", "https://localhost:3000");
     res.header(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept"
@@ -60,7 +60,7 @@ app.post("/api/profile", (req, res) => {
     const role = req.body.role
     const quote = req.body.quote
 
-    const sqlInsert = "INSERT INTO user_profile (`name`, `role`, `quote`) VALUES (?,?,?);"
+    const sqlInsert = "INSERT INTO users_list (`name`, `role`, `quote`) VALUES (?,?,?);"
 
     pool.query(sqlInsert, [name, role, quote] , (err, result) => {
         console.log(err)
@@ -76,7 +76,7 @@ app.post("/api/details", (req, res) => {
     const website = req.body.website
     const social = req.body.social
 
-    const sqlInsert = "INSERT INTO user_profile (`age`, `gender`, `language`, `experience_id`, `my_web`, `my_soc`) VALUES (?,?,?,?,?,?);"
+    const sqlInsert = "INSERT INTO users_list (`age`, `gender`, `language`, `experience_id`, `my_web`, `my_soc`) VALUES (?,?,?,?,?,?);"
 
     pool.query(sqlInsert, [age, gender, languages, experiences, website, social] , (err, result) => {
         console.log(result)
@@ -89,6 +89,6 @@ app.post("/api/details", (req, res) => {
 //==========================================================================================//
 
 
-app.listen(3000, () => {
+app.listen(5000, () => {
     console.log("Running..")
 })

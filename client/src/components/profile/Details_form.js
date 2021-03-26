@@ -31,7 +31,7 @@ const DetailsForm = () => {
         //======================================================================================//
 
 
-        fetch("http://localhost:3000/api/details", {
+        fetch("http://localhost:5000/api/details", {
             method: 'POST',
             body: JSON.stringify({
                 age: age,
