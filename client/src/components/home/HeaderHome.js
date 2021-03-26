@@ -18,12 +18,14 @@ const HeaderHome = () => {
             modal.className = "hidden";
         }
     }
-    window.onclick = (event) => {
 
-    const modalClose = document.getElementById("loginModal");
+    const closeModal = () => {
+        const modal = document.getElementById("loginModal");
 
-      if (event.target === modalClose) {
-            modalClose.className = "hidden";
+        if (modal.className === "hidden") {
+            modal.className += "block";
+        } else {
+            modal.className = "hidden";
         }
     }
     
@@ -42,6 +44,7 @@ const HeaderHome = () => {
         <div>
             <div id="loginModal" className="hidden">
                 <Modal>
+                    <span onClick={closeModal} className="close text-2xl ml-3 text-red-500 hover:font-bold cursor-pointer">&times;</span>
                     <Login/>
                 </Modal>
             </div>

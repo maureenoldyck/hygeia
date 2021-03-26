@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 const Register = () => {
     return (
         
-        <div className="h-screen flex flex-col text-blue-naval">
+        <div className="flex flex-col text-blue-naval">
 
-            <div className="flex flex-row h-screen z-0">
+            <div className="flex flex-row h-auto z-0">
 
                     <div className="flex flex-col w-nine m-5 text-2xl">
 
-                        <h1 className="text-4xl text-center mt-12 mb-16">Log In</h1>
+                        <h1 className="text-4xl text-center mt-8 mb-16">Log In</h1>
                     
                         <label className="mb-1">Email</label>
                         <input placeholder="Your Email ..." className="pl-2 py-2 mb-6 rounded-lg"/>
@@ -26,7 +26,7 @@ const Register = () => {
                         </div>
 
                         <div className="flex flex-row my-6 justify-around">
-                            <button className="hover:underline bg-brown-yellow rounded-br-lg rounded-tl-lg p-3 2xl:text-lg 2xl:p-4 mb-3">Login</button>
+                            <button className="text-brown-white hover:underline bg-brown-yellow rounded-br-lg rounded-tl-lg p-3 2xl:text-lg 2xl:p-4 mb-3">Login</button>
                         </div>
                        
                     </div>
