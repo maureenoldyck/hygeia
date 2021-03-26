@@ -5,7 +5,7 @@ const MoodTracker = () => {
 
     return (
         
-        <section className="flex bg-brown-sand bg-opacity-25 w-1/3 min-h-full h-auto" id="right">
+        <section className=" hidden lg:flex bg-brown-sand bg-opacity-25 w-1/3 min-h-full h-auto" id="right">
             <div className="flex justify-around items-center w-full my-6">
                 <div className="flex flex-col bg-brown-white rounded-xl w-3/5 h-moodTracker max-h-moodTracker my-6 justify-between">
                     <div className="flex flex-col">

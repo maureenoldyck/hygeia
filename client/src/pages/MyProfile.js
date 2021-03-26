@@ -21,8 +21,8 @@ const MyProfile = () => {
 
             <div className="flex justify-around bg-brown-white flex-col">
 
-                <div className="flex justify-around flex-row min-h-screen z-0 mb-32 mt-28 px-12" >
-                    <section className="bg-brown-sand bg-opacity-25 justify-around w-screen min-h-full h-auto flex flex-row" id="left">
+                <div className="flex justify-around flex-row min-h-screen z-0 mb-32 lg:mt-28 mt-16 lg:px-12 px-4" >
+                    <section className="bg-brown-sand bg-opacity-25 justify-around lg:w-screen w-full min-h-full h-auto  flex flex-col lg:flex-row" id="left">
 
                         <div className="flex justify-around items-center flex-col w-full">
                             <div className="bg-brown-sand bg-opacity-25 w-nine h-2/5 my-6 rounded-xl" id="profile">
