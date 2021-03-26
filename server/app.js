@@ -100,10 +100,10 @@ app.post("/api/login", (req, res) => {
         } 
         
         if (result.length > 0) {
-            res.send(result);
-            // res.redirect('/login')
+            // res.send(result);
+            res.redirect('/profile')
         } else {
-            res.send({ err: "Please correct enter email and Password!"});
+            res.send({ err: "Sadly, your email and/or password doesn't seem correct. Please try again."});
         }
     });
 });
