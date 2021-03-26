@@ -14,15 +14,15 @@ const Chatroom = () => {
                 <Header />
             </div>
 
-            <div className="flex justify-around bg-yellow-banana flex-col min-h-full ">
+            <div className="flex justify-around bg-brown-white flex-col min-h-full ">
 
                 <div className="flex justify-around flex-row h-screen z-0 mb-32 mt-28 px-12" >
 
-                    <section className="bg-green-profilebg bg-opacity-25 justify-around w-full h-screen flex flex-row" id="search-filter">
+                    <section className="bg-brown-sand bg-opacity-25 justify-around w-full h-screen flex flex-row" id="search-filter">
 
                         <div className="flex ml-8 flex-col w-1/4">
 
-                            <div className="bg-green-profilebg bg-opacity-25 w-full h-full my-6" id="filter">
+                            <div className="bg-brown-sand rounded-xl bg-opacity-25 w-full h-full my-6" id="filter">
                                 <div className="flex flex-col w-full h-full text-xl" id="filter-card">
                                     <div>
                                         <form action="">
@@ -31,7 +31,7 @@ const Chatroom = () => {
                                                 </div>
                                                 <div className="pt-12 pl-4">
                                                     <label><h3 className="text-xl font-bold">Tags</h3></label>
-                                                    <input className="bg-pink-100 bg-opacity-50 border-black border" type="text" placeholder="Enter tags ..." size="15"/>
+                                                    <input className="bg-brown-white bg-opacity-50 rounded-xl pl-2 border-black border" type="text" placeholder="Enter tags ..." size="15"/>
                                                 
                                                     <p>tag, tag, tag, + ...</p>
                                                 </div>
