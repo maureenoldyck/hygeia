@@ -18,7 +18,8 @@ module.exports = {
           sand: '#D5C7BA',
           clay: '#AC6C53',
           yellow: '#C5874B',
-          white: '#F2F2F2'
+          white: '#F2F2F2',
+          navajo: '#FFDEAD'
         },
         blue: {
           ocean: '#31596D',
