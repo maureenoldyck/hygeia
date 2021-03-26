@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import homeImage from '../../assets/images/home.svg'; 
 
 
@@ -11,8 +12,8 @@ const Intro = () => {
             <h1 className="text-6xl mb-4 2xl:text-7xl md:text-4xl"> Sometimes you just need someone to talk to...</h1>
             <h5 className="text-2xl 2xl:text-3xl 2xl:mt-10 md:text-xl"> Hygeia is a mental health social platform where you can ask for help, offer help or just connect with people that will understand you.</h5>
             <div className="mt-10 2xl:mt-14 flex flex-col md:flex-row"> 
-                <a href="#community" className="hover:underline bg-blue-naval rounded-br-lg rounded-tl-lg p-3 mr-5 2xl:text-lg 2xl:p-4"> Discover our community!</a>
-                <a href="/documentation" className="hover:underline bg-brown-yellow rounded-br-lg rounded-tl-lg p-3 2xl:text-lg 2xl:p-4"> What is Mental Health?</a>
+                <Link to="#community" className="hover:underline bg-blue-naval rounded-br-lg rounded-tl-lg p-3 mr-5 2xl:text-lg 2xl:p-4"> Discover our community!</Link>
+                <Link to="/documentation" className="hover:underline bg-brown-yellow rounded-br-lg rounded-tl-lg p-3 2xl:text-lg 2xl:p-4"> What is Mental Health?</Link>
             </div>
         </div>
 

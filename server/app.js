@@ -17,8 +17,8 @@ const pool = mysql.createPool({
     user            : 'root',
     password        : 'root',
     database        : 'hygeia',
-    port: 3306,
-    insecureAuth: true,
+    port            : 3306,
+    insecureAuth    : true,
 });
 
 app.use(cors());
@@ -60,7 +60,7 @@ app.post("/api/profile", (req, res) => {
     const sqlInsert = "INSERT INTO user_list (`name`, `role`, `quote`) VALUES (?,?,?);"
 
     pool.query(sqlInsert, [name, role, quote] , (err, result) => {
-        console.log(result)
+        console.log(err)
     });
 });
 

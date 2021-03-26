@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CommunitySVG from '../../assets/images/community.svg';
 
 
@@ -22,7 +23,7 @@ const Community = () => {
                             <label className="mb-1">Password</label>
                             <input type="password" placeholder="Your password ..." className="pl-2 py-2 rounded-lg"/>
 
-                            <a href="/" className="flex justify-end text-base mb-4"><span>Forgot password?</span></a>
+                            <Link to="/" className="flex justify-end text-base mb-4"><span>Forgot password?</span></Link>
 
                             <div className="flex flex-row items-center">
                                 <input type="checkbox" className="w-5 h-5 mr-2" />
@@ -30,12 +31,11 @@ const Community = () => {
                             </div>
 
                             <div className="flex flex-row my-6 justify-around">
-                                <a href="/login" className="bg-brown-yellow rounded-br-lg rounded-tl-lg p-3 hover:underline"> Sign In</a> 
-                                <a href="/register" className="bg-blue-naval rounded-br-lg rounded-tl-lg p-3 mr-5 hover:underline"> Sign Up </a>
+                                <Link to="/login" className="bg-brown-yellow rounded-br-lg rounded-tl-lg p-3 hover:underline"> Sign In</Link> 
+                                <Link to="/register" className="bg-blue-naval rounded-br-lg rounded-tl-lg p-3 mr-5 hover:underline"> Sign Up </Link>
                             </div>
                         </form>
                     </div>
-                   
                 </div>
             </div>
         </div>
