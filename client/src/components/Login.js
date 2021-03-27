@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Register = () => {
+const Login = () => {
 
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loginStatus, setLoginStatus] = useState('');
 
 
     const handleLogIn = () => {
@@ -19,8 +20,8 @@ const Register = () => {
         fetch("http://localhost:5000/api/login", {
             method: 'POST',
             body: JSON.stringify({
-                u_email: email,
-                u_password: password,
+                email: email,
+                password: password,
             }),
             headers: {
                 'Accept': 'application/json',
@@ -29,7 +30,15 @@ const Register = () => {
 
         })
         .then(res => res.json())
-        .then(res => console.log(res));
+        .then((res) => {
+            console.log(res);
+            if (res.err) {
+                setLoginStatus(res.err);
+            } else {
+                setLoginStatus(res[0].u_email);
+            }
+        }); 
+
     }
 
 
@@ -42,6 +51,8 @@ const Register = () => {
                     <div className="flex flex-col w-nine m-5 text-2xl">
 
                         <h1 className="text-4xl text-center mt-8 mb-16">Log In</h1>
+
+                        <h2 className="text-red-500 mb-4"> {loginStatus}</h2>
                     
                         <label className="mb-1">Email</label>
                         <input placeholder="Your Email ..." className="pl-2 py-2 mb-6 rounded-lg" onChange={(e) => {setEmail(e.target.value)}}/>
@@ -66,4 +77,4 @@ const Register = () => {
     );
 }
 
-export default Register;
+export default Login;

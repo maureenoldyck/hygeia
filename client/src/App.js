@@ -8,7 +8,6 @@ import Feed from './pages/Feed.js';
 import Help from './pages/documentation/Help.js';
 import Whatis from './pages/documentation/WhatIs.js';
 import Recovery from './pages/documentation/Recovery.js';
-import Register from './pages/Login.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
@@ -31,7 +30,6 @@ function App() {
                 <Route path="/recovery" component={Recovery}/> 
                 <Route path="/forums" component={Forum}/> 
                 <Route path="/feed" component={Feed}/>
-                <Route path="/register" component={Register}/>
               </Switch>
           </div>
         </div>

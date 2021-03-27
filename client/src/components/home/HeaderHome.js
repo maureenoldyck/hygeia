@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
 import search from '../../assets/images/search.svg';
 import Modal from '../Modal';
-import Login from '../../pages/Login';
+import Login from '../Login';
 
 
 const HeaderHome = () => {
@@ -39,13 +39,14 @@ const HeaderHome = () => {
         }
     }
   
+    
 
     return (
         <div>
             <div id="loginModal" className="hidden">
                 <Modal>
                     <span onClick={closeModal} className="close text-2xl ml-3 text-red-400  hover:text-red-500 cursor-pointer">&times;</span>
-                    <Login/>
+                    <Login state={"loginStatus"} />
                 </Modal>
             </div>
 
@@ -71,8 +72,11 @@ const HeaderHome = () => {
                                 <Link className="hover:underline mt-2" to="/about-us">about us</Link>
                                 <Link className="hover:underline mt-2" to="/contact-us">contact us</Link>
                                 <Link className="hover:underline mt-2" to="/documentation">mental health documentation</Link>
-                                <Link className="hover:underline border rounded-lg px-3 py-2" to="/register"> sign up </Link>
+                                <a className="hover:underline border rounded-lg px-3 py-2" href="#community"> sign up </a>
                                 <button id="loginButton" className="hover:underline border rounded-lg px-3 py-2 bg-brown-yellow" onClick={showModal}> log in </button>
+                                {/* {(loginStatus === "") ? (<button id="loginButton" className="hover:underline border rounded-lg px-3 py-2 bg-brown-yellow" onClick={showModal}> log in </button>) : 
+                                    <Link className="hover:underline border rounded-lg px-3 py-2" to="/profile"> profile </Link>
+                                } */}
                             </div>
                         </div>
                         <div className="absolute inset-y-0 right-0 flex items-center lg:hidden">
