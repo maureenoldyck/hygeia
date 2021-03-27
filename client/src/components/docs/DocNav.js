@@ -8,14 +8,14 @@ const DocNav = () => {
 
     return (
         
-        <div className="bg-brown-white bg-opacity-25 mt-6 ml-4 z-20 flex flex-row w-1/6">
-            <nav className="w-nine m-auto">
-                <div className="flex justify-start flex-col w-full">
-                    <div className="w-full my-3" id="doc-nav">
+        <div className=" mt-6 ml-4 z-20 flex flex-row w-1/6">
+            <nav className="w-nine">
+                <div className="bg-brown-sand bg-opacity-25 flex justify-start flex-col w-full h-auto top-16 sticky">
+                    <div className="w-full my-3 pl-4" id="doc-nav">
                         <ul className="ml-1 mt-1 w-full">
                             <h1 className="text-xl font-bold mb-4">Documentation:</h1>
                             <li><Link className="font-semibold" to="/whatis/mental-health">What is mental health?</Link>
-                                <ul className="mb-4">
+                                <ul className="mb-4 pl-4">
                                     <li><Link to={"/whatis/mental-health"} >Mental health</Link></li>
                                     <li><Link to={"/whatis/list"}>A list</Link></li>
                                     <li><Link to={"/whatis/how-to-recognize"} >How to recognize</Link></li>
@@ -23,7 +23,7 @@ const DocNav = () => {
                             </li>
 
                             <li><Link className="font-semibold" to="/recovery/can-it-go-away">Recovery</Link>
-                                <ul className="mb-4">
+                                <ul className="mb-4 pl-4">
                                     <li><Link to={"/recovery/can-it-go-away"} >Can it go away?</Link></li>
                                     <li><Link to={"/recovery/things-to-look-out-for"}>Things to look out for</Link></li>
                                     <li><Link to={"/recovery/what-can-i-do"} >What can I do</Link></li>
@@ -31,7 +31,7 @@ const DocNav = () => {
                             </li>
 
                             <li><Link className="font-semibold" to="/help/professional-help">How to find help?</Link>
-                                <ul className="mb-4">
+                                <ul className="mb-4 pl-4">
                                     <li><Link to={"/help/professional-help"}>Professional help</Link></li>
                                     <li><Link to={"/help/help-from-friends"}>Help from friends</Link></li>
                                     <li><Link to={"/help/at-home"}>At home</Link></li>
