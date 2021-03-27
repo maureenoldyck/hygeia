@@ -16,13 +16,13 @@ const Chatroom = () => {
 
             <div className="flex justify-around bg-brown-white flex-col min-h-full ">
 
-                <div className="flex justify-around flex-row h-screen z-0 mb-32 mt-28 px-12" >
+                <div className="flex justify-around flex-row h-screen z-0 mb-32 lg:mt-20 mt-14 px-12" >
 
                     <section className="bg-brown-sand bg-opacity-25 justify-around w-full h-screen flex flex-row" id="search-filter">
 
                         <div className="flex ml-8 flex-col w-1/4">
 
-                            <div className="bg-brown-sand rounded-xl bg-opacity-25 w-full h-full my-6" id="filter">
+                            <div className="bg-brown-sand rounded-xl bg-opacity-25 w-full h- pb-4 my-6 top-10 sticky" id="filter">
                                 <div className="flex flex-col w-full h-full text-xl" id="filter-card">
                                     <div>
                                         <form action="">

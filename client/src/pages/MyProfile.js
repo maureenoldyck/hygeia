@@ -20,8 +20,7 @@ const MyProfile = () => {
             </div>
 
             <div className="flex justify-around bg-brown-white flex-col">
-
-                <div className="flex justify-around flex-row min-h-screen z-0 mb-32 lg:mt-28 mt-16 lg:px-12 px-4" >
+                <div className="flex justify-around flex-row min-h-screen z-0 mb-32 lg:mt-20 mt-14 lg:px-12 px-4" >
                     <section className="bg-brown-sand bg-opacity-25 justify-around lg:w-screen w-full h-auto  flex flex-col lg:flex-row" id="left">
 
                         <div className="flex items-center flex-col w-auto">
