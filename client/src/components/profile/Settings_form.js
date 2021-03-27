@@ -7,7 +7,7 @@ const Settings = () => {
     return (
         <>
         <form action="/profile">
-            <div className="flex flex-col w-full h-full lg:text-xl" id="detailsCard">
+            <div className="flex flex-col w-full h-auto lg:text-xl" id="detailsCard">
             
                 <div className="flex flex-row justify-between pt-2 mr-6 ml-4 mb-2">
                     <h2 className="lg:text-3xl text-xl">Settings</h2>
@@ -134,7 +134,7 @@ const Settings = () => {
                                 </ul>
                         </div>
                         <div className="bg-gray-input rounded-xl bg-opacity-25 w-3/5 lg:p-4 p-1 overflow-hidden">
-                            <textarea className="bg-transparent" readOnly name="" id="" cols="25" rows="4">Lorem ipsum dolor sit amet consectetur adipisicing elit.</textarea>
+                            <textarea className="bg-transparent w-full h-full" placeholder="My new bio ..."  maxlength="500" name="" id="">Lorem ipsum dolor sit amet consectetur adipisicing elit.</textarea>
                         </div>
                     </div>
 
