@@ -22,7 +22,7 @@ const Chatroom = () => {
 
                     <section className="bg-brown-sand bg-opacity-25 justify-around w-full h-screen flex flex-row" id="search-filter">
 
-                        <div className="flex ml-8 flex-col w-1/4 ">
+                        <div className="hidden lg:flex ml-8 flex-col w-1/4 ">
 
                             <div className="bg-brown-sand rounded-xl bg-opacity-25 w-full h- pb-4 my-6 top-10 sticky shadow-lg" id="filter">
                                 <div className="flex flex-col w-full h-full text-xl" id="filter-card">
@@ -64,7 +64,7 @@ const Chatroom = () => {
 
                         </div>
 
-                        <div className="flex justify-around ml-8 w-full my-6">
+                        <div className="flex justify-around lg:ml-8 w-full my-6">
 
                             <div className="bg-transparent w-full h-full " id="rooms">
 
