@@ -9,10 +9,10 @@ const About = () => {
         
     <div className="bg-brown-white text-blue-naval pb-20 2xl:py-32">
 
-        <h1 className="text-3xl text-center py-14"> about Hygeia </h1>
+        <h1 className="text-3xl text-center py-14"> About Hygeia </h1>
 
         <div className="flex lg:flex-row flex-col lg:justify-evenly items-center lg:items-start">
-            <div className="bg-white rounded-xl shadow-md h-1/4 lg:w-1/4 w-nine mb-5">
+            <div className="bg-white rounded-xl shadow-md h-96 lg:w-1/4 w-nine mb-5">
                 <div className="flex flex-col">
                     <div className="flex justify-center">
                         <img className="h-48 object-fill w-48 " src={ChatSVG} alt="Chat"/>
@@ -23,7 +23,7 @@ const About = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-white rounded-xl shadow-md h-1/4 lg:w-1/4 w-nine mb-5">
+            <div className="bg-white rounded-xl shadow-md h-96 lg:w-1/4 w-nine mb-5">
                 <div className="flex flex-col">
                     <div className="flex justify-center">
                         <img className="h-48 object-fill w-48" src={DocumentationSVG} alt="Documentation"/>
@@ -34,7 +34,7 @@ const About = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-white rounded-xl shadow-md h-1/4 lg:w-1/4 w-nine mb-5">
+            <div className="bg-white rounded-xl shadow-md h-96 lg:w-1/4 w-nine mb-5">
                 <div className="flex flex-col">
                     <div className="flex justify-center">
                         <img className="h-48 object-fill w-48" src={PrivacySVG} alt="Privacy"/>
