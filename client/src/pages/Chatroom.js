@@ -14,7 +14,7 @@ const Chatroom = () => {
                 <Header />
             </div>
 
-            <div className="flex justify-around bg-brown-white flex-col min-h-full ">
+            <div className="flex justify-around bg-brown-white flex-col min-h-full z-0">
 
                 <div className="flex justify-around flex-row h-screen z-0 mb-32 lg:mt-20 mt-14 px-12" >
 

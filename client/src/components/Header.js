@@ -38,7 +38,7 @@ const Header = () => {
 
     return (
         <>
-        <div className="sm:sticky top-0">
+        <div className="sm:sticky top-0 z-50">
             <nav className="bg-brown-clay text-white">
                 <div className="mx-auto px-2 sm:px-6 lg:px-8">
                     <div className="relative flex items-center justify-between h-16">
@@ -137,8 +137,8 @@ const Header = () => {
                 </div>
             </div>
 
-            <div className="hidden w-64 mt-2 " id="profile-dropdwn">
-                <div className="absolute right-0 px-2 pt-2 pb-3 mt-2 space-y-1 z-50 flex justify-evenly w-64 items-center flex-col md:flex-row rounded-xl border border-brown-clay bg-brown-navajo">
+            <div className="hidden w-64 mt-2" id="profile-dropdwn">
+                <div className="absolute right-0 px-2 pt-2 pb-3 mt-2 flex justify-evenly w-64 items-center flex-col md:flex-row rounded-xl border border-brown-clay bg-brown-navajo">
                     <ul className="flex flex-col justify-end w-full">
                         <li>
                             <Link to="/profile">
