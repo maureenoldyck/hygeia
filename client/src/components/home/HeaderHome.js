@@ -93,11 +93,11 @@ const HeaderHome = () => {
 
                 <div className="hidden" id="mobile-menu">
                     <div className="px-2 pt-2 pb-3 space-y-1 flex justify-evenly items-center flex-col md:flex-row">
-                        <Link className="hover:underline" to="/about-us">about us</Link>
-                        <Link className="hover:underline" to="/contact-us">contact us</Link>
-                        <Link className="hover:underline" to="/documentation">mental health documentation</Link>
-                        <Link className="hover:underline border rounded-lg px-3 py-2" to="/profile"> sign up </Link>
-                        <button className="hover:underline border rounded-lg px-3 py-2 bg-brown-yellow"> log in </button>
+                        <Link className="hover:underline h-full px-3 py-2 w-full text-center border rounded-lg md:border-none" to="/about-us">about us</Link>
+                        <Link className="hover:underline h-full px-3 py-2 w-full text-center border rounded-lg md:border-none" to="/contact-us">contact us</Link>
+                        <Link className="hover:underline h-full px-3 py-2 w-full text-center border rounded-lg md:border-none" to="/documentation">mental health documentation</Link>
+                        <a className="hover:underline border rounded-lg px-3 py-2 h-full w-full text-center mr-1" href="#community"> sign up </a>
+                        <button className="hover:underline border rounded-lg px-3 py-2 bg-brown-yellow h-full w-full text-center" onClick={showModal}> log in </button>
                     </div>
                 </div>
             </nav>
