@@ -7,7 +7,7 @@ const MoodTracker = () => {
         
         <section className=" hidden lg:flex bg-brown-sand bg-opacity-25 w-1/3 min-h-full h-auto" id="right">
             <div className="flex justify-around w-full my-6">
-                <div className="flex flex-col bg-brown-white rounded-xl w-3/5 h-moodTracker max-h-moodTracker justify-between top-10 sticky">
+                <div className="flex flex-col bg-brown-white rounded-xl w-3/5 h-moodTracker max-h-moodTracker justify-between top-10 sticky shadow-lg">
                     <div className="flex flex-col">
                         <h1 className="text-2xl text-center w-full my-5"> Today </h1>
                         <div className="bg-brown-sand rounded-xl bg-opacity-25 m-1 py-3">

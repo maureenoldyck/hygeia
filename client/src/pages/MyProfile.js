@@ -24,7 +24,7 @@ const MyProfile = () => {
                     <section className="bg-brown-sand bg-opacity-25 justify-around lg:w-screen w-full h-auto flex flex-col lg:flex-row" id="left">
 
                         <div className="flex items-center flex-col w-auto">
-                            <div className="bg-brown-sand bg-opacity-25 w-nine h-auto my-6 rounded-xl" id="profile">
+                            <div className="bg-brown-sand bg-opacity-25 w-nine h-auto my-6 rounded-xl shadow-lg" id="profile">
                                 <Router>
                                     <Switch>
                                         <Route path="/profile/edit/details" exact component={Profile} />
@@ -36,7 +36,7 @@ const MyProfile = () => {
                                 </Router>
                             </div>
 
-                            <div className="bg-brown-white rounded-xl w-nine h-auto my-6" id="details">
+                            <div className="bg-brown-white rounded-xl w-nine h-auto my-6 shadow-lg" id="details">
                                 <Router>
                                     <Switch>
                                         <Route path="/profile/edit/profile" exact component={Details} />
@@ -49,7 +49,7 @@ const MyProfile = () => {
                         </div>
 
                         <div className="flex justify-around w-full my-6">
-                            <div className="bg-brown-white w-nine h-auto rounded-xl" id="settings">
+                            <div className="bg-brown-white w-nine h-auto rounded-xl shadow-lg" id="settings">
                             <Router>
                                     <Switch>
                                         <Route path="/profile/edit/profile" exact component={Settings} />

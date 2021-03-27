@@ -2,9 +2,11 @@ import React from 'react';
 
 import Header from '../components/Header.js';
 import Footer from '../components/Footer.js';
+import RoomCard from '../components/chatroom/RoomCard.js';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MoodTracker from '../components/MoodTracker.js';
+
 
 
 const Chatroom = () => {
@@ -20,9 +22,9 @@ const Chatroom = () => {
 
                     <section className="bg-brown-sand bg-opacity-25 justify-around w-full h-screen flex flex-row" id="search-filter">
 
-                        <div className="flex ml-8 flex-col w-1/4">
+                        <div className="flex ml-8 flex-col w-1/4 ">
 
-                            <div className="bg-brown-sand rounded-xl bg-opacity-25 w-full h- pb-4 my-6 top-10 sticky" id="filter">
+                            <div className="bg-brown-sand rounded-xl bg-opacity-25 w-full h- pb-4 my-6 top-10 sticky shadow-lg" id="filter">
                                 <div className="flex flex-col w-full h-full text-xl" id="filter-card">
                                     <div>
                                         <form action="">
@@ -68,12 +70,15 @@ const Chatroom = () => {
 
                                 <div className="relative flex flex-col w-full h-full text-sm" id="chatrooms">
                                     <div className="absolute right-0 top-0">
-                                    <button className="bg-green-vrt hover:bg-green-vrtdark text-white p-2 rounded-full">Create Room</button>
+                                        <button className="bg-green-vrt hover:bg-green-vrtdark text-white p-2 rounded-full shadow-lg">Create Room</button>
                                     </div>
 
                                     <div className="flex justify-around w-full">
                                         <h1 className="flex text-center text-4xl font-bold">Chatrooms</h1>
-                                        
+                                    </div>
+
+                                    <div className="w-full h-auto my-4" id="modal-container">
+                                        <RoomCard />
                                     </div>
                                 </div>
                             </div>

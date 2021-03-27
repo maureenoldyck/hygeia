@@ -66,8 +66,8 @@ const Header = () => {
                                 </ul>
 
                                 <ul className="flex flex-row mr-24">
-                                    <li><Link to=""><img src={notifications} alt="notifications" className="h-8 w-8 mx-6"/></Link></li>
-                                    <li><Link to=""><img src={messages} alt="messages" className="h-8 w-8 mx-6"/></Link></li>
+                                    <li><Link to="#"><img src={notifications} alt="notifications" className="h-8 w-8 mx-6"/></Link></li>
+                                    <li><Link to="#"><img src={messages} alt="messages" className="h-8 w-8 mx-6"/></Link></li>
                                 </ul>
 
                                 <ul className="flex flex-row mr-24">
@@ -102,22 +102,28 @@ const Header = () => {
                     <div className="px-2 pt-2 pb-3 space-y-1 flex justify-evenly items-center flex-col md:flex-row">
                         <ul className="flex flex-col mr-6 justify-end">
                             <li>
-                                <div className="flex flex-row">
-                                <Link to=""><img src={notifications} alt="notifications" className="h-8 w-8 mx-16"/></Link>
-                                <p>Notifications</p>
-                                </div>
+                                <Link to="#">
+                                    <div className="flex flex-row">
+                                        <img src={notifications} alt="notifications" className="h-8 w-8 mx-16"/>
+                                        <p>Notifications</p>
+                                    </div>
+                                </Link>
                             </li>
                             <li>
-                                <div className="flex flex-row">
-                                <Link to=""><img src={messages} alt="messages" className="h-8 w-8 mx-16"/></Link>
-                                <p>Messages</p>
-                                </div>
+                                <Link to="#">
+                                    <div className="flex flex-row">
+                                        <img src={messages} alt="messages" className="h-8 w-8 mx-16"/>
+                                        <p>Messages</p>
+                                    </div>
+                                </Link>
                             </li>
                             <li>
-                                <div className="flex flex-row">
-                                <Link to=""><img src={finger} alt="profile" className="h-8 w-8 mx-16"/></Link>
-                                <p>My profile</p>
-                                </div>
+                                <Link to="/profile">
+                                    <div className="flex flex-row">
+                                        <img src={finger} alt="profile" className="h-8 w-8 mx-16"/>
+                                        <p>My profile</p>
+                                    </div>
+                                </Link>
                             </li>
                         </ul>
                         
