@@ -43,9 +43,13 @@ module.exports = {
       width: {
         ten: '10%',
         nine: '90%',
+        Large: '2000px'
       },
       maxHeight: {
         moodTracker: '600px',
+      },
+      maxWidth: {
+        Large: '2000px'
       }
     },
   },

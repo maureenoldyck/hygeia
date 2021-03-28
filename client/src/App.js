@@ -16,7 +16,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App w-screen h-auto">
+      <div className="App m-auto w-screen max-w-Large h-auto">
         
         <div>
           <div className="">

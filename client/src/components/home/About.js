@@ -10,7 +10,7 @@ const About = () => {
         
     <div className="bg-brown-white text-blue-naval pb-20 2xl:py-32">
 
-        <h1 className="text-3xl text-center py-14"> about Hygeia </h1>
+        <h1 className="text-3xl text-center py-14"> About Hygeia </h1>
 
         <div className="flex lg:flex-row flex-col lg:justify-evenly lg:items-stretch items-center">
             <Link to="/profile" className="bg-white rounded-xl shadow-md lg:w-1/4 w-nine mb-5">

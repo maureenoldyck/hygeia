@@ -38,7 +38,7 @@ const Header = () => {
 
     return (
         <>
-        <div>
+        <div className="sm:sticky top-0 z-50">
             <nav className="bg-brown-clay text-white">
                 <div className="mx-auto px-2 sm:px-6 lg:px-8">
                     <div className="relative flex items-center justify-between h-16">
@@ -66,8 +66,8 @@ const Header = () => {
                                 </ul>
 
                                 <ul className="flex flex-row mr-24">
-                                    <li><Link to=""><img src={notifications} alt="notifications" className="h-8 w-8 mx-6"/></Link></li>
-                                    <li><Link to=""><img src={messages} alt="messages" className="h-8 w-8 mx-6"/></Link></li>
+                                    <li><Link to="#"><img src={notifications} alt="notifications" className="h-8 w-8 mx-6"/></Link></li>
+                                    <li><Link to="#"><img src={messages} alt="messages" className="h-8 w-8 mx-6"/></Link></li>
                                 </ul>
 
                                 <ul className="flex flex-row mr-24">
@@ -96,26 +96,34 @@ const Header = () => {
                     </div>
                 </div>
 
+
+
                 <div className="hidden" id="mobile-menu">
                     <div className="px-2 pt-2 pb-3 space-y-1 flex justify-evenly items-center flex-col md:flex-row">
                         <ul className="flex flex-col mr-6 justify-end">
                             <li>
-                                <div className="flex flex-row">
-                                <Link to=""><img src={notifications} alt="notifications" className="h-8 w-8 mx-16"/></Link>
-                                <p>Notifications</p>
-                                </div>
+                                <Link to="#">
+                                    <div className="flex flex-row">
+                                        <img src={notifications} alt="notifications" className="h-8 w-8 mx-16"/>
+                                        <p>Notifications</p>
+                                    </div>
+                                </Link>
                             </li>
                             <li>
-                                <div className="flex flex-row">
-                                <Link to=""><img src={messages} alt="messages" className="h-8 w-8 mx-16"/></Link>
-                                <p>Messages</p>
-                                </div>
+                                <Link to="#">
+                                    <div className="flex flex-row">
+                                        <img src={messages} alt="messages" className="h-8 w-8 mx-16"/>
+                                        <p>Messages</p>
+                                    </div>
+                                </Link>
                             </li>
                             <li>
-                                <div className="flex flex-row">
-                                <Link to=""><img src={finger} alt="profile" className="h-8 w-8 mx-16"/></Link>
-                                <p>My profile</p>
-                                </div>
+                                <Link to="/profile">
+                                    <div className="flex flex-row">
+                                        <img src={finger} alt="profile" className="h-8 w-8 mx-16"/>
+                                        <p>My profile</p>
+                                    </div>
+                                </Link>
                             </li>
                         </ul>
                         
@@ -123,8 +131,20 @@ const Header = () => {
                 </div>
             </nav>
 
-            <div className="hidden w-64 mt-2 " id="profile-dropdwn">
-                <div className="absolute right-0 px-2 pt-2 pb-3 mt-2 space-y-1 z-50 flex justify-evenly w-64 items-center flex-col md:flex-row rounded-xl border border-brown-clay bg-brown-navajo">
+            <div className="lg:hidden bg-brown-sand py-4" id="mobile-subnav">
+                <div className="relative items-center">
+                    <div className="flex flex-row justify-around w-full">
+                        <ul className="flex flex-row items-center">
+                            <li><Link to="/feed"><img src={feed} alt="Feed" className="h-10 w-10 mx-16"/></Link></li>
+                            <li><Link to="/forums"><img src={forums} alt="forums" className="h-10 w-10 mx-16"/></Link></li>
+                            <li><Link to="/chatroom"><img src={chatroom} alt="chatroom" className="h-10 w-10 mx-16"/></Link></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div className="hidden w-64 mt-2" id="profile-dropdwn">
+                <div className="absolute right-0 px-2 pt-2 pb-3 mt-2 flex justify-evenly w-64 items-center flex-col md:flex-row rounded-xl border border-brown-clay bg-brown-navajo">
                     <ul className="flex flex-col justify-end w-full">
                         <li>
                             <Link to="/profile">
