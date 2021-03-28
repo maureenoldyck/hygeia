@@ -25,9 +25,9 @@ const HeaderHome = () => {
         .then(res => res.json())
         .then((res) => { 
             if (res.user) {
-                setButtonLogin(<Link className='hover:underline border rounded-lg px-3 py-2 text-center mr-1 bg-brown-yellow w-full' to='/profile'> profile </Link>)
+                setButtonLogin(<Link className='hover:underline border rounded-lg px-3 py-2 bg-brown-yellow' to='/profile'> profile </Link>)
             } else {
-                setButtonLogin(<button id='loginButton' className='hover:underline border rounded-lg px-3 py-2 text-center mr-1 bg-brown-yellow' onClick={showModal}> log in </button>)
+                setButtonLogin(<button id='loginButton' className='hover:underline border rounded-lg px-3 py-2 bg-brown-yellow' onClick={showModal}> log in </button>)
             }
         });
     }, []);
