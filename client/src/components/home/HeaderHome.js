@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
 import search from '../../assets/images/search.svg';
@@ -6,7 +6,28 @@ import Modal from '../Modal';
 import Login from '../Login';
 
 
+
+
+
 const HeaderHome = () => {
+
+    useEffect(() => {
+        fetch("http://localhost:5000/api/login", {
+            method: 'GET',
+            headers: {
+                "Content-Type": 'application/json,  charset=UTF-8', 
+                'Accept': 'application/json, text/html',
+            },
+            credentials: 'include', 
+        })
+        .then(res => res.json())
+        .then((res) => { 
+            // if (res.LoggedIn === true) {
+    
+            // }
+            console.log(res);
+        });
+    }, []);
 
   
     const showModal = () => {

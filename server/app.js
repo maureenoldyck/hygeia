@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
@@ -22,14 +23,29 @@ const pool = mysql.createPool({
     insecureAuth    : true,
 });
 
-app.use(cors());
+app.use(cors({
+    origin: true,
+    methods: ["GET", "POST"],
+    credentials: true,
+}));
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
 
+
+
+app.use(session({
+    name: 'user',
+    secret: 'keyboard cat',
+    resave: false, 
+    path: '/',
+    saveUninitialized: false, 
+    cookie: { maxAge: 48*60*60*1000, secure: false}
+}));
+
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
     res.setHeader('Acces-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
     res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
     res.header(
@@ -87,8 +103,23 @@ app.post("/api/details", (req, res) => {
 });
 
 
-app.post("/api/login", (req, res) => {
 
+
+// // // LOGIN GET REQUEST
+
+app.get('/api/login', (req, res) => {
+    if (req.session.user) {
+        res.send({loggedIn: true, user: req.session.user});
+    } else { 
+        res.send({loggedIn: false});
+    }
+});
+
+
+
+// USER LOGIN POST REQUEST 
+
+app.post("/api/login", (req, res) => {
     const email = req.body.email
     const password = req.body.password
 
@@ -100,13 +131,45 @@ app.post("/api/login", (req, res) => {
         } 
         
         if (result.length > 0) {
-            // res.send(result);
-            res.redirect('/profile')
+            req.session.user = result;
+            req.session.save();
+            res.send(req.session);
         } else {
+            req.session.user = 1;
             res.send({ err: "Sadly, your email and/or password doesn't seem correct. Please try again."});
         }
     });
 });
+
+
+
+// ROUTE FOR PROFILE 
+
+// app.get("/api/profile", (req, res,) => {
+
+//     if (user) {
+//         console.log({username: user.name, role: user.role, quote: user.quote} );
+//         res.send({username: user.name, role: user.role, quote: user.quote} );
+//         return;
+//     }
+//     res.redirect('/');
+// });
+
+
+
+
+// LOGOUT 
+
+// app.post('/api/logout', redirectLogin, (req, res) => {
+//     req.session.destroy(err => {
+//         if (err) {
+//             return res.redirect('/profile')
+//         }
+
+//         res.clearCookie('secret-key');
+//         res.redirect('/');
+//     })
+// });
 
 
 //==========================================================================================//

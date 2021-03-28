@@ -8,13 +8,12 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [loginStatus, setLoginStatus] = useState('');
 
-
     const handleLogIn = () => {
-        
-
+    
         //======================================================================================//
         //                         Fetch API location + POST body-properties                    //
         //======================================================================================//
+        
         
 
         fetch("http://localhost:5000/api/login", {
@@ -26,20 +25,21 @@ const Login = () => {
             headers: {
                 'Accept': 'application/json',
                 'Content-type': 'application/json; charset=UTF-8'
-            }
-
+            },
+            credentials: 'include',  
         })
         .then(res => res.json())
         .then((res) => {
-            console.log(res);
             if (res.err) {
                 setLoginStatus(res.err);
-            } else {
-                setLoginStatus(res[0].u_email);
-            }
-        }); 
+            } 
+        }).catch(err => {
+            console.log(err);
+        });
 
     }
+
+    
 
 
     return (
