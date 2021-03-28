@@ -13,8 +13,7 @@ const Login = () => {
         //======================================================================================//
         //                         Fetch API location + POST body-properties                    //
         //======================================================================================//
-        
-        
+    
 
         fetch("http://localhost:5000/api/login", {
             method: 'POST',
@@ -26,13 +25,17 @@ const Login = () => {
                 'Accept': 'application/json',
                 'Content-type': 'application/json; charset=UTF-8'
             },
-            credentials: 'include',  
+            credentials: 'include', 
         })
         .then(res => res.json())
         .then((res) => {
             if (res.err) {
                 setLoginStatus(res.err);
-            } 
+            } else {
+                localStorage.setItem("loggedIn", true);
+                localStorage.setItem("userID", res[0].id);
+                window.location.href = '/profile';
+            }
         }).catch(err => {
             console.log(err);
         });

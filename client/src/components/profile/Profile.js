@@ -6,6 +6,19 @@ import wave from '../../assets/images/wave.svg';
 
 const Profile = () => {
 
+    fetch("http://localhost:5000/api/profile", {
+        method: 'GET',
+        headers: {
+            "Content-Type": 'application/json,  charset=UTF-8', 
+            'Accept': 'application/json, text/html',
+        },
+        credentials: 'same-origin', 
+    })
+    .then(res => res.json())
+    .then((res) => { 
+        console.log(res);
+    });
+
     return (
         <div className="flex flex-row w-full h-full lg:text-xl pb-2" id="profileCard">
 

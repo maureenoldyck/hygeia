@@ -86,6 +86,8 @@ app.post("/api/profile", (req, res) => {
     });
 });
 
+
+
 app.post("/api/details", (req, res) => {
 
     const age = req.body.age
@@ -132,10 +134,8 @@ app.post("/api/login", (req, res) => {
         
         if (result.length > 0) {
             req.session.user = result;
-            req.session.save();
-            res.send(req.session);
+            res.send(result);
         } else {
-            req.session.user = 1;
             res.send({ err: "Sadly, your email and/or password doesn't seem correct. Please try again."});
         }
     });
@@ -145,31 +145,15 @@ app.post("/api/login", (req, res) => {
 
 // ROUTE FOR PROFILE 
 
-// app.get("/api/profile", (req, res,) => {
+app.get("/api/profile", (req, res,) => {
 
-//     if (user) {
-//         console.log({username: user.name, role: user.role, quote: user.quote} );
-//         res.send({username: user.name, role: user.role, quote: user.quote} );
-//         return;
-//     }
-//     res.redirect('/');
-// });
+    //TODO: redirect to home when user is not logged in 
+
+    console.log(localStorage.getItem('userID'));
 
 
 
-
-// LOGOUT 
-
-// app.post('/api/logout', redirectLogin, (req, res) => {
-//     req.session.destroy(err => {
-//         if (err) {
-//             return res.redirect('/profile')
-//         }
-
-//         res.clearCookie('secret-key');
-//         res.redirect('/');
-//     })
-// });
+});
 
 
 //==========================================================================================//
