@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
 import search from '../../assets/images/search.svg';
@@ -8,8 +8,10 @@ import Login from '../Login';
 
 
 
-
 const HeaderHome = () => {
+
+
+    const [buttonLogin, setButtonLogin] = useState('');
 
     useEffect(() => {
         fetch("http://localhost:5000/api/login", {
@@ -22,10 +24,11 @@ const HeaderHome = () => {
         })
         .then(res => res.json())
         .then((res) => { 
-            // if (res.LoggedIn === true) {
-    
-            // }
-            console.log(res);
+            if (res.user) {
+                setButtonLogin(<Link className='hover:underline border rounded-lg px-3 py-2 bg-brown-yellow' to='/profile'> profile </Link>)
+            } else {
+                setButtonLogin(<button id='loginButton' className='hover:underline border rounded-lg px-3 py-2 bg-brown-yellow' onClick={showModal}> log in </button>)
+            }
         });
     }, []);
 
@@ -94,10 +97,7 @@ const HeaderHome = () => {
                                 <Link className="hover:underline mt-2" to="/contact-us">contact us</Link>
                                 <Link className="hover:underline mt-2" to="/documentation">mental health documentation</Link>
                                 <a className="hover:underline border rounded-lg px-3 py-2" href="#community"> sign up </a>
-                                <button id="loginButton" className="hover:underline border rounded-lg px-3 py-2 bg-brown-yellow" onClick={showModal}> log in </button>
-                                {/* {(loginStatus === "") ? (<button id="loginButton" className="hover:underline border rounded-lg px-3 py-2 bg-brown-yellow" onClick={showModal}> log in </button>) : 
-                                    <Link className="hover:underline border rounded-lg px-3 py-2" to="/profile"> profile </Link>
-                                } */}
+                                {buttonLogin}
                             </div>
                         </div>
                         <div className="absolute inset-y-0 right-0 flex items-center lg:hidden">
