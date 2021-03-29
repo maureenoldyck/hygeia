@@ -74,7 +74,7 @@ app.get("/api/dev/test", (req, res) => {
 
 
 
-app.post("/api/details", (req, res) => {
+app.post("/api/details/:id", (req, res) => {
 
     const age = req.body.age
     const gender = req.body.gender
@@ -82,10 +82,12 @@ app.post("/api/details", (req, res) => {
     const experiences = req.body.experiences
     const website = req.body.website
     const social = req.body.social
+    const id = req.params.id
 
-    const sqlInsert = "INSERT INTO users_list (`age`, `gender`, `language`, `experience_id`, `my_web`, `my_soc`) VALUES (?,?,?,?,?,?);"
 
-    pool.query(sqlInsert, [age, gender, languages, experiences, website, social] , (err, result) => {
+    const sqlInsert = "UPDATE users_list SET `age` = ?, `gender` = ?, `language` = ?, `experience_id` = ?, `my_web` = ?, `my_soc` = ? WHERE id = ?;"
+
+    pool.query(sqlInsert, [age, gender, languages, experiences, website, social, id] , (err, result) => {
         console.log(result)
     });
 });

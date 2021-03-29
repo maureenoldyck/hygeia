@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
 const DetailsForm = () => {
@@ -17,6 +17,7 @@ const DetailsForm = () => {
     const [website, setWebsite] = useState('');
     const [social, setSocial] = useState('');
 
+    const { id } = useParams();
 
     //==========================================================================================//
     //                                 HandleSubmit: Button event                               //
@@ -31,7 +32,7 @@ const DetailsForm = () => {
         //======================================================================================//
 
 
-        fetch("http://localhost:5000/api/details", {
+        fetch(`http://localhost:5000/api/details/${id}`, {
             method: 'POST',
             body: JSON.stringify({
                 age: age,
@@ -56,7 +57,7 @@ const DetailsForm = () => {
             <form action="/profile" method="" className="w-full h-full flex flex-col">
                 <div className="flex flex-row justify-between pt-2 mr-6 ml-4 mb-2">
                     <h2 className="lg:text-3xl text-xl">Details</h2>
-                    <button className="bg-green-vrt hover:bg-green-vrtdark text-white lg:w-18 lg:h-12 py-2 px-4 rounded-full" onClick={handleDetailsSubmit}><Link to="/profile">Save</Link></button>
+                    <button className="bg-green-vrt hover:bg-green-vrtdark text-white lg:w-18 lg:h-12 py-2 px-4 rounded-full" onClick={handleDetailsSubmit}><Link to={`/profile/${id}`}>Save</Link></button>
 
                 </div>
                 <div className="flex flex-col w-full m-auto"> 
