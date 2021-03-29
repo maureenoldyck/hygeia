@@ -1,7 +1,8 @@
-import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 // import DocNav from '../../components/docs/DocNav'
 import HeaderHome from '../../components/home/HeaderHome'
+import Header from '../../components/Header'
 import FooterHome from '../../components/home/FooterHome'
 import athome from '../../assets/images/athome.svg';
 import canitgoaway from '../../assets/images/canitgoaway.svg';
@@ -17,11 +18,31 @@ import documentation from '../../assets/images/documentation.svg';
 const Documentation = () => {
 
 
-    //TODO: Change Header home to normal header when logged in! 
+    const [LandingNav, setLandingNav] = useState('');
+  
+
+    useEffect(() => {
+        fetch("http://localhost:5000/api/login", {
+            method: 'GET',
+            headers: {
+                "Content-Type": 'application/json,  charset=UTF-8', 
+                'Accept': 'application/json, text/html',
+            },
+            credentials: 'include', 
+        })
+        .then(res => res.json())
+        .then((res) => { 
+            if (res.user) {
+                setLandingNav(<Header user={res.user[0].id} />)
+            } else {
+                setLandingNav(<HeaderHome />)
+            }
+        });
+    }, []);
 
     return (
         <div className="bg-brown-sand min-h-screen">
-            <HeaderHome/> 
+            {LandingNav} 
             
             <div className="flex flex-col text-center mb-24 mt-12 items-stretch mx-5">
                 <h1 className=" bg-blue-naval rounded-br-lg rounded-tl-lg py-3 2xl:text-lg 2xl:p-4 mb-3 text-white lg:w-1/5 w-1/2 self-center"> Mental Health </h1>
