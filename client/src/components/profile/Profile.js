@@ -32,7 +32,7 @@ const Profile = () => {
     
 
     return (
-        <div className="flex flex-row w-full h-full lg:text-xl pb-2" id="profileCard">
+        <div className="flex flex-row w-auto h-full lg:text-xl pb-2" id="profileCard">
 
             <div className=" flex flex-col w-1/3 pt-2 items-center">
                 <h2 className="lg:text-3xl text-xl pb-8">My profile</h2>
@@ -43,9 +43,9 @@ const Profile = () => {
             </div>
 
             <div className="flex flex-col pb-10 lg:pt-20 pt-16 w-1/3">
-                <h3 className="text-xl font-bold pb-2">{name}</h3>
-                <p><span>{role}</span></p>
-                <p><span>{quote}</span></p>
+                <h3 className="text-xl font-bold pb-2">{name || 'Username / Anon ID'}</h3>
+                <p><span>{role || 'select a role'}</span></p>
+                <p><span>{quote || 'Write a quote'}</span></p>
             </div>
 
             <div className="flex flex-col w-1/3 pt-4">
