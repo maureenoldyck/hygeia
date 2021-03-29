@@ -17,7 +17,8 @@ const Help = () => {
             </div>
 
             <div>
-                <section className="min-h-screen mt-20 mb-24 bg-yellow-banana">
+                <section className="min-h-screen mt-20 mb-24 bg-brown-white">
+
                     <div className="flex flex-row w-full">
                         <DocNav />
                         <Route path={"/help/:slug"} component={Article}/>

@@ -15,16 +15,15 @@ const Whatis = () => {
             <div>
                 <HeaderDoc />
             </div>
+        
+            <section className="min-h-screen mt-20 mb-24 bg-brown-white">
+                <div className="flex flex-row w-full">
+                    <DocNav />
+                    <Route path={"/whatis/:slug"} component={Article}/>
+                </div>
+            </section>
 
-            <div>
-                <section className="min-h-screen mt-20 mb-24 bg-yellow-banana">
-                    <div className="flex flex-row w-full">
-                        <DocNav />
-                        <Route path={"/whatis/:slug"} component={Article}/>
-                    </div>
-                </section>
-            </div>
-            
+
             <div>
                 <Footer />
             </div>

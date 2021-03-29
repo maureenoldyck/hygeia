@@ -15,17 +15,17 @@ const Article = () => {
     return (
     
 
-        <div className="h-full my-6 ml-24 px-6 py-4 bg-green-100 z-20 flex flex-col w-4/6">
+        <div className="relative bg-brown-white lg:w-full w-nine rounded-lg lg:mx-4 shadow-lg p-12 m-12">
             <div className="flex flex-row justify-around overflow-auto">
-                <h1 className="text-2xl w-1/2">{title}</h1>
-                <p>{date}</p>
-                <p>{author}</p> 
+                <h1 className="text-2xl w-1/2 font-bold ">{title}</h1>
+                <p className="text-gray-400 ">{date}</p>
+                <p className="text-gray-400 hover:underline">{author}</p> 
 
             </div>
 
             <br/>
 
-            <h2>{subtitle}</h2>
+            <h2 className="text-brown-yellow">{subtitle}</h2>
             <br/>
             <p className="whitespace-pre-wrap">{description}</p> 
         </div>
