@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import CommunitySVG from '../../assets/images/community.svg';
+import SignupForm from '../signup/SignupForm';
 
 
 const Community = () => {
@@ -15,21 +15,7 @@ const Community = () => {
                 <h1 className="text-4xl sm:text-6xl mb-4 md:text-4xl">  Our Community </h1>
                 <h5 className="text-2xl ml-3 md:text-xl"> Join many others on their mental health care journey, talk with professionals, give help yourself.</h5>
                 <div className="mt-7"> 
-                    <div className="flex flex-col md:ml-20 md:text-2xl w-full mb-5 md:transform md:scale-90">
-
-                        <label className="mb-1">Name/email</label>
-                        <input placeholder="Your Name ..." className="pl-2 py-2 mb-6 rounded-lg text-gray-900"/>
-
-                        <label className="mb-1">Password</label>
-                        <input type="password" placeholder="Your password ..." className="pl-2 py-2 rounded-lg text-gray-900"/>
-
-                        <label className="mb-1">Confirm Password</label>
-                        <input type="password" placeholder="Confirm password ..." className="pl-2 py-2 rounded-lg text-gray-900"/>
-
-                        <div className="flex flex-row my-6 justify-around">
-                            <Link to="/register" className="bg-blue-naval rounded-br-lg rounded-tl-lg p-3 mr-5 hover:underline"> Sign Up </Link>
-                        </div>
-                    </div>
+                    <SignupForm/>
                 </div>
             </div>
         </div>
