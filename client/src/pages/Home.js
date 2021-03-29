@@ -5,11 +5,14 @@ import Header from '../components/Header';
 import About from '../components/home/About';
 import Community from '../components/home/Community';
 import FooterHome from '../components/home/FooterHome';
+import HomeFooterLoggedIn from '../components/home/HomeFooterLoggedIn'
 
 
 const Home = () => {
 
     const [loggedInNAv, setLoggedInNav] = useState('');
+    const [hideregister, setHideRegister] = useState();
+    const [footer, setFooter] = useState();
 
     useEffect(() => {
         fetch("http://localhost:5000/api/login", {
@@ -24,8 +27,12 @@ const Home = () => {
         .then((res) => { 
             if (res.user) {
                 setLoggedInNav(<Header />)
+                setHideRegister()
+                setFooter(<HomeFooterLoggedIn/>)
             } else {
                 setLoggedInNav(<HeaderHome />)
+                setHideRegister(<Community />)
+                setFooter(<FooterHome />)
             }
         });
     }, []);
@@ -36,8 +43,8 @@ const Home = () => {
             {loggedInNAv}
             <Intro/>
             <About/>
-            <Community/>
-            <FooterHome/>
+            {hideregister}
+            {footer}
 
         </div>
 
