@@ -16,9 +16,9 @@ const Feed = () => {
                 <Header />
             </div>
 
-            <div className="flex justify-around bg-yellow-banana flex-col min-h-full ">
+            <div className="flex justify-around bg-brown-white flex-col min-h-screen h-auto">
 
-                <div className="flex justify-around flex-row h-screen z-0 mb-32 mt-28 px-12" >
+                <div className="flex items-center justify-center flex-row z-0 m-auto px-12" >
 
                     <div id="unfinished">
                         <Unavailable />

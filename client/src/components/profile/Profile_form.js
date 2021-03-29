@@ -52,14 +52,14 @@ const ProfileForm = () => {
             
                 <div className="flex flex-row w-full h-full" id="profile-form">
                     <div className=" flex flex-col w-1/3 pt-2 items-center">
-                        <h2 className="text-3xl pb-8">My profile</h2>
+                        <h2 className="lg:text-3xl text-xl pb-8">My profile</h2>
                         <div id="picture">
-                            <img src={tetris} alt="Profile" className="h-28 w-28 rounded-full"/>
+                            <img src={tetris} alt="Profile" className="h-20 w-20 lg:w-28 lg:h-28 rounded-full"/>
                         </div>
                         <p><span>Your points</span></p>
                     </div>
 
-                    <div className="flex flex-col pt-10 w-1/3">
+                    <div className="flex flex-col lg:pt-10 pt-6 pb-6 w-1/3">
                         <label>Name:</label>
                         <input className="bg-transparent mt-1 pl-1 block w-full rounded-md border border-black" type="text" placeholder="Your name here" onChange={(e) => {setName(e.target.value)}}/>
                         <label> Select role:</label>
@@ -74,8 +74,8 @@ const ProfileForm = () => {
                     </div>
 
                     <div className="flex flex-col w-1/3 pt-4">
-                        <div className=" w-full h-full flex flex-row-reverse pr-6" id="edit">
-                        <button type="submit" className="bg-green-vrt hover:bg-green-vrtdark text-white w-18 h-12 py-2 px-4 rounded-full" onClick={handleProfileSubmit}><Link to="/profile">Save</Link></button>
+                        <div className=" w-full flex flex-row-reverse pr-6" id="edit">
+                        <button type="submit" className="bg-green-vrt hover:bg-green-vrtdark text-white lg:w-18 w lg:h-12 py-2 px-4 rounded-full" onClick={handleProfileSubmit}><Link to="/profile">Save</Link></button>
                         </div>
                     </div>
                 </div>

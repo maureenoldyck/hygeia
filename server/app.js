@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
+// const { reset } = require('nodemon');
 
 
 //==========================================================================================//
@@ -28,7 +29,9 @@ app.use(express.urlencoded({
 }));
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://localhost:3000");
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Acces-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
+    res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
     res.header(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept"
@@ -80,6 +83,28 @@ app.post("/api/details", (req, res) => {
 
     pool.query(sqlInsert, [age, gender, languages, experiences, website, social] , (err, result) => {
         console.log(result)
+    });
+});
+
+
+app.post("/api/login", (req, res) => {
+
+    const email = req.body.email
+    const password = req.body.password
+
+    const sqlInsert = "SELECT * FROM users_list WHERE u_email = ? AND u_password = ?";
+
+    pool.query(sqlInsert, [email, password], (err, result) => {
+        if (err) {
+            res.send({err: err});
+        } 
+        
+        if (result.length > 0) {
+            res.send(result);
+            // res.redirect('/login')
+        } else {
+            res.send({ err: "Please correct enter email and Password!"});
+        }
     });
 });
 

@@ -2,9 +2,11 @@ import React from 'react';
 
 import Header from '../components/Header.js';
 import Footer from '../components/Footer.js';
+import RoomCard from '../components/chatroom/RoomCard.js';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MoodTracker from '../components/MoodTracker.js';
+
 
 
 const Chatroom = () => {
@@ -14,15 +16,15 @@ const Chatroom = () => {
                 <Header />
             </div>
 
-            <div className="flex justify-around bg-yellow-banana flex-col min-h-full ">
+            <div className="flex justify-around bg-brown-white flex-col min-h-full z-0">
 
-                <div className="flex justify-around flex-row h-screen z-0 mb-32 mt-28 px-12" >
+                <div className="flex justify-around flex-row h-screen z-0 mb-32 lg:mt-20 mt-14 px-12" >
 
-                    <section className="bg-green-profilebg bg-opacity-25 justify-around w-full h-screen flex flex-row" id="search-filter">
+                    <section className="bg-brown-sand bg-opacity-25 justify-around w-full h-screen flex flex-row" id="search-filter">
 
-                        <div className="flex ml-8 flex-col w-1/4">
+                        <div className="hidden lg:flex ml-8 flex-col w-1/4 ">
 
-                            <div className="bg-green-profilebg bg-opacity-25 w-full h-full my-6" id="filter">
+                            <div className="bg-brown-sand rounded-xl bg-opacity-25 w-full h- pb-4 my-6 top-10 sticky shadow-lg" id="filter">
                                 <div className="flex flex-col w-full h-full text-xl" id="filter-card">
                                     <div>
                                         <form action="">
@@ -31,7 +33,7 @@ const Chatroom = () => {
                                                 </div>
                                                 <div className="pt-12 pl-4">
                                                     <label><h3 className="text-xl font-bold">Tags</h3></label>
-                                                    <input className="bg-pink-100 bg-opacity-50 border-black border" type="text" placeholder="Enter tags ..." size="15"/>
+                                                    <input className="bg-brown-white bg-opacity-50 rounded-xl pl-2 border-black border" type="text" placeholder="Enter tags ..." size="15"/>
                                                 
                                                     <p>tag, tag, tag, + ...</p>
                                                 </div>
@@ -62,18 +64,21 @@ const Chatroom = () => {
 
                         </div>
 
-                        <div className="flex justify-around ml-8 w-full my-6">
+                        <div className="flex justify-around lg:ml-8 w-full my-6">
 
                             <div className="bg-transparent w-full h-full " id="rooms">
 
                                 <div className="relative flex flex-col w-full h-full text-sm" id="chatrooms">
                                     <div className="absolute right-0 top-0">
-                                    <button className="bg-green-vrt hover:bg-green-vrtdark text-white p-2 rounded-full">Create Room</button>
+                                        <button className="bg-green-vrt hover:bg-green-vrtdark text-white p-2 rounded-full shadow-lg">Create Room</button>
                                     </div>
 
                                     <div className="flex justify-around w-full">
                                         <h1 className="flex text-center text-4xl font-bold">Chatrooms</h1>
-                                        
+                                    </div>
+
+                                    <div className="w-full h-auto my-4" id="modal-container">
+                                        <RoomCard />
                                     </div>
                                 </div>
                             </div>

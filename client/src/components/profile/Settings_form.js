@@ -7,16 +7,16 @@ const Settings = () => {
     return (
         <>
         <form action="/profile">
-            <div className="flex flex-col w-full h-full text-xl" id="detailsCard">
+            <div className="flex flex-col w-full h-auto lg:text-xl" id="detailsCard">
             
                 <div className="flex flex-row justify-between pt-2 mr-6 ml-4 mb-2">
-                    <h2 className="text-3xl">Settings</h2>
-                    <button className="bg-green-vrt hover:bg-green-vrtdark text-white w-18 h-12 py-2 px-4 rounded-full"><Link to="/profile">Save</Link></button>
+                    <h2 className="lg:text-3xl text-xl">Settings</h2>
+                    <button className="bg-green-vrt hover:bg-green-vrtdark text-white lg:w-18 lg:h-12 py-2 px-4 rounded-full"><Link to="/profile">Save</Link></button>
                 </div>
 
                 <div className="flex flex-col w-full m-auto"> 
                     <div className="flex flex-row justify-between pt-2 mx-6">
-                        <div className="p-4  w-2/5">
+                        <div className="lg:p-4 p-1  w-2/5">
                             <ul>
                                 <li>Anonymous: </li>
                                 <li>Profile visibility:</li>
@@ -24,7 +24,7 @@ const Settings = () => {
                             </ul>
                         </div>
 
-                        <div className="bg-green-profilebg bg-opacity-25 w-3/5 p-4">
+                        <div className="bg-gray-input rounded-xl bg-opacity-25 w-3/5 lg:p-4 p-1">
                             <ul>
                                 <li className="flex flex-row items-center">
                                     <p>No</p>
@@ -54,14 +54,14 @@ const Settings = () => {
                     </div>
 
                     <div className="flex flex-row justify-between pt-2 mx-6">
-                        <div className="p-4  w-2/5">
+                        <div className="lg:p-4 p-1  w-2/5">
                             <ul>
                                 <li>DM availability:</li>
 
                             </ul>
                         </div>
 
-                        <div className="bg-green-profilebg bg-opacity-25 w-3/5 p-4">
+                        <div className="bg-gray-input rounded-xl bg-opacity-25 w-3/5 lg:p-4 p-1">
                             <ul>
                                 <li>
                                     <input type="radio" value="visibility" name="1" id="everyone"/>
@@ -77,14 +77,14 @@ const Settings = () => {
                     </div>
 
                     <div className="flex flex-row justify-between pt-2 mx-6">
-                        <div className="p-4  w-2/5">
+                        <div className="lg:p-4 p-1  w-2/5">
                             <ul>
                                 <li>Notifications:</li>
 
                             </ul>
                         </div>
 
-                        <div className="bg-green-profilebg bg-opacity-25 w-3/5 p-4">
+                        <div className="bg-gray-input rounded-xl bg-opacity-25 w-3/5 lg:p-4 p-1">
                             <ul>
                                 <li>
                                     <select className="bg-transparent mt-1 pl-1 block w-full rounded-md border border-black" name="" id="">
@@ -108,14 +108,14 @@ const Settings = () => {
                     </div>
 
                     <div className="flex flex-row justify-between pt-2 mx-6">
-                        <div className="p-4  w-2/5">
+                        <div className="lg:p-4 p-1  w-2/5">
                             <ul>
                                 <li>Moderation:</li>
 
                             </ul>
                         </div>
 
-                        <div className="bg-green-profilebg bg-opacity-25 w-3/5 p-4">
+                        <div className="bg-gray-input rounded-xl bg-opacity-25 w-3/5 lg:p-4 p-1">
                             <ul>
                                 <h1>Blocked Users</h1>
                                 <li>
@@ -128,20 +128,20 @@ const Settings = () => {
                     </div>
 
                     <div className="flex flex-row justify-between pt-2 mx-6">
-                        <div className="p-4 w-2/5">
+                        <div className="lg:p-4 p-1 w-2/5">
                                 <ul>
                                     <li>Your bio:</li>
                                 </ul>
                         </div>
-                        <div className="bg-green-profilebg bg-opacity-25 w-3/5 p-4 overflow-hidden">
-                            <textarea className="bg-transparent" readOnly name="" id="" cols="25" rows="4">Lorem ipsum dolor sit amet consectetur adipisicing elit.</textarea>
+                        <div className="bg-gray-input rounded-xl bg-opacity-25 w-3/5 lg:p-4 p-1 overflow-hidden">
+                            <textarea className="bg-transparent w-full h-full" placeholder="My new bio ..."  maxlength="500" name="" id="">Lorem ipsum dolor sit amet consectetur adipisicing elit.</textarea>
                         </div>
                     </div>
 
-                    <div className="flex flex-row justify-between pt-2 mx-6">
-                        <div className="flex flex-row justify-end w-full p-4">
-                                <button className="bg-blue-500 hover:bg-blue-700 text-white w-18 h-12 py-2 mx-4 px-4 rounded-full">Hide account</button>
-                                <button className="bg-red-400 hover:bg-red-600 text-white w-18 h-12 py-2 mx-4  px-4 rounded-full">Delete account</button>
+                    <div className="flex flex-row justify-between pt-2 pb-4 mx-6">
+                        <div className="flex flex-row justify-end w-full lg:p-4 p-1">
+                                <button className="bg-blue-500 hover:bg-blue-700 text-white lg:w-18 lg:h-12 py-2 mx-4 px-4 rounded-full">Hide account</button>
+                                <button className="bg-red-400 hover:bg-red-600 text-white lg:w-18 lg:h-12 py-2 mx-4  px-4 rounded-full">Delete account</button>
                         </div>
                     </div>
                 </div>
