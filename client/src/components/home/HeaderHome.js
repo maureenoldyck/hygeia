@@ -27,7 +27,7 @@ const HeaderHome = () => {
         });
     }, []);
 
-  
+
     const showModal = () => {
         const modal = document.getElementById("loginModal");
 
