@@ -157,7 +157,7 @@ const Documentation = () => {
                         </a>
                     </li>
                     <li className="hover:font-bold hover:underline bg-white rounded-xl shadow-md lg:w-1/2 w-nine m-5 p-5">
-                        <a href={"www.tele-onthaal.be"}>
+                        <a href={"https://www.tele-onthaal.be"}>
                            <div className="flex flex-col">
                                 <div className="flex justify-center">
                                     <img className="h-48 object-fill w-48 " src={helplines} alt=""/>
