@@ -50,7 +50,7 @@ const Profile = () => {
 
             <div className="flex flex-col w-1/3 pt-4">
                 <div className=" w-full h-full flex flex-row-reverse pr-6" id="edit">
-                    <Link to="/profile/edit/profile"><img src={settings} alt="Edit" className="h-6 w-6"/></Link>
+                    <Link to={`/profile/${id}/edit/profile`}><img src={settings} alt="Edit" className="h-6 w-6"/></Link>
                 </div>
 
                 <div className=" w-full h-full flex flex-row-reverse pr-6 pt-24" id="wave">

@@ -27,10 +27,10 @@ const MyProfile = () => {
                             <div className="bg-brown-sand bg-opacity-25 w-nine h-auto my-6 rounded-xl shadow-lg" id="profile">
                                 <Router>
                                     <Switch>
-                                        <Route path="/profile/edit/details" exact component={Profile} />
-                                        <Route path="/profile/edit/settings" exact component={Profile} />
+                                        <Route path="/profile/:id/edit/details" exact component={Profile} />
+                                        <Route path="/profile/:id/edit/settings" exact component={Profile} />
                                         <Route path="/profile/:id" exact component={Profile} />
-                                        <Route path="/profile/edit/profile" exact component={ProfileForm} />
+                                        <Route path="/profile/:id/edit/profile" exact component={ProfileForm} />
                                     </Switch>
 
                                 </Router>
@@ -39,10 +39,10 @@ const MyProfile = () => {
                             <div className="bg-brown-white rounded-xl w-nine h-auto my-6 shadow-lg" id="details">
                                 <Router>
                                     <Switch>
-                                        <Route path="/profile/edit/profile" exact component={Details} />
-                                        <Route path="/profile/edit/settings" exact component={Details} />
-                                        <Route path="/profile" exact component={Details} />
-                                        <Route path="/profile/edit/details" exact component={DetailsForm} />
+                                        <Route path="/profile/:id/edit/profile" exact component={Details} />
+                                        <Route path="/profile/:id/edit/settings" exact component={Details} />
+                                        <Route path="/profile/:id" exact component={Details} />
+                                        <Route path="/profile/:id/edit/details" exact component={DetailsForm} />
                                     </Switch>
                                 </Router>
                             </div>
@@ -52,10 +52,10 @@ const MyProfile = () => {
                             <div className="bg-brown-white w-nine h-auto rounded-xl shadow-lg" id="settings">
                             <Router>
                                     <Switch>
-                                        <Route path="/profile/edit/profile" exact component={Settings} />
-                                        <Route path="/profile/edit/details" exact component={Settings} />
-                                        <Route path="/profile" exact component={Settings} />
-                                        <Route path="/profile/edit/settings" exact component={SettingsForm} />
+                                        <Route path="/profile/:id/edit/profile" exact component={Settings} />
+                                        <Route path="/profile/:id/edit/details" exact component={Settings} />
+                                        <Route path="/profile/:id" exact component={Settings} />
+                                        <Route path="/profile/:id/edit/settings" exact component={SettingsForm} />
                                     </Switch>
                                 </Router>
                             </div>

@@ -24,11 +24,6 @@ const HeaderHome = () => {
         })
         .then(res => res.json())
         .then((res) => { 
-            if (res.user) {
-                setButtonLogin(<Link className='hover:underline border rounded-lg px-3 py-2 bg-brown-yellow' to='/profile'> profile </Link>)
-            } else {
-                setButtonLogin(<button id='loginButton' className='hover:underline border rounded-lg px-3 py-2 bg-brown-yellow' onClick={showModal}> log in </button>)
-            }
         });
     }, []);
 
@@ -117,8 +112,8 @@ const HeaderHome = () => {
                         <Link className="hover:underline h-full px-3 py-2 w-full text-center border rounded-lg md:border-none" to="/about-us">about us</Link>
                         <Link className="hover:underline h-full px-3 py-2 w-full text-center border rounded-lg md:border-none" to="/contact-us">contact us</Link>
                         <Link className="hover:underline h-full px-3 py-2 w-full text-center border rounded-lg md:border-none" to="/documentation">mental health documentation</Link>
-                        <a className="hover:underline border rounded-lg px-3 py-2 h-full w-full text-center mr-1" href="#community"> sign up </a>
-                        {buttonLogin}                    
+                        <Link to="#community" className="hover:underline border rounded-lg px-3 py-2 h-full w-full text-center mr-1" > sign up </Link>
+                        <button id='loginButton' className='hover:underline border rounded-lg px-3 py-2 bg-brown-yellow' onClick={showModal}> log in </button>                    
                     </div>
                 </div>
             </nav>

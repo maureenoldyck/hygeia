@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import tetris from '../../assets/images/tetris.jpg';
 
 
@@ -15,6 +15,7 @@ const ProfileForm = () => {
     const [role, setRole] = useState('');
     const [quote, setQuote] = useState('');
 
+    const { id } = useParams();
 
     //==========================================================================================//
     //                                 HandleSubmit: Button event                               //
@@ -22,14 +23,13 @@ const ProfileForm = () => {
 
 
     const handleProfileSubmit = () => {
-        
 
         //======================================================================================//
         //                         Fetch API location + POST body-properties                    //
         //======================================================================================//
         
 
-        fetch("http://localhost:5000/api/profile", {
+        fetch(`http://localhost:5000/api/profile/${id}`, {
             method: 'POST',
             body: JSON.stringify({
                 name: name,
@@ -75,7 +75,7 @@ const ProfileForm = () => {
 
                     <div className="flex flex-col w-1/3 pt-4">
                         <div className=" w-full flex flex-row-reverse pr-6" id="edit">
-                        <button type="submit" className="bg-green-vrt hover:bg-green-vrtdark text-white lg:w-18 w lg:h-12 py-2 px-4 rounded-full" onClick={handleProfileSubmit}><Link to="/profile">Save</Link></button>
+                        <button type="submit" className="bg-green-vrt hover:bg-green-vrtdark text-white lg:w-18 w lg:h-12 py-2 px-4 rounded-full" onClick={handleProfileSubmit}><Link to={`/profile/${id}`}>Save</Link></button>
                         </div>
                     </div>
                 </div>

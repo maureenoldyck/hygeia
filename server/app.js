@@ -4,7 +4,7 @@ const router = express.Router();
 const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
-// const { reset } = require('nodemon');
+const { reset } = require('nodemon');
 
 
 //==========================================================================================//
@@ -71,19 +71,6 @@ app.get("/api/dev/test", (req, res) => {
         console.log(err)
     });
 })
-
-app.post("/api/profile", (req, res) => {
-
-    const name = req.body.name
-    const role = req.body.role
-    const quote = req.body.quote
-
-    const sqlInsert = "INSERT INTO users_list (`name`, `role`, `quote`) VALUES (?,?,?);"
-
-    pool.query(sqlInsert, [name, role, quote] , (err, result) => {
-        console.log(err)
-    });
-});
 
 
 
@@ -164,10 +151,27 @@ app.get("/api/profile/:id", (req, res,) => {
 
    
     //TODO: redirect to home when user is not logged in 
-    //TODO: Show users profile
+});
 
 
+app.post("/api/profile/:id", (req, res) => {
 
+    const name = req.body.name
+    const role = req.body.role
+    const quote = req.body.quote
+    const id = req.params.id
+
+    const sqlInsert = "UPDATE users_list SET `name` = ?, `role` = ?, `quote` = ? WHERE id = ?;"
+
+    pool.query(sqlInsert, [name, role, quote, id] , (err, result) => {
+        if (err) {
+            console.log(err)
+        }
+
+        if (result) {
+            res.redirect('/profile')
+        }
+    });
 });
 
 
