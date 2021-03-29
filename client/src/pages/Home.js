@@ -10,7 +10,7 @@ import HomeFooterLoggedIn from '../components/home/HomeFooterLoggedIn'
 
 const Home = () => {
 
-    const [loggedInNAv, setLoggedInNav] = useState('');
+    const [LandingNav, setLandingNav] = useState('');
     const [hideregister, setHideRegister] = useState();
     const [footer, setFooter] = useState();
 
@@ -26,11 +26,11 @@ const Home = () => {
         .then(res => res.json())
         .then((res) => { 
             if (res.user) {
-                setLoggedInNav(<Header />)
+                setLandingNav(<Header />)
                 setHideRegister()
                 setFooter(<HomeFooterLoggedIn/>)
             } else {
-                setLoggedInNav(<HeaderHome />)
+                setLandingNav(<HeaderHome />)
                 setHideRegister(<Community />)
                 setFooter(<FooterHome />)
             }
@@ -40,7 +40,7 @@ const Home = () => {
     return (
         <div className="min-h-screen bg-brown-sand">
             
-            {loggedInNAv}
+            {LandingNav}
             <Intro/>
             <About/>
             {hideregister}

@@ -15,7 +15,7 @@ import finger from '../assets/images/finger.svg';
 //TODO: Add dropdown menu to the profile div
 
 const Header = () => {
-    
+
     const seeMenu = () => {
         const x = document.getElementById("mobile-menu");
         if (x.className === "hidden") {
@@ -34,6 +34,22 @@ const Header = () => {
             x.classList.remove("block");
             x.className = "hidden";
         }
+    }
+
+    const logOut = () => {
+
+        fetch("http://localhost:5000/api/logout", {
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json,  charset=UTF-8', 
+                'Accept': 'application/json, text/html',
+            },
+            credentials: 'include', 
+        })
+        .then(res => res.json())
+        .then(res => console.log(res));
+
+        window.location.href = "/";
     }
 
     return (
@@ -163,8 +179,8 @@ const Header = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="#">
-                                <div className="flex flex-row items-center rounded-xl cursor-pointer hover:bg-brown-yellow">
+                            <Link onClick={logOut} to="#" >
+                                <div  className="flex flex-row items-center rounded-xl cursor-pointer hover:bg-brown-yellow">
                                     <img src={logout} alt="Log Out" className="h-8 w-8 mx-8 my-2"/>
                                     <p>Log Out</p>
                                 </div>
