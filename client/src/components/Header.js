@@ -36,6 +36,22 @@ const Header = ({user}) => {
         }
     }
 
+    const logOut = () => {
+
+        fetch("http://localhost:5000/api/logout", {
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json,  charset=UTF-8', 
+                'Accept': 'application/json, text/html',
+            },
+            credentials: 'include', 
+        })
+        .then(res => res.json())
+        .then(res => console.log(res));
+
+        window.location.href = "/";
+    }
+
     return (
         <>
         <div className="sm:sticky top-0 z-50">
@@ -163,8 +179,8 @@ const Header = ({user}) => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="#">
-                                <div className="flex flex-row items-center rounded-xl cursor-pointer hover:bg-brown-yellow">
+                            <Link onClick={logOut} to="#" >
+                                <div  className="flex flex-row items-center rounded-xl cursor-pointer hover:bg-brown-yellow">
                                     <img src={logout} alt="Log Out" className="h-8 w-8 mx-8 my-2"/>
                                     <p>Log Out</p>
                                 </div>

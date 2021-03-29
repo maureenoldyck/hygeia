@@ -107,7 +107,7 @@ app.get('/api/login', (req, res) => {
 
 
 
-// USER LOGIN POST REQUEST 
+// USER LOGIN/LOGOUT POST REQUESTS 
 
 app.post("/api/login", (req, res) => {
     const email = req.body.email
@@ -127,6 +127,17 @@ app.post("/api/login", (req, res) => {
             res.send({ err: "Sadly, your email and/or password doesn't seem correct. Please try again."});
         }
     });
+});
+
+app.get('/api/logout', (req, res) => {
+    res.send("test logout");
+})
+
+app.post('/api/logout', (req, res) => {
+
+    req.session.destroy(session.user);
+    console.log("done");
+    res.send;
 });
 
 
