@@ -34,7 +34,7 @@ const Login = () => {
             } else {
                 localStorage.setItem("loggedIn", true);
                 localStorage.setItem("userID", res[0].id);
-                window.location.href = '/profile';
+                window.location.href = '/profile/' + res[0].id;
             }
         }).catch(err => {
             console.log(err);

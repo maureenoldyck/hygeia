@@ -29,7 +29,7 @@ const MyProfile = () => {
                                     <Switch>
                                         <Route path="/profile/edit/details" exact component={Profile} />
                                         <Route path="/profile/edit/settings" exact component={Profile} />
-                                        <Route path="/profile" exact component={Profile} />
+                                        <Route path="/profile/:id" exact component={Profile} />
                                         <Route path="/profile/edit/profile" exact component={ProfileForm} />
                                     </Switch>
 

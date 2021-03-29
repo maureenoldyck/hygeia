@@ -1,23 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import { Link, useParams } from 'react-router-dom';
 import tetris from '../../assets/images/tetris.jpg';
 import settings from '../../assets/images/settings.svg';
 import wave from '../../assets/images/wave.svg';
 
 const Profile = () => {
 
-    fetch("http://localhost:5000/api/profile", {
-        method: 'GET',
-        headers: {
-            "Content-Type": 'application/json,  charset=UTF-8', 
-            'Accept': 'application/json, text/html',
-        },
-        credentials: 'same-origin', 
+    const { id } = useParams();
+
+    const [name, setName] = useState('');
+    const [role, setRole] = useState('');
+    const [quote, setQuote] = useState('');
+
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/api/profile/${id}`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": 'application/json,  charset=UTF-8', 
+                'Accept': 'application/json, text/html',
+            },
+            credentials: 'include',
+        })
+        .then(res => res.json())
+        .then((res) => { 
+            setName(res[0].name);
+            setRole(res[0].role);
+            setQuote(res[0].quote);
+        });
     })
-    .then(res => res.json())
-    .then((res) => { 
-        console.log(res);
-    });
+    
 
     return (
         <div className="flex flex-row w-full h-full lg:text-xl pb-2" id="profileCard">
@@ -31,9 +43,9 @@ const Profile = () => {
             </div>
 
             <div className="flex flex-col pb-10 lg:pt-20 pt-16 w-1/3">
-                <h3 className="text-xl font-bold pb-2">Name/anon_ID</h3>
-                <p><span>user/helper role</span></p>
-                <p><span>motivational quote</span></p>
+                <h3 className="text-xl font-bold pb-2">{name}</h3>
+                <p><span>{role}</span></p>
+                <p><span>{quote}</span></p>
             </div>
 
             <div className="flex flex-col w-1/3 pt-4">

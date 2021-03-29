@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const router = express.Router();
 const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
@@ -32,8 +33,6 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
-
-
 
 app.use(session({
     name: 'user',
@@ -145,11 +144,27 @@ app.post("/api/login", (req, res) => {
 
 // ROUTE FOR PROFILE 
 
-app.get("/api/profile", (req, res,) => {
+app.get("/api/profile/:id", (req, res,) => {
 
+    const userId = req.params.id;
+
+    const sqlInsert = "SELECT * FROM users_list WHERE id = ?";
+
+    pool.query(sqlInsert, [userId], (err, result) => {
+        if (err) {
+            res.send({err: err});
+        } 
+       
+        if (result.length > 0) {
+            res.send(result);
+        } else {
+            res.send({ err: "Sadly something went wrong"});
+        }
+    });
+
+   
     //TODO: redirect to home when user is not logged in 
-
-    console.log(localStorage.getItem('userID'));
+    //TODO: Show users profile
 
 
 
