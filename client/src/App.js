@@ -44,6 +44,9 @@ function App() {
                 <Route path="/feed">
                   {!loggedIn ? <Redirect to="/" /> : <Feed />}
                 </Route>  
+                <Route path="*"> 
+                  <Redirect to="/" />
+                </Route>
               </Switch>
           </div>
         </div>
