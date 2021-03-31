@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Profile from '../components/profile/Profile.js';
 import ProfileForm from '../components/profile/Profile_form.js';
 import Details from '../components/profile/Details.js';
@@ -6,6 +6,7 @@ import DetailsForm from '../components/profile/Details_form.js';
 import Settings from '../components/profile/Settings.js';
 import SettingsForm from '../components/profile/Settings_form.js';
 import Header from '../components/Header.js';
+import HeaderHome from '../components/home/HeaderHome.js';
 import Footer from '../components/Footer.js';
 import MoodTracker from '../components/MoodTracker.js';
 
@@ -13,12 +14,34 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
 const MyProfile = () => {
+
+    const [LandingNav, setLandingNav] = useState('');
+  
+
+    useEffect(() => {
+        fetch("http://localhost:5000/api/login", {
+            method: 'GET',
+            headers: {
+                "Content-Type": 'application/json,  charset=UTF-8', 
+                'Accept': 'application/json, text/html',
+            },
+            credentials: 'include', 
+        })
+        .then(res => res.json())
+        .then((res) => { 
+            if (res.user) {
+                setLandingNav(<Header user={res.user[0].id} />)
+            } else {
+                setLandingNav(<HeaderHome />)
+            }
+        });
+    }, []);
+    
     return (
         <>
             <div>
-                <Header />
+                {LandingNav}
             </div>
-
             <div className="flex justify-around bg-brown-white flex-col">
                 <div className="flex justify-around flex-row min-h-screen mb-32 lg:mt-20 mt-14 lg:px-12 px-4" >
                     <section className="bg-brown-sand bg-opacity-25 justify-around lg:w-screen w-full h-auto flex flex-col lg:flex-row" id="left">

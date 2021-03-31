@@ -1,19 +1,39 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import Header from '../components/Header.js';
+import HeaderHome from '../components/home/HeaderHome.js';
 import Footer from '../components/Footer.js';
 
 import Unavailable from '../components/Unavailable.js';
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import MoodTracker from '../components/MoodTracker.js';
-
 
 const Feed = () => {
+    const [LandingNav, setLandingNav] = useState('');
+  
+
+    useEffect(() => {
+        fetch("http://localhost:5000/api/login", {
+            method: 'GET',
+            headers: {
+                "Content-Type": 'application/json,  charset=UTF-8', 
+                'Accept': 'application/json, text/html',
+            },
+            credentials: 'include', 
+        })
+        .then(res => res.json())
+        .then((res) => { 
+            if (res.user) {
+                setLandingNav(<Header user={res.user[0].id} />)
+            } else {
+                setLandingNav(<HeaderHome />)
+            }
+        });
+    }, []);
+    
     return (
         <>
             <div>
-                <Header />
+                {LandingNav}
             </div>
 
             <div className="flex justify-around bg-brown-white flex-col min-h-screen h-auto">
