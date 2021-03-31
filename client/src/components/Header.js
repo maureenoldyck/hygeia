@@ -12,7 +12,7 @@ import messages from '../assets/images/messages-none.svg';
 
 import search from '../assets/images/search.svg';
 import finger from '../assets/images/finger.svg';
-//TODO: Add dropdown menu to the profile div
+
 
 const Header = ({user}) => {
     
@@ -171,7 +171,7 @@ const Header = ({user}) => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/profile">
+                            <Link to={`/profile/${user}`}>
                                 <div className="flex flex-row items-center rounded-xl cursor-pointer hover:bg-brown-yellow">
                                     <img src={settings} alt="settings" className="h-8 w-8 mx-8 my-2"/>
                                     <p>Settings</p>
