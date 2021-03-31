@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
 import Header from '../components/Header.js';
-import HeaderHome from '../components/home/HeaderHome.js';
 import Footer from '../components/Footer.js';
 
 import Unavailable from '../components/Unavailable.js';
@@ -25,7 +24,7 @@ const Feed = () => {
             if (res.user) {
                 setLandingNav(<Header user={res.user[0].id} />)
             } else {
-                setLandingNav(<HeaderHome />)
+                window.location.href = "/";
             }
         });
     }, []);

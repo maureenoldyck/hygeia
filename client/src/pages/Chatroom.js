@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
 import Header from '../components/Header.js';
-import HeaderHome from '../components/home/HeaderHome.js';
 import Footer from '../components/Footer.js';
 import RoomCard from '../components/chatroom/RoomCard.js';
 
@@ -27,7 +26,7 @@ const Chatroom = () => {
             if (res.user) {
                 setLandingNav(<Header user={res.user[0].id} />)
             } else {
-                setLandingNav(<HeaderHome />)
+                window.location.href = "/";
             }
         });
     }, []);

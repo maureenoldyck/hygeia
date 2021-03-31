@@ -6,7 +6,6 @@ import DetailsForm from '../components/profile/Details_form.js';
 import Settings from '../components/profile/Settings.js';
 import SettingsForm from '../components/profile/Settings_form.js';
 import Header from '../components/Header.js';
-import HeaderHome from '../components/home/HeaderHome.js';
 import Footer from '../components/Footer.js';
 import MoodTracker from '../components/MoodTracker.js';
 
@@ -17,7 +16,26 @@ const MyProfile = () => {
 
     const [LandingNav, setLandingNav] = useState('');
   
+    fetch("http://localhost:5000/api/profile", {
+            method: 'GET',
+            headers: {
+                "Content-Type": 'application/json,  charset=UTF-8', 
+                'Accept': 'application/json, text/html',
+            },
+            credentials: 'include',
+        })
+        // .then(res => res.json())
+        .then((res) => { 
+            if (window.location.href === "http://localhost:3000/profile" || window.location.href === "http://localhost:3000/profile/") {
+            
+                const userID = localStorage.getItem('userID');
+                window.location.href = "http://localhost:3000/profile/" + userID;
 
+            } 
+        }).catch((err) => {
+            console.log(err);
+        });
+    
     useEffect(() => {
         fetch("http://localhost:5000/api/login", {
             method: 'GET',
@@ -32,11 +50,11 @@ const MyProfile = () => {
             if (res.user) {
                 setLandingNav(<Header user={res.user[0].id} />)
             } else {
-                setLandingNav(<HeaderHome />)
+                window.location.href = "/";
             }
         });
     }, []);
-    
+
     return (
         <>
             <div>
