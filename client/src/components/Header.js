@@ -49,8 +49,11 @@ const Header = ({user}) => {
         .then(res => res.json())
         .then(res => console.log(res));
 
+        localStorage.removeItem('loggedIn');
+        localStorage.removeItem('userID');
         window.location.href = "/";
     }
+
 
     return (
         <>
