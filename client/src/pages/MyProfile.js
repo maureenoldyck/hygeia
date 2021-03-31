@@ -16,25 +16,13 @@ const MyProfile = () => {
 
     const [LandingNav, setLandingNav] = useState('');
   
-    fetch("http://localhost:5000/api/profile", {
-            method: 'GET',
-            headers: {
-                "Content-Type": 'application/json,  charset=UTF-8', 
-                'Accept': 'application/json, text/html',
-            },
-            credentials: 'include',
-        })
-        // .then(res => res.json())
-        .then((res) => { 
-            if (window.location.href === "http://localhost:3000/profile" || window.location.href === "http://localhost:3000/profile/") {
-            
-                const userID = localStorage.getItem('userID');
-                window.location.href = "http://localhost:3000/profile/" + userID;
 
-            } 
-        }).catch((err) => {
-            console.log(err);
-        });
+    if (window.location.href === "http://localhost:3000/profile" || window.location.href === "http://localhost:3000/profile/") {
+    
+        const userID = localStorage.getItem('userID');
+        window.location.href = "http://localhost:3000/profile/" + userID;
+
+    } 
     
     useEffect(() => {
         fetch("http://localhost:5000/api/login", {
@@ -51,6 +39,10 @@ const MyProfile = () => {
                 setLandingNav(<Header user={res.user[0].id} />)
             } else {
                 window.location.href = "/";
+            }
+
+            if (window.location.href !== "http://localhost:3000/profile/" + res.user[0].id) {
+                window.location.href = "http://localhost:3000/profile/" + res.user[0].id;
             }
         });
     }, []);

@@ -144,14 +144,6 @@ app.post('/api/logout', (req, res) => {
 
 // ROUTE FOR PROFILE 
 
-app.get("/api/profile"), (req, res,) => {
-    if (req.session.user) {
-        res.send({loggedIn: true, user: req.session.user});
-    } else { 
-        res.send({loggedIn: false});
-    }
-};
-
 app.get("/api/profile/:id", (req, res,) => {
 
     const userId = req.params.id;

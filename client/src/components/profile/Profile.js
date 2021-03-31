@@ -24,15 +24,9 @@ const Profile = () => {
         })
         .then(res => res.json())
         .then((res) => { 
-            console.log(window.location.href);
-            console.log(`http://localhost:3000/profile/` + res[0].id)
-            // if (window.location.href === `http://localhost:3000/profile/` + res[0].id) {
-                setName(res[0].name);
-                setRole(res[0].role);
-                setQuote(res[0].quote);
-            // } else {
-            //     window.location.href = `http://localhost:3000/profile/` + res[0].id;
-            // }
+            setName(res[0].name);
+            setRole(res[0].role);
+            setQuote(res[0].quote);
         });
     })
 
