@@ -5,6 +5,7 @@ import ContactUs from './pages/ContactUs.js';
 import Documentation from './pages/documentation/Documentation.js';
 import MyProfile from './pages/MyProfile.js';
 import Chatroom from './pages/Chatroom.js';
+import Room from './components/chatroom/Room.js';
 import Forum from './pages/Forum.js';
 import Feed from './pages/Feed.js';
 import Help from './pages/documentation/Help.js';
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/recovery" component={Recovery}/> 
                 <Route path="/forums" component={Forum}/> 
                 <Route path="/feed" component={Feed}/>
+                <Route path="/chat" component={Room} />
               </Switch>
           </div>
         </div>

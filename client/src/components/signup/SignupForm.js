@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useState , useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import validate from './validateInfo';
 import useForm from './useForm';
 
 
-const SignupForm = ({ submitForm }) => {
-    const { handleChange, handleSubmit, values, errors } = useForm(
-      submitForm,
-      validate
-    );
-  
+const SignupForm = () => {
+
+    const [values, setValues] = useState({
+        username: '',
+        email: '',
+        password: '',
+        password2: ''
+    });
+    const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleChange = e => {
+    const { name, value } = e.target;
+    setValues({
+        ...values,
+        [name]: value
+    });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        setErrors(validate(values));
+        setIsSubmitting(true);
+        console.log("done");
+    };
+
     return (
 
         <div className="flex w-full mb-5 md:transform md:scale-90">
@@ -47,8 +68,7 @@ const SignupForm = ({ submitForm }) => {
                 </span>
             </form>
         </div>
-
-        );
+    );
 };
 
 export default SignupForm;

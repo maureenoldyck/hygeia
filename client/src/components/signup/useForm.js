@@ -18,7 +18,7 @@ const useForm = (callback, validate) => {
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     setErrors(validate(values));
