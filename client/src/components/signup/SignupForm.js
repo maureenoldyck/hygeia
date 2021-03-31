@@ -16,19 +16,19 @@ const SignupForm = ({ submitForm }) => {
                 <div>
                     <label className="mb-1">Email</label>
                     <input type="email" name="email" value={values.email} onChange={handleChange}placeholder="Your Email ..." className="pl-2 py-2 mb-6 rounded-lg text-black"/>
-                    {errors.email && <p>{errors.email}</p>}
+                    {errors.email && <p className="text-red-500">{errors.email}</p>}
                 </div>
 
                 <div>
                     <label className="mb-1">Password</label>
                     <input value={values.password} onChange={handleChange} type="password" name="password" placeholder="Your password ..." className="pl-2 py-2 rounded-lg text-black"/>
-                    {errors.password && <p>{errors.password}</p>}
+                    {errors.password && <p className="text-red-500"> {errors.password}</p>}
                 </div>
 
                 <div>
                     <label className="mb-1">Confirm password</label>
                     <input value={values.password2} onChange={handleChange} type="password" name="password2" placeholder="Confirm your password ..." className="pl-2 py-2 rounded-lg text-black"/>
-                    {errors.password2 && <p>{errors.password2}</p>}
+                    {errors.password2 && <p className="text-red-500">{errors.password2}</p>}
                 </div>
 
                 <div className="flex flex-row items-center">
