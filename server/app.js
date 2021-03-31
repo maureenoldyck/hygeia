@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const router = express.Router();
 const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
@@ -32,8 +33,6 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
-
-
 
 app.use(session({
     name: 'user',
@@ -73,22 +72,9 @@ app.get("/api/dev/test", (req, res) => {
     });
 })
 
-app.post("/api/profile", (req, res) => {
-
-    const name = req.body.name
-    const role = req.body.role
-    const quote = req.body.quote
-
-    const sqlInsert = "INSERT INTO users_list (`name`, `role`, `quote`) VALUES (?,?,?);"
-
-    pool.query(sqlInsert, [name, role, quote] , (err, result) => {
-        console.log(err)
-    });
-});
 
 
-
-app.post("/api/details", (req, res) => {
+app.post("/api/details/:id", (req, res) => {
 
     const age = req.body.age
     const gender = req.body.gender
@@ -96,10 +82,12 @@ app.post("/api/details", (req, res) => {
     const experiences = req.body.experiences
     const website = req.body.website
     const social = req.body.social
+    const id = req.params.id
 
-    const sqlInsert = "INSERT INTO users_list (`age`, `gender`, `language`, `experience_id`, `my_web`, `my_soc`) VALUES (?,?,?,?,?,?);"
 
-    pool.query(sqlInsert, [age, gender, languages, experiences, website, social] , (err, result) => {
+    const sqlInsert = "UPDATE users_list SET `age` = ?, `gender` = ?, `language` = ?, `experience_id` = ?, `my_web` = ?, `my_soc` = ? WHERE id = ?;"
+
+    pool.query(sqlInsert, [age, gender, languages, experiences, website, social, id] , (err, result) => {
         console.log(result)
     });
 });
@@ -119,7 +107,7 @@ app.get('/api/login', (req, res) => {
 
 
 
-// USER LOGIN POST REQUEST 
+// USER LOGIN/LOGOUT POST REQUESTS 
 
 app.post("/api/login", (req, res) => {
     const email = req.body.email
@@ -141,18 +129,62 @@ app.post("/api/login", (req, res) => {
     });
 });
 
+app.get('/api/logout', (req, res) => {
+    res.send("test logout");
+})
+
+app.post('/api/logout', (req, res) => {
+
+    req.session.destroy(session.user);
+    console.log("done");
+    res.send;
+});
+
 
 
 // ROUTE FOR PROFILE 
 
-app.get("/api/profile", (req, res,) => {
+app.get("/api/profile/:id", (req, res,) => {
 
+    const userId = req.params.id;
+
+    const sqlInsert = "SELECT * FROM users_list WHERE id = ?";
+
+    pool.query(sqlInsert, [userId], (err, result) => {
+        if (err) {
+            res.send({err: err});
+        } 
+       
+        if (result.length > 0) {
+            res.send(result);
+        } else {
+            res.send({ err: "Sadly something went wrong"});
+        }
+    });
+
+   
     //TODO: redirect to home when user is not logged in 
-
-    console.log(localStorage.getItem('userID'));
-
+});
 
 
+app.post("/api/profile/:id", (req, res) => {
+
+    const name = req.body.name
+    const role = req.body.role
+    const quote = req.body.quote
+    const id = req.params.id
+
+    const sqlInsert = "UPDATE users_list SET `name` = ?, `role` = ?, `quote` = ? WHERE id = ?;"
+
+    pool.query(sqlInsert, [name, role, quote, id] , (err, result) => {
+        if (err) {
+            console.log(err)
+        }
+
+        if (result) {
+            res.redirect('/profile')
+        }
+    });
 });
 
 

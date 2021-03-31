@@ -34,7 +34,7 @@ const Login = () => {
             } else {
                 localStorage.setItem("loggedIn", true);
                 localStorage.setItem("userID", res[0].id);
-                window.location.href = '/profile';
+                window.location.href = '/';
             }
         }).catch(err => {
             console.log(err);
@@ -73,7 +73,7 @@ const Login = () => {
                         <div className="flex flex-row my-6 justify-around">
                             <button className="text-brown-white hover:underline bg-brown-yellow rounded-br-lg rounded-tl-lg p-3 2xl:text-lg 2xl:p-4 mb-3" onClick={handleLogIn}>Log In</button>
                         </div>
-                       
+
                     </div>
                 </div>
         </div>

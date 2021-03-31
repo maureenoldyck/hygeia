@@ -14,7 +14,7 @@ import search from '../assets/images/search.svg';
 import finger from '../assets/images/finger.svg';
 //TODO: Add dropdown menu to the profile div
 
-const Header = () => {
+const Header = ({user}) => {
     
     const seeMenu = () => {
         const x = document.getElementById("mobile-menu");
@@ -34,6 +34,22 @@ const Header = () => {
             x.classList.remove("block");
             x.className = "hidden";
         }
+    }
+
+    const logOut = () => {
+
+        fetch("http://localhost:5000/api/logout", {
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json,  charset=UTF-8', 
+                'Accept': 'application/json, text/html',
+            },
+            credentials: 'include', 
+        })
+        .then(res => res.json())
+        .then(res => console.log(res));
+
+        window.location.href = "/";
     }
 
     return (
@@ -88,7 +104,7 @@ const Header = () => {
                             <button onClick={seeMenu}  type="button" className="inline-flex items-center justify-center p-2 rounded-md hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
                         
                                 <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                                 </svg>
                             
                             </button>
@@ -118,7 +134,7 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/profile">
+                                <Link to={`/profile/${user}`}>
                                     <div className="flex flex-row">
                                         <img src={finger} alt="profile" className="h-8 w-8 mx-16"/>
                                         <p>My profile</p>
@@ -147,7 +163,7 @@ const Header = () => {
                 <div className="absolute right-0 px-2 pt-2 pb-3 mt-2 flex justify-evenly w-64 items-center flex-col md:flex-row rounded-xl border border-brown-clay bg-brown-navajo">
                     <ul className="flex flex-col justify-end w-full">
                         <li>
-                            <Link to="/profile">
+                            <Link to={`/profile/${user}`}>
                                 <div className="flex flex-row items-center rounded-xl cursor-pointer hover:bg-brown-yellow">
                                     <img src={finger} alt="profile" className="h-8 w-8 mx-8 my-2"/>
                                     <p>My profile</p>
@@ -163,8 +179,8 @@ const Header = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="#">
-                                <div className="flex flex-row items-center rounded-xl cursor-pointer hover:bg-brown-yellow">
+                            <Link onClick={logOut} to="#" >
+                                <div  className="flex flex-row items-center rounded-xl cursor-pointer hover:bg-brown-yellow">
                                     <img src={logout} alt="Log Out" className="h-8 w-8 mx-8 my-2"/>
                                     <p>Log Out</p>
                                 </div>

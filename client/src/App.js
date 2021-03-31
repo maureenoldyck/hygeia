@@ -1,5 +1,7 @@
 import './App.css';
 import Home from './pages/Home.js';
+import AboutUs from './pages/AboutUs.js';
+import ContactUs from './pages/ContactUs.js';
 import Documentation from './pages/documentation/Documentation.js';
 import MyProfile from './pages/MyProfile.js';
 import Chatroom from './pages/Chatroom.js';
@@ -22,8 +24,12 @@ function App() {
           <div className="">
               <Switch>
                 <Route path="/" exact component={Home} />
+                <Route path="/about-us" exact component={AboutUs} />
+                <Route path="/contact-us" exact component={ContactUs} />
                 <Route path="/documentation" exact component={Documentation} />
-                <Route path="/profile" component={MyProfile}/>
+                <Route path="/profile">
+                  <Route path="/:id" component={MyProfile}/>
+                </Route>
                 <Route path="/chatroom" component={Chatroom}/>
                 <Route path="/help" component={Help}/> 
                 <Route path="/whatis" component={Whatis}/> 
