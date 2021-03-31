@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import tetris from '../../assets/images/tetris.jpg';
 
@@ -21,9 +21,25 @@ const ProfileForm = () => {
     //                                 HandleSubmit: Button event                               //
     //==========================================================================================//
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/api/profile/${id}`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": 'application/json,  charset=UTF-8', 
+                'Accept': 'application/json, text/html',
+            },
+            credentials: 'include',
+        })
+        .then(res => res.json())
+        .then((res) => { 
+            if (name === "") {setName(res[0].name)};
+            if (role === "") {setRole(res[0].role)};
+            if (quote === "") {setQuote(res[0].quote)};
+        });
+    })
 
     const handleProfileSubmit = () => {
-
+        
         //======================================================================================//
         //                         Fetch API location + POST body-properties                    //
         //======================================================================================//
@@ -43,8 +59,11 @@ const ProfileForm = () => {
 
         })
         .then(res => res.json())
-        .then(res => console.log(res));
-    }
+        .then(res => console.log())
+        .catch((error) => {
+            console.log(error)
+        });
+    };
 
     return (
 
@@ -61,16 +80,16 @@ const ProfileForm = () => {
 
                     <div className="flex flex-col lg:pt-10 pt-6 pb-6 w-1/3">
                         <label>Name:</label>
-                        <input className="bg-transparent mt-1 pl-1 block w-full rounded-md border border-black" type="text" placeholder="Your name here" onChange={(e) => {setName(e.target.value)}}/>
+                        <input className="bg-transparent mt-1 pl-1 block w-full rounded-md border border-black" type="text" placeholder={name} onChange={(e) => {setName(e.target.value)}}/>
                         <label> Select role:</label>
-                        <select name="" className="bg-transparent mt-1 pl-1 block w-full rounded-md border border-black" onChange={(e) => {setRole(e.target.value)}}>
+                        <select name="" className="bg-transparent mt-1 pl-1 block w-full rounded-md border border-black" placeholder={role} onChange={(e) => {setRole(e.target.value)}}>
                             <option value="">---</option>
                             <option value="visitor">No roles, thanks</option>
                             <option value="helper">I think I can help</option>
                             <option value="seeker">I would love some help</option>
                         </select>
                         <label>A quote:</label>
-                        <textarea className="bg-transparent mt-1 pl-1 block w-full rounded-md border border-black" name="" id="" cols="10" rows="2" onChange={(e) => {setQuote(e.target.value)}}></textarea>
+                        <textarea className="bg-transparent mt-1 pl-1 block w-full rounded-md border border-black" name="" id="" cols="10" rows="2" placeholder={quote} onChange={(e) => {setQuote(e.target.value)}}></textarea>
                     </div>
 
                     <div className="flex flex-col w-1/3 pt-4">

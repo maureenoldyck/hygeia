@@ -180,7 +180,7 @@ app.post("/api/profile/:id", (req, res) => {
         }
 
         if (result) {
-            res.redirect('/profile')
+            res.send(result);
         }
     });
 });
