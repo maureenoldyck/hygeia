@@ -1,14 +1,35 @@
-import React from 'react';
+import React, {useState}from 'react';
 import validate from './validateInfo';
 import useForm from './useForm';
 
+const SignupForm = ( ) => {
+    const [values, setValues] = useState({
+        email: '',
+        password: '',
+        password2: ''
+      });
+    
+      //console.log(callback);
+    
+      const [errors, setErrors] = useState({});
+      const [isSubmitting, setIsSubmitting] = useState(false);
+    
+      const handleChange = e => {
+        const { name, value } = e.target;
+        setValues({
+          ...values,
+          [name]: value
+        });
+      };
+    
+      const handleSubmit = e => {
+        e.preventDefault();
+    
+        setErrors(validate(values));
+        setIsSubmitting(true);
+      };
+  //console.log(submitForm);
 
-const SignupForm = ({ submitForm }) => {
-    const { handleChange, handleSubmit, values, errors } = useForm(
-      submitForm,
-      validate
-    );
-  
     return (
 
         <div className="flex w-full mb-5 md:transform md:scale-90">
