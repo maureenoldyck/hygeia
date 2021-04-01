@@ -1,13 +1,15 @@
 import React from 'react';
+import { NewMessageForm } from 'react-chat-engine';
 import MessageForm from './MessageForm';
 import UserMessage from './UserMessage';
 import RecievingMessage from './RecievingMessage';
 
 const ChatFeed = (props) => {
+
     const { chats, activeChat, userName, messages } = props;
 
     const chat = chats && chats[activeChat];
-    console.log(chat, userName, messages);
+    console.log(messages);
 
     const renderMessages = () => {
         const keys = Object.keys(messages);
@@ -39,15 +41,17 @@ const ChatFeed = (props) => {
     if (!chat) return 'Loading ...';
 
     return (
-        <div id="Chat-feed">
+        <div className="bg-brown-white flex flex-col justify-between w-full h-full" id="Chat-feed">
             <div id="room-title">
                 {chat.title}
             </div>
             
             {renderMessages()}
-            <div style={{ height: '100px' }} />
-            <div id="message-form-container">
-                <MessageForm { ...props } chatId={activeChat} />
+            <div>
+                <div style={{ height: '100px' }} />
+                <div className="sticky bottom-0">
+                    <MessageForm {...props} chatId={activeChat} />
+                </div>
             </div>
         </div>
     );

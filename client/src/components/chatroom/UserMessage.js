@@ -2,6 +2,7 @@ import React from 'react'
 
 
 const UserMessage = ({ message }) => {
+    console.log({message});
     if(message?.attachments?.length > 0) {
         return (
             <img

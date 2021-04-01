@@ -7,7 +7,9 @@
     "emmet.includeLanguages": {
         "javascript": "javascriptreact"
     },
-    "emmet.extensionsPath": "",
+    "emmet.extensionsPath": [
+        ""
+    ],
     "emmet.preferences": {
     
     },
