@@ -1,5 +1,4 @@
 import React from 'react';
-import { NewMessageForm } from 'react-chat-engine';
 import MessageForm from './MessageForm';
 import UserMessage from './UserMessage';
 import RecievingMessage from './RecievingMessage';
@@ -9,7 +8,7 @@ const ChatFeed = (props) => {
     const { chats, activeChat, userName, messages } = props;
 
     const chat = chats && chats[activeChat];
-    console.log(messages);
+    // console.log(props);
 
     const renderMessages = () => {
         const keys = Object.keys(messages);
@@ -50,7 +49,7 @@ const ChatFeed = (props) => {
             <div>
                 <div style={{ height: '100px' }} />
                 <div className="sticky bottom-0">
-                    <MessageForm {...props} chatId={activeChat} />
+                    <MessageForm {...props} chatID={activeChat} />
                 </div>
             </div>
         </div>

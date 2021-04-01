@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { SendOutlined, PictureOutlined } from '@ant-design/icons';
-import { sendMessage, isTyping, TextAreaInput } from 'react-chat-engine';
+import { sendMessage, isTyping } from 'react-chat-engine';
 
 const MessageForm = (props) => {
-    console.log(props);
+    
     const [value, setValue] = useState('');
-    const { chatId, creds } = props;
+    const { creds, chatID } = props;
+    console.log(props);
+    console.log({creds});
 
     const handleChange = (event) => {
         setValue(event.target.value);
     
-        isTyping(props, chatId);
+        isTyping(props, chatID);
     };
     
     const handleSubmit = (event) => {
@@ -19,21 +21,22 @@ const MessageForm = (props) => {
         const text = value.trim();
     
         if (text.length > 0) {
-            sendMessage(creds, chatId, { text });
+            sendMessage(creds, chatID, { text });
         }
     
         setValue('');
     };
     
     const handleUpload = (event) => {
-        sendMessage(creds, chatId, { files: event.target.files, text: '' });
+        sendMessage(creds, chatID, { files: event.target.files, text: '' });
     };
 
     return (
         <>
             <form className="w-full p-4" onSubmit={handleSubmit}>
                 <div className="flex flex-row bg-white rounded-lg">
-                    <textArea
+                    <input
+                        type="text"
                         className="w-full min-h-6 h-auto m-2 p-2 bg-brown-sand bg-opacity-25 rounded-md"
                         placeholder="Send a message..."
                         value={value}

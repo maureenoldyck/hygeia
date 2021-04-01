@@ -3,10 +3,11 @@ import Header from '../Header';
 import Footer from '../Footer';
 
 import { ChatEngine } from 'react-chat-engine';
-import { NewMessageForm } from 'react-chat-engine';
+
 import ChatFeed from './ChatFeed';
 
 const Room = () => {
+	
     return (
 		<>
 			<div>
