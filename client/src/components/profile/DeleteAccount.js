@@ -11,7 +11,6 @@ const DeleteAccount = () => {
         //                         Fetch API location + POST body-properties                    //
         //======================================================================================//
         
-
         fetch(`http://localhost:5000/api/delete/${id}`, {
             method: 'POST',
             body: JSON.stringify({
@@ -20,14 +19,15 @@ const DeleteAccount = () => {
             headers: {
                 'Accept': 'application/json',
                 'Content-type': 'application/json; charset=UTF-8'
-            }
-
+            },
+            credentials: 'include', 
         })
         .then(res => res.json())
-        .then(res => window.location.href = "/")
-        .catch((error) => {
-            console.log(error)
-        });
+        .then(res => console.log(res));
+
+        window.location.href = "/";
+        localStorage.removeItem('loggedIn');
+        localStorage.removeItem('userID');
     };
 
     
