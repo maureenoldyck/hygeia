@@ -3,52 +3,59 @@ import validate from './validateInfo';
 import useForm from './useForm';
 
 const SignupForm = ( ) => {
-    const [values, setValues] = useState({
-        email: '',
-        password: '',
-        password2: ''
-      });
-    
-      //console.log(callback);
-    
-      const [errors, setErrors] = useState({});
-      const [isSubmitting, setIsSubmitting] = useState(false);
-    
-      const handleChange = e => {
-        const { name, value } = e.target;
-        setValues({
-          ...values,
-          [name]: value
-        });
-      };
-    
-      const handleSubmit = e => {
-        e.preventDefault();
-    
-        setErrors(validate(values));
-        setIsSubmitting(true);
-      };
-  //console.log(submitForm);
+   const [emailRegister, setEmailRegister] = useState("");
+   const [passwordRegister, setPasswordRegister] = useState("");
+   const [passwordRegister2, setPasswordRegister2] = useState("");
+   //const [isSubmitting, setIsSubmitting] = useState(false);
+   const [errors, setErrors] = useState({});
 
+
+
+        //======================================================================================//
+        //                         Fetch API location + POST body-properties                    //
+        //======================================================================================//
+    
+    const handleSubmit = (e) => {
+
+       e.preventDefault();
+       setErrors(validate(emailRegister, passwordRegister));
+
+        fetch("http://localhost:5000/api/register", {
+            method: 'POST',
+            body: JSON.stringify({
+                email: emailRegister,
+                password: passwordRegister,
+            }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json; charset=UTF-8'
+            },
+            credentials: 'include', 
+        })
+        .then(res => res.json())
+        .then(res => console.log(res));
+
+    };
+        
     return (
 
         <div className="flex w-full mb-5 md:transform md:scale-90">
             <form onSubmit={handleSubmit} noValidate className="flex flex-col w-full ml-32 text-2xl">
                 <div>
                     <label className="mb-1">Email</label>
-                    <input type="email" name="email" value={values.email} onChange={handleChange}placeholder="Your Email ..." className="pl-2 py-2 mb-6 rounded-lg text-black"/>
+                    <input type="email" name="email" value={emailRegister} onChange={(e) => {setEmailRegister(e.target.value)}} placeholder="Your Email ..." className="pl-2 py-2 mb-6 rounded-lg text-black"/>
                     {errors.email && <p className="text-red-500">{errors.email}</p>}
                 </div>
 
                 <div>
                     <label className="mb-1">Password</label>
-                    <input value={values.password} onChange={handleChange} type="password" name="password" placeholder="Your password ..." className="pl-2 py-2 rounded-lg text-black"/>
+                    <input value={passwordRegister} onChange={(e) => {setPasswordRegister(e.target.value)}} type="password" name="password" placeholder="Your password ..." className="pl-2 py-2 rounded-lg text-black"/>
                     {errors.password && <p className="text-red-500"> {errors.password}</p>}
                 </div>
 
                 <div>
                     <label className="mb-1">Confirm password</label>
-                    <input value={values.password2} onChange={handleChange} type="password" name="password2" placeholder="Confirm your password ..." className="pl-2 py-2 rounded-lg text-black"/>
+                    <input value={passwordRegister2} onChange={(e) => {setPasswordRegister2(e.target.value)}} type="password" name="password2" placeholder="Confirm your password ..." className="pl-2 py-2 rounded-lg text-black"/>
                     {errors.password2 && <p className="text-red-500">{errors.password2}</p>}
                 </div>
 

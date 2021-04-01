@@ -5,6 +5,7 @@ const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
 const { reset } = require('nodemon');
+//const bcrypt = require("bcryptjs");
 
 
 //==========================================================================================//
@@ -72,7 +73,36 @@ app.get("/api/dev/test", (req, res) => {
     });
 })
 
+app.post("/api/register", (req, res) => {
+    //res.send("");
+    //const bcrypt = require("bcryptjs");
+    const u_email = req.body.email;
+    const u_password = req.body.password;
+    // const password = u_password;
+    // const saltRounds = 10
 
+    const sqlQuestion = "SELECT * FROM users_list;"
+    const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`) VALUE (?, ?);"
+
+    pool.query(sqlInsert, [u_email, u_password], (err, result) => {
+        console.log(err);
+        console.log(result);
+    });
+
+    // bcrypt.genSalt(saltRounds, function (err, salt) {
+    //     if (err) {
+    //         throw err
+    //     } else {
+    //         bcrypt.hash(password, salt, function(err, hash) {
+    //         if (err) {
+    //             throw err
+    //         } else {
+    //             console.log(hash)
+    //         }
+    //         })
+    //     }
+    //     });
+})
 
 app.post("/api/details/:id", (req, res) => {
 
