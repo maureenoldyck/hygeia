@@ -38,7 +38,7 @@ const DocNav = () => {
                                 </ul>
                             </li>
                             <li>
-                                <Link className="hover:font-bold hover:underline" to="/help/helplines">Helplines</Link>
+                                <Link className="hover:font-bold hover:underline" to="/documentation#helplines">Helplines</Link>
                             </li>
                         </ul>
                     </div>

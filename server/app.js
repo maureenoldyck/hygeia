@@ -93,6 +93,24 @@ app.post("/api/details/:id", (req, res) => {
 });
 
 
+app.post("/api/settings/:id", (req, res) => {
+
+    const anonymous = req.body.anonymous
+    const profileVisibility = req.body.profileVisibility
+    const openToConnect = req.body.openToConnect
+    const dmAvailability = req.body.dmAvailability
+    const notifications = req.body.notifications
+    const bio = req.body.bio
+    const id = req.params.id
+
+    console.log(anonymous, profileVisibility, openToConnect, dmAvailability, notifications, bio, id)
+    const sqlInsert = "UPDATE users_list SET `anonymous` = ?, `profile_visible` = ?, `open_to_connect` = ?, `dm_available` = ?, `notifications` = ?, `bio` = ? WHERE id = ?;"
+
+    pool.query(sqlInsert, [anonymous, profileVisibility, openToConnect, dmAvailability, notifications, bio, id] , (err, result) => {
+        res.send(result);
+    });
+});
+
 
 
 // // // LOGIN GET REQUEST

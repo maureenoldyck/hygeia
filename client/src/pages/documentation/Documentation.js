@@ -162,7 +162,7 @@ const Documentation = () => {
                         </Link>
                     </li>
                 </ul>
-                <h1 className=" bg-blue-naval rounded-br-lg rounded-tl-lg py-3 2xl:text-lg 2xl:p-4 mb-3 text-white lg:w-1/5 w-1/2 self-center"> Helplines </h1>
+                <a href="#helplines" id="helplines" className=" bg-blue-naval rounded-br-lg rounded-tl-lg py-3 2xl:text-lg 2xl:p-4 mb-3 text-white lg:w-1/5 w-1/2 self-center"> Helplines </a>
                 <ul className="flex lg:flex-row flex-col min-w-1/3 mb-12">
                     <li className="hover:font-bold hover:underline bg-white rounded-xl shadow-md lg:w-1/2 w-nine m-5 p-5">
                         <a href={"https://www.zelfmoord1813.be/"}>
