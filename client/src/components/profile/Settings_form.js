@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Link, useParams } from 'react-router-dom';
+import Modal from '../Modal';
+import DeleteAccount from './DeleteAccount';
 
 
 const SettingsForm = () => {
@@ -67,8 +69,34 @@ const SettingsForm = () => {
         });
     };
 
+    const showModal = () => {
+        const modal = document.getElementById("deleteModal");
+
+        if (modal.className === "hidden") {
+            modal.className += "block";
+        } else {
+            modal.className = "hidden";
+        }
+    }
+
+    const closeModal = () => {
+        const modal = document.getElementById("deleteModal");
+
+        if (modal.className === "hidden") {
+            modal.className += "block";
+        } else {
+            modal.className = "hidden";
+        }
+    }
+
     return (
         <>
+            <div id="deleteModal" className="hidden">
+                <Modal>
+                    <span onClick={closeModal} className="close text-2xl ml-3 text-red-400  hover:text-red-500 cursor-pointer">&times;</span>
+                    <DeleteAccount />
+                </Modal>
+            </div>
             <div className="flex flex-col w-full h-auto lg:text-xl" id="detailsCard">
             
                 <div className="flex flex-row justify-between pt-2 mr-6 ml-4 mb-2">
@@ -208,7 +236,7 @@ const SettingsForm = () => {
                     <div className="flex flex-row justify-between pt-2 pb-4 mx-6">
                         <div className="flex flex-row justify-end w-full lg:p-4 p-1">
                             <button className="bg-blue-500 hover:bg-blue-700 text-white lg:w-18 lg:h-12 py-2 mx-4 px-4 rounded-full">Hide account</button>
-                            <button className="bg-red-400 hover:bg-red-600 text-white lg:w-18 lg:h-12 py-2 mx-4  px-4 rounded-full">Delete account</button>
+                            <button className="bg-red-400 hover:bg-red-600 text-white lg:w-18 lg:h-12 py-2 mx-4  px-4 rounded-full" onClick={showModal}>Delete account</button>
                         </div>
                     </div>
                 </div>
