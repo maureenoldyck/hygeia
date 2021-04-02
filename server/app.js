@@ -5,7 +5,7 @@ const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
 const { reset } = require('nodemon');
-//const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs");
 
 
 //==========================================================================================//
@@ -73,35 +73,33 @@ app.get("/api/dev/test", (req, res) => {
     });
 })
 
-app.post("/api/register", (req, res) => {
+app.post("/api/register", async (req, res) => {
+
+    try {
+        const u_email = req.body.email;
+        const u_password = req.body.password;
+        const saltRounds = 10;
+
+        const hashed = await bcrypt.hash(u_password, saltRounds);
+        const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`) VALUE (?, ?);"
+        await pool.query(sqlInsert, [u_email, hashed], (err, result) => {
+            console.log(err);
+            console.log(result);
+        });
+        res.status(200);
+
+    } catch (error){
+            console.log(error);
+            res.status(500);
+    }
+
+    
+
     //res.send("");
-    //const bcrypt = require("bcryptjs");
-    const u_email = req.body.email;
-    const u_password = req.body.password;
-    // const password = u_password;
-    // const saltRounds = 10
+    
 
-    const sqlQuestion = "SELECT * FROM users_list;"
-    const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`) VALUE (?, ?);"
-
-    pool.query(sqlInsert, [u_email, u_password], (err, result) => {
-        console.log(err);
-        console.log(result);
-    });
-
-    // bcrypt.genSalt(saltRounds, function (err, salt) {
-    //     if (err) {
-    //         throw err
-    //     } else {
-    //         bcrypt.hash(password, salt, function(err, hash) {
-    //         if (err) {
-    //             throw err
-    //         } else {
-    //             console.log(hash)
-    //         }
-    //         })
-    //     }
-    //     });
+    //const sqlQuestion = "SELECT * FROM users_list;"
+    
 })
 
 app.post("/api/details/:id", (req, res) => {
