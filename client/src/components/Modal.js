@@ -9,7 +9,7 @@ const Modal = ({children}) => {
             <div className="fixed inset-0 bg-gray-500 bg-opacity-50 transition-opacity" aria-hidden="true">
             </div>
 
-            <div className="inline-block align-bottom bg-brown-white bg-opacity-90 rounded-br-lg rounded-tl-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-1/2">
+            <div className="inline-block align-bottom bg-brown-white bg-opacity-90 rounded-br-lg rounded-tl-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-1/2 md:mt-24">
                
                 {children}
             </div>

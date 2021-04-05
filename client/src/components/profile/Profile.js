@@ -11,6 +11,7 @@ const Profile = () => {
     const [name, setName] = useState('');
     const [role, setRole] = useState('');
     const [quote, setQuote] = useState('');
+    const [avatar, setAvatar] = useState('');
 
 
     useEffect(() => {
@@ -27,6 +28,8 @@ const Profile = () => {
             setName(res[0].name);
             setRole(res[0].role);
             setQuote(res[0].quote);
+            console.log(res);
+            setAvatar('http://localhost:5000/' + res[0].profile_picture);
         });
     })
 
@@ -36,7 +39,7 @@ const Profile = () => {
             <div className=" flex flex-col w-1/3 pt-2 items-center">
                 <h2 className="lg:text-3xl text-xl pb-8">My profile</h2>
                 <div id="picture">
-                    <img src={tetris} alt="Profile" className="h-20 w-20 lg:w-28 lg:h-28 rounded-full"/>
+                    <img src={avatar} alt="Profile" className="h-20 w-20 lg:w-28 lg:h-28 rounded-full"/>
                 </div>
                 <p><span>Your points</span></p>
             </div>

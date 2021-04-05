@@ -4,9 +4,31 @@ const router = express.Router();
 const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
-const { reset } = require('nodemon');
+// const { reset } = require('nodemon');
 //const bcrypt = require("bcryptjs");
 
+const multer  = require('multer')
+const path = require('path');
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "public");},
+    filename: function(req, file, cb){
+        const ext = file.mimetype.split("/")[1];
+        cb(null, `uploads/${file.fieldname}-${Date.now()}.${ext}`);
+    }
+});
+
+const upload = multer({
+    // destination: 'client/public/uploads/',
+    storage: storage,
+    limits : {fileSize : 1000000}
+    // fileFilter: function(req, file, cb){
+    //   checkFileType(file, cb);
+    // }
+})
+
+app.use('/', express.static(path.join(__dirname, '/public')));
 
 //==========================================================================================//
 //                                  Create connection + config                              //
@@ -213,7 +235,9 @@ app.get("/api/profile/:id", (req, res,) => {
 });
 
 
+
 app.post("/api/profile/:id", (req, res) => {
+
 
     const name = req.body.name
     const role = req.body.role
@@ -231,6 +255,38 @@ app.post("/api/profile/:id", (req, res) => {
             res.send(result);
         }
     });
+});
+
+
+app.post("/api/profileImg/:id", upload.single('avatar'),(req, res) => {
+
+    // console.log(req.file);
+    if(req.file === undefined){
+        res.send({
+        msg: 'Error: No File Selected!'
+        });
+    } else {
+        console.log(req.file)
+
+        const imgPath = req.file.filename;
+        const id = req.params.id
+    
+        const sqlInsert = "UPDATE users_list SET `profile_picture` = ? WHERE id = ?;"
+    
+        pool.query(sqlInsert, [imgPath, id] , (err, result) => {
+            if (err) {
+                console.log(err)
+            }
+    
+            if (result) {
+                res.send({
+                    data:result,
+                    msg: 'Your avatar is updated!'
+                });
+            }
+        });
+    }
+    
 });
 
 
