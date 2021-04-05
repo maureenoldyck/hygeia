@@ -290,6 +290,26 @@ app.post("/api/profileImg/:id", upload.single('avatar'),(req, res) => {
 });
 
 
+app.get("/api/documentation/:slug", (req, res,) => {
+
+    const slug = req.params.slug;
+
+    const sqlInsert = "SELECT * FROM documentation WHERE `slug` = ?";
+
+    pool.query(sqlInsert, [slug], (err, result) => {
+        if (err) {
+            res.send({err: err});
+        } 
+       
+        if (result.length > 0) {
+            res.send(result);
+        } else {
+            res.send({ err: "Sadly something went wrong"});
+        }
+    });
+
+});
+
 //==========================================================================================//
 //                                      API Listener                                        //
 //==========================================================================================//

@@ -54,7 +54,7 @@ const Documentation = () => {
                                     <img className="h-48 object-fill w-48 " src={whatis} alt=""/>
                                 </div>
                                 <div className="p-8">
-                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2> What is Mental health </h2> </div>
+                                    <div className="uppercase text-brown-yellow font-semibold"> <h2 className="text-lg"> What is Mental health </h2> </div>
                                 </div>
                             </div>
                         </Link>
@@ -66,7 +66,7 @@ const Documentation = () => {
                                     <img className="h-48 object-fill w-48 " src={documentation} alt=""/>
                                 </div>
                                 <div className="p-8">
-                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2> A list </h2> </div>
+                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2 className="text-lg"> A list </h2> </div>
                                 </div>
                             </div>
                         </Link>
@@ -78,7 +78,7 @@ const Documentation = () => {
                                     <img className="h-48 object-fill w-48 " src={howtorecognize} alt=""/>
                                 </div>
                                 <div className="p-8">
-                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2>How to recognize</h2> </div>
+                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2  className="text-lg" >How to recognize</h2> </div>
                                 </div>
                             </div>
                         </Link>
@@ -93,7 +93,7 @@ const Documentation = () => {
                                     <img className="h-48 object-fill w-48 " src={canitgoaway} alt=""/>
                                 </div>
                                 <div className="p-8">
-                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2> Can it go away? </h2> </div>
+                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2  className="text-lg"> Can it go away? </h2> </div>
                                 </div>
                             </div>
                         </Link>
@@ -105,7 +105,7 @@ const Documentation = () => {
                                     <img className="h-48 object-fill w-48 " src={thingstolookoutfor} alt=""/>
                                 </div>
                                 <div className="p-8">
-                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2>Things to look out for </h2> </div>
+                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2  className="text-lg">Things to look out for </h2> </div>
                                 </div>
                             </div>
                         </Link>
@@ -117,7 +117,7 @@ const Documentation = () => {
                                     <img className="h-48 object-fill w-48 " src={whatcanido} alt=""/>
                                 </div>
                                 <div className="p-8">
-                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2> What can I do? </h2> </div>
+                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2  className="text-lg"> What can I do? </h2> </div>
                                 </div>
                             </div>
                         </Link>
@@ -132,7 +132,7 @@ const Documentation = () => {
                                     <img className="h-48 object-fill w-48 " src={professionalhelp} alt=""/>
                                 </div>
                                 <div className="p-8">
-                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2> Professional help </h2> </div>
+                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2  className="text-lg"> Professional help </h2> </div>
                                 </div>
                             </div>
                         </Link>
@@ -144,7 +144,7 @@ const Documentation = () => {
                                     <img className="h-48 object-fill w-48 " src={friends} alt=""/>
                                 </div>
                                 <div className="p-8">
-                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2>Help from friends </h2> </div>
+                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2  className="text-lg">Help from friends </h2> </div>
                                 </div>
                             </div>
                         </Link>
@@ -156,7 +156,7 @@ const Documentation = () => {
                                     <img className="h-48 object-fill w-48 " src={athome} alt=""/>
                                 </div>
                                 <div className="p-8">
-                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2> At home </h2> </div>
+                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2  className="text-lg"> At home </h2> </div>
                                 </div>
                             </div>
                         </Link>
@@ -171,7 +171,7 @@ const Documentation = () => {
                                     <img className="h-48 object-fill w-48 " src={helplines} alt=""/>
                                 </div>
                                 <div className="p-8">
-                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2> Zelfmoordlijn</h2> </div>
+                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2  className="text-lg"> Zelfmoordlijn</h2> </div>
                                      <p> Call : 1813</p>
                                 </div>
                             </div>
@@ -184,7 +184,7 @@ const Documentation = () => {
                                     <img className="h-48 object-fill w-48 " src={helplines} alt=""/>
                                 </div>
                                 <div className="p-8">
-                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2> Tele Onthaal </h2> </div>
+                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2  className="text-lg"> Tele Onthaal </h2> </div>
                                     <p> Call: 106 </p>
                                 </div>
                             </div>
@@ -197,7 +197,7 @@ const Documentation = () => {
                                     <img className="h-48 object-fill w-48 " src={helplines} alt=""/>
                                 </div>
                                 <div className="p-8">
-                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2> Community Help Service </h2> </div>
+                                    <div className="uppercase text-sm text-brown-yellow font-semibold"> <h2  className="text-lg"> Community Help Service </h2> </div>
                                     <p> Call:  32 (0) 2 648 40 14</p>
                                 </div>
                             </div>
