@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/images/logo.svg';
 import feed from '../assets/images/feed.svg';
@@ -15,6 +15,8 @@ import finger from '../assets/images/finger.svg';
 
 
 const Header = ({user}) => {
+
+    const [keyword, setKeyword] = useState('');
     
     const seeMenu = () => {
         const x = document.getElementById("mobile-menu");
@@ -69,8 +71,8 @@ const Header = ({user}) => {
                                         <h1 className="flex py-1 text-2xl">ygeia</h1>
                                     </Link>
                                     <div className="flex flex-row md:w-full" id="search">
-                                        <input type="search" placeholder="Search.." className="rounded-xl pl-4 w-2/5 md:w-full"/>
-                                        <img src={search} alt="search" className="h-6 sm:h-8 sm:w-8 ml-2 mt-2"/>
+                                        <input type="search" placeholder="Search.." className="rounded-xl pl-4 w-2/5 md:w-full text-black" onChange={(e) => {setKeyword(e.target.value)}}/>
+                                        <Link to={`/search/${keyword}`}> <button><img src={search} alt="search" className="h-6 sm:h-8 sm:w-8 ml-2 mt-2"/></button></Link>     
                                     </div>
                                 </div>
                             </div>

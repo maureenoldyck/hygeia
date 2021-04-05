@@ -56,16 +56,17 @@ const Search = () => {
         <div className="bg-brown-sand min-h-screen">
             {LandingNav} 
             
-            <div className="flex flex-col text-center mb-24 mt-12 items-stretch mx-5 min-h-screen">
-                <div>
-                    {articles.map(article => 
-                        
-                        <div className="border border-gray-600 p-4">
-                            <Link to={`/${article.theme}/${article.slug}`} className="text-lg border-gray-300 borde px-4">{article.title}</Link>
-                        </div>
+            <div className="flex flex-col text-center mb-24 mt-12 min-h-screen items-center mx-4">
+                {articles.map(article => 
                     
-                    )}
-                </div>
+                    <Link className="w-3/4" to={`/${article.theme}/${article.slug}`}> 
+                        <div className="flex flex-col justify-center rounded-xl shadow-md mb-5 bg-brown-white py-12 hover:bg-white cursor-pointer" key={article.id}>
+                            <h2 className="text-xl border-gray-300 border px-4"> {article.title}</h2>
+                            <p className="text-brown-yellow">{article.subtitle}</p>
+                        </div>
+                    </Link>
+                
+                )}
             </div>
             
             <FooterHome/>
