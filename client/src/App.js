@@ -10,6 +10,7 @@ import Feed from './pages/Feed.js';
 import Help from './pages/documentation/Help.js';
 import Whatis from './pages/documentation/WhatIs.js';
 import Recovery from './pages/documentation/Recovery.js';
+import Search from './pages/documentation/Search.js';
 import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/about-us" exact component={AboutUs} />
                 <Route path="/contact-us" exact component={ContactUs} />
                 <Route path="/documentation" exact component={Documentation} />
+                <Route path="/search/:keywords" component={Search} />
                 <Route path="/profile">
                   {!loggedIn ? <Redirect to="/" /> : <MyProfile /> }
                 </Route>

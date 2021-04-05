@@ -310,6 +310,24 @@ app.get("/api/documentation/:slug", (req, res,) => {
 
 });
 
+app.get('/api/search/:keywords', (req, res,) => {
+
+    const keywords = req.params.keywords;
+    console.log(keywords)
+
+    const sqlInsert = "SELECT * from documentation WHERE `description` like '%" + keywords + "%'"
+    console.log(sqlInsert)
+
+    pool.query(sqlInsert, (err, result) => {
+        if (result) {
+            res.send(result);
+        } else {
+            res.send({ err: "Sadly something went wrong"});
+        }
+    });
+
+});
+
 //==========================================================================================//
 //                                      API Listener                                        //
 //==========================================================================================//
