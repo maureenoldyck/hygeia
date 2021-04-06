@@ -107,7 +107,7 @@ const ProfileForm = () => {
             setAvatarStatus(data.msg);
         })
         .catch(error => {
-            console.error(error)
+            console.error(error)  
         })
     }
 

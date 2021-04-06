@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     // destination: 'client/public/uploads/',
     storage: storage,
-    limits : {fileSize : 1000000}
+    // limits : {fileSize : 1000000}
     // fileFilter: function(req, file, cb){
     //   checkFileType(file, cb);
     // }
@@ -266,15 +266,16 @@ app.post("/api/profile/:id", (req, res) => {
 });
 
 
-app.post("/api/profileImg/:id", upload.single('avatar'),(req, res) => {
+app.post("/api/profileImg/:id", upload.single('avatar'),(req, res, err) => {
 
-    // console.log(req.file);
-    if(req.file === undefined){
+    if (!req.file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
+        req.fileValidationError = 'Only image files are allowed!';
+        res.send({ msg:'Only image files (jpg, jpeg, png) are allowed!'})
+    } else if (!req.file) {
         res.send({
-        msg: 'Error: No File Selected!'
+            msg: 'Error: Please upload a valid image!'
         });
     } else {
-        console.log(req.file)
 
         const imgPath = req.file.filename;
         const id = req.params.id
@@ -284,13 +285,18 @@ app.post("/api/profileImg/:id", upload.single('avatar'),(req, res) => {
         pool.query(sqlInsert, [imgPath, id] , (err, result) => {
             if (err) {
                 console.log(err)
+                res.send({
+                    msg: err
+                })
             }
     
             if (result) {
+            
                 res.send({
                     data:result,
                     msg: 'Your avatar is updated!'
                 });
+        
             }
         });
     }
