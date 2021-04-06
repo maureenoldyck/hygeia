@@ -101,28 +101,58 @@ app.post("/api/register", async (req, res) => {
         const u_email = req.body.email;
         const u_password = req.body.password;
         const saltRounds = 10;
-
+        
         const hashed = await bcrypt.hash(u_password, saltRounds);
+
         const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`) VALUE (?, ?);"
+
         await pool.query(sqlInsert, [u_email, hashed], (err, result) => {
-            console.log(err);
-            console.log(result);
+            // console.log(err);
+            // console.log(result);
         });
         res.status(200);
+        // console.log('added to db');
 
     } catch (error){
-            console.log(error);
-            res.status(500);
+            const message = "Email already exists";
+            // console.log(error);
+            // console.log(message);
     }
-
-    
-
-    //res.send("");
-    
-
-    //const sqlQuestion = "SELECT * FROM users_list;"
-    
 })
+
+app.post("/api/register/checkuser", async (req, res, next) => {
+
+    try {
+        const u_email = req.body.email;
+        
+        
+        const sqlEmail = "SELECT `u_email` FROM users_list WHERE u_email = (?);";
+        
+
+        await pool.query(sqlEmail, [u_email], (err, result) => {
+            console.log(result[0]);
+            if(result[0].u_email === u_email){
+                res.send({userExists: true});
+                console.log(result[0]);
+
+            } else {
+                res.send({userExists: false});
+
+            }
+            
+        }) 
+
+        res.status(200);
+        
+        // console.log('added to db');
+
+    } catch (error){
+            console.log("Email already exists");
+            // console.log(error);
+            // console.log(message);
+    }
+})
+
 
 app.post("/api/details/:id", (req, res) => {
 
