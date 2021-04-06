@@ -28,7 +28,6 @@ const Profile = () => {
             setName(res[0].name);
             setRole(res[0].role);
             setQuote(res[0].quote);
-            console.log(res);
             setAvatar('http://localhost:5000/' + res[0].profile_picture);
         });
     })

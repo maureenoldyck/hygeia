@@ -181,18 +181,28 @@ app.post("/api/login", (req, res) => {
     const email = req.body.email
     const password = req.body.password
 
-    const sqlInsert = "SELECT * FROM users_list WHERE u_email = ? AND u_password = ?";
+    const sqlInsert = "SELECT * FROM users_list WHERE u_email = ?";
 
-    pool.query(sqlInsert, [email, password], (err, result) => {
+
+    pool.query(sqlInsert, [email], (err, result) => {
+
         if (err) {
             res.send({err: err});
         } 
         
         if (result.length > 0) {
-            req.session.user = result;
-            res.send(result);
+
+            bcrypt.compare(password, result[0].u_password, function(err, response) {
+                if (response === true) {
+                    req.session.user = result;
+                    res.send(result);
+                } else {
+                    res.send({ err:"Sadly, your email and/or password combination doesn't seem correct. Please try again."});
+                }   
+            });
+           
         } else {
-            res.send({ err: "Sadly, your email and/or password doesn't seem correct. Please try again."});
+            res.send({ err: "Sadly, your email doesn't seem correct. Please try again or register if you don't have an account yet."});
         }
     });
 });
