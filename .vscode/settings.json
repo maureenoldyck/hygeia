@@ -7,9 +7,12 @@
     "emmet.includeLanguages": {
         "javascript": "javascriptreact"
     },
-    "emmet.extensionsPath": "",
+    "emmet.extensionsPath": [
+        ""
+    ],
     "emmet.preferences": {
     
     },
-    "emmet.showSuggestionsAsSnippets": true
+    "emmet.showSuggestionsAsSnippets": true,
+    "workbench.colorTheme": "Monokai"
 }
