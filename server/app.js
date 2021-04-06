@@ -226,9 +226,10 @@ app.get("/api/profile/:id", (req, res,) => {
 
     const userId = req.params.id;
 
-    const sqlInsert = "SELECT * FROM users_list WHERE id = ?";
+    const sqlInsert = "SELECT * FROM users_list INNER JOIN mood_tracker ON users_list.id = mood_tracker.user_id WHERE user_id = ?";
 
     pool.query(sqlInsert, [userId], (err, result) => {
+
         if (err) {
             res.send({err: err});
         } 
@@ -255,11 +256,35 @@ app.post("/api/profile/:id", (req, res) => {
     const sqlInsert = "UPDATE users_list SET `name` = ?, `role` = ?, `quote` = ? WHERE id = ?;"
 
     pool.query(sqlInsert, [name, role, quote, id] , (err, result) => {
+        
         if (err) {
             console.log(err)
         }
 
         if (result) {
+            res.send(result);
+        }
+    });
+});
+
+app.post("/api/moodtracker/:id", (req, res) => {
+
+
+    const feeling = req.body.feeling
+    const id = req.params.id
+
+    console.log(feeling)
+
+    const sqlInsert = "UPDATE mood_tracker SET `feeling` = ?  WHERE user_id = ?;"
+
+    pool.query(sqlInsert, [feeling, id] , (err, result) => {
+        
+        if (err) {
+            console.log(err)
+        }
+
+        if (result) {
+            console.log(result)
             res.send(result);
         }
     });
@@ -324,7 +349,7 @@ app.get("/api/documentation/:slug", (req, res,) => {
 
 });
 
-app.get('/api/search/:keywords', (req, res,) => {
+app.get('/api/search/:keywords', (req, res) => {
 
     const keywords = req.params.keywords;
     console.log(keywords)

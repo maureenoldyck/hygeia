@@ -55,7 +55,7 @@ const Search = () => {
     return (
         <div className="bg-brown-sand min-h-screen">
             {LandingNav} 
-            <div className="flex flex-col text-center text-3xl uppercase mt-3 text-blue-naval">
+            <div className="flex flex-col text-center text-3xl uppercase mt-3 text-blue-">
                 <h1> Your search results: </h1>
             </div>
             <div className="flex flex-col text-center mb-24 mt-12 min-h-screen items-center mx-4">

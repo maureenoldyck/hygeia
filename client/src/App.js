@@ -31,7 +31,7 @@ function App() {
                 <Route path="/contact-us" exact component={ContactUs} />
                 <Route path="/documentation" exact component={Documentation} />
                 <Route path="/search/:keywords" component={Search} />
-                <Route path="/profile">
+                <Route path="/profile/:id">
                   {!loggedIn ? <Redirect to="/" /> : <MyProfile /> }
                 </Route>
                 <Route path="/chatroom">
