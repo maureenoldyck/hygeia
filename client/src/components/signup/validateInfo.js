@@ -2,11 +2,27 @@ export default function validateInfo(values) {
   let errors = {};
   console.log({values});
 
+  // fetch("http://localhost:5000/api/register", {
+  //           method: 'POST',
+  //           body: JSON.stringify({
+                
+  //           }),
+  //           headers: {
+  //               'Accept': 'application/json',
+  //               'Content-type': 'application/json; charset=UTF-8'
+  //           },
+  //           credentials: 'include', 
+  //       })
+  //       .then(res => res.json())
+  //       .then(res => console.log(res));
+        
+
   if (!values.email) {
     errors.email = 'Email required';
   } else if (!/\S+@\S+\.\S+/.test(values.email)) {
     errors.email = 'Email address is invalid';
   }
+  
   if (!values.password) {
     errors.password = 'Password is required';
   } else if (values.password.length < 6) {

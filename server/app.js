@@ -101,9 +101,23 @@ app.post("/api/register", async (req, res) => {
         const u_email = req.body.email;
         const u_password = req.body.password;
         const saltRounds = 10;
-
+        const userExists = "";
+        
+        console.log(userExists);
         const hashed = await bcrypt.hash(u_password, saltRounds);
+        const sqlEmail = "SELECT `u_email` FROM users_list WHERE (`u_email`) VALUE (?);"
+        await pool.query(sqlEmail, [u_email], (err, result) => {
+            if(result){
+                userExists = false;
+                
+            } else {
+                userExists = true;
+            }
+            return userExists;
+        })
+
         const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`) VALUE (?, ?);"
+
         await pool.query(sqlInsert, [u_email, hashed], (err, result) => {
             console.log(err);
             console.log(result);
@@ -111,8 +125,9 @@ app.post("/api/register", async (req, res) => {
         res.status(200);
 
     } catch (error){
+            const message = "Email already exists";
             console.log(error);
-            res.status(500);
+            res.status(500).send(message);
     }
 
     
