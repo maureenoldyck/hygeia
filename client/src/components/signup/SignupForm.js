@@ -1,5 +1,5 @@
 import React, {useState}from 'react';
-import validate from './validateInfo';
+import validateInfo from './validateInfo';
 import useForm from './useForm';
 
 const SignupForm = ( ) => {
@@ -18,7 +18,12 @@ const SignupForm = ( ) => {
     const handleSubmit = (e) => {
 
        e.preventDefault();
-       setErrors(validate(emailRegister, passwordRegister));
+       const values = {
+           email: emailRegister,
+           password: passwordRegister,
+           password2: passwordRegister2,
+       }
+       setErrors(validateInfo(values));
 
         fetch("http://localhost:5000/api/register", {
             method: 'POST',
