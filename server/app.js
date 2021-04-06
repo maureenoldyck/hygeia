@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     // destination: 'client/public/uploads/',
     storage: storage,
-    limits : {fileSize : 1000000}
+    // limits : {fileSize : 1000000}
     // fileFilter: function(req, file, cb){
     //   checkFileType(file, cb);
     // }
@@ -211,18 +211,28 @@ app.post("/api/login", (req, res) => {
     const email = req.body.email
     const password = req.body.password
 
-    const sqlInsert = "SELECT * FROM users_list WHERE u_email = ? AND u_password = ?";
+    const sqlInsert = "SELECT * FROM users_list WHERE u_email = ?";
 
-    pool.query(sqlInsert, [email, password], (err, result) => {
+
+    pool.query(sqlInsert, [email], (err, result) => {
+
         if (err) {
             res.send({err: err});
         } 
         
         if (result.length > 0) {
-            req.session.user = result;
-            res.send(result);
+
+            bcrypt.compare(password, result[0].u_password, function(err, response) {
+                if (response === true) {
+                    req.session.user = result;
+                    res.send(result);
+                } else {
+                    res.send({ err:"Sadly, your email and/or password combination doesn't seem correct. Please try again."});
+                }   
+            });
+           
         } else {
-            res.send({ err: "Sadly, your email and/or password doesn't seem correct. Please try again."});
+            res.send({ err: "Sadly, your email doesn't seem correct. Please try again or register if you don't have an account yet."});
         }
     });
 });
@@ -246,9 +256,10 @@ app.get("/api/profile/:id", (req, res,) => {
 
     const userId = req.params.id;
 
-    const sqlInsert = "SELECT * FROM users_list WHERE id = ?";
+    const sqlInsert = "SELECT * FROM users_list INNER JOIN mood_tracker ON users_list.id = mood_tracker.user_id WHERE user_id = ?";
 
     pool.query(sqlInsert, [userId], (err, result) => {
+
         if (err) {
             res.send({err: err});
         } 
@@ -275,6 +286,7 @@ app.post("/api/profile/:id", (req, res) => {
     const sqlInsert = "UPDATE users_list SET `name` = ?, `role` = ?, `quote` = ? WHERE id = ?;"
 
     pool.query(sqlInsert, [name, role, quote, id] , (err, result) => {
+        
         if (err) {
             console.log(err)
         }
@@ -285,16 +297,40 @@ app.post("/api/profile/:id", (req, res) => {
     });
 });
 
+app.post("/api/moodtracker/:id", (req, res) => {
 
-app.post("/api/profileImg/:id", upload.single('avatar'),(req, res) => {
 
-    // console.log(req.file);
-    if(req.file === undefined){
+    const feeling = req.body.feeling
+    const id = req.params.id
+
+    console.log(feeling)
+
+    const sqlInsert = "UPDATE mood_tracker SET `feeling` = ?  WHERE user_id = ?;"
+
+    pool.query(sqlInsert, [feeling, id] , (err, result) => {
+        
+        if (err) {
+            console.log(err)
+        }
+
+        if (result) {
+            console.log(result)
+            res.send(result);
+        }
+    });
+});
+
+
+app.post("/api/profileImg/:id", upload.single('avatar'),(req, res, err) => {
+
+    if (!req.file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
+        req.fileValidationError = 'Only image files are allowed!';
+        res.send({ msg:'Only image files (jpg, jpeg, png) are allowed!'})
+    } else if (!req.file) {
         res.send({
-        msg: 'Error: No File Selected!'
+            msg: 'Error: Please upload a valid image!'
         });
     } else {
-        console.log(req.file)
 
         const imgPath = req.file.filename;
         const id = req.params.id
@@ -304,13 +340,18 @@ app.post("/api/profileImg/:id", upload.single('avatar'),(req, res) => {
         pool.query(sqlInsert, [imgPath, id] , (err, result) => {
             if (err) {
                 console.log(err)
+                res.send({
+                    msg: err
+                })
             }
     
             if (result) {
+            
                 res.send({
                     data:result,
                     msg: 'Your avatar is updated!'
                 });
+        
             }
         });
     }
@@ -338,7 +379,7 @@ app.get("/api/documentation/:slug", (req, res,) => {
 
 });
 
-app.get('/api/search/:keywords', (req, res,) => {
+app.get('/api/search/:keywords', (req, res) => {
 
     const keywords = req.params.keywords;
     console.log(keywords)

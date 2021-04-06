@@ -38,9 +38,9 @@ const RoomCard = () => {
                         <span className="text-xl hover:text-gray-500">•••</span>
                     </div>
                     <div className="flex flex-col mx-auto cursor-default" id="scoring">
-                        <svg xmlns='http://www.w3.org/2000/svg' className="hover:fill-current cursor-pointer hover:text-green-600" viewBox='0 0 512 512'><title>Chevron Up</title><path fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M112 328l144-144 144 144'/></svg>
+                        <svg xmlns='http://www.w3.org/2000/svg' className="hover:fill-current cursor-pointer hover:text-green-600" viewBox='0 0 512 512'><title>Chevron Up</title><path fill='none' stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' stroke-width='48' d='M112 328l144-144 144 144'/></svg>
                         <span>1945</span>
-                        <svg xmlns='http://www.w3.org/2000/svg' className="hover:fill-current cursor-pointer hover:text-red-600" viewBox='0 0 512 512'><title>Chevron Down</title><path fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M112 184l144 144 144-144'/></svg>
+                        <svg xmlns='http://www.w3.org/2000/svg' className="hover:fill-current cursor-pointer hover:text-red-600" viewBox='0 0 512 512'><title>Chevron Down</title><path fill='none' stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' stroke-width='48' d='M112 184l144 144 144-144'/></svg>
                     </div>
                     <div className="flex flex-row mt-auto mb-2 items-center cursor-default" id="participants">
                         <div id="participant-svg">
