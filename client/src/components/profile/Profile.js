@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { Link, useParams } from 'react-router-dom';
-import tetris from '../../assets/images/tetris.jpg';
 import settings from '../../assets/images/settings.svg';
 import wave from '../../assets/images/wave.svg';
 
