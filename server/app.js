@@ -5,7 +5,7 @@ const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
 const { reset } = require('nodemon');
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
 
 
 //==========================================================================================//
