@@ -7,6 +7,28 @@ const cors = require('cors');
 const { reset } = require('nodemon');
 const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
 
+const multer  = require('multer')
+const path = require('path');
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "public");},
+    filename: function(req, file, cb){
+        const ext = file.mimetype.split("/")[1];
+        cb(null, `uploads/${file.fieldname}-${Date.now()}.${ext}`);
+    }
+});
+
+const upload = multer({
+    // destination: 'client/public/uploads/',
+    storage: storage,
+    limits : {fileSize : 1000000}
+    // fileFilter: function(req, file, cb){
+    //   checkFileType(file, cb);
+    // }
+})
+
+app.use('/', express.static(path.join(__dirname, '/public')));
 
 //==========================================================================================//
 //                                  Create connection + config                              //
@@ -121,6 +143,24 @@ app.post("/api/details/:id", (req, res) => {
 });
 
 
+app.post("/api/settings/:id", (req, res) => {
+
+    const anonymous = req.body.anonymous
+    const profileVisibility = req.body.profileVisibility
+    const openToConnect = req.body.openToConnect
+    const dmAvailability = req.body.dmAvailability
+    const notifications = req.body.notifications
+    const bio = req.body.bio
+    const id = req.params.id
+
+    console.log(anonymous, profileVisibility, openToConnect, dmAvailability, notifications, bio, id)
+    const sqlInsert = "UPDATE users_list SET `anonymous` = ?, `profile_visible` = ?, `open_to_connect` = ?, `dm_available` = ?, `notifications` = ?, `bio` = ? WHERE id = ?;"
+
+    pool.query(sqlInsert, [anonymous, profileVisibility, openToConnect, dmAvailability, notifications, bio, id] , (err, result) => {
+        res.send(result);
+    });
+});
+
 
 
 // // // LOGIN GET REQUEST
@@ -190,12 +230,12 @@ app.get("/api/profile/:id", (req, res,) => {
         }
     });
 
-   
-    //TODO: redirect to home when user is not logged in 
 });
 
 
+
 app.post("/api/profile/:id", (req, res) => {
+
 
     const name = req.body.name
     const role = req.body.role
@@ -210,11 +250,81 @@ app.post("/api/profile/:id", (req, res) => {
         }
 
         if (result) {
-            res.redirect('/profile')
+            res.send(result);
         }
     });
 });
 
+
+app.post("/api/profileImg/:id", upload.single('avatar'),(req, res) => {
+
+    // console.log(req.file);
+    if(req.file === undefined){
+        res.send({
+        msg: 'Error: No File Selected!'
+        });
+    } else {
+        console.log(req.file)
+
+        const imgPath = req.file.filename;
+        const id = req.params.id
+    
+        const sqlInsert = "UPDATE users_list SET `profile_picture` = ? WHERE id = ?;"
+    
+        pool.query(sqlInsert, [imgPath, id] , (err, result) => {
+            if (err) {
+                console.log(err)
+            }
+    
+            if (result) {
+                res.send({
+                    data:result,
+                    msg: 'Your avatar is updated!'
+                });
+            }
+        });
+    }
+    
+});
+
+
+app.get("/api/documentation/:slug", (req, res,) => {
+
+    const slug = req.params.slug;
+
+    const sqlInsert = "SELECT * FROM documentation WHERE `slug` = ?";
+
+    pool.query(sqlInsert, [slug], (err, result) => {
+        if (err) {
+            res.send({err: err});
+        } 
+       
+        if (result.length > 0) {
+            res.send(result);
+        } else {
+            res.send({ err: "Sadly something went wrong"});
+        }
+    });
+
+});
+
+app.get('/api/search/:keywords', (req, res,) => {
+
+    const keywords = req.params.keywords;
+    console.log(keywords)
+
+    const sqlInsert = "SELECT * from documentation WHERE `description` like '%" + keywords + "%'"
+    console.log(sqlInsert)
+
+    pool.query(sqlInsert, (err, result) => {
+        if (result) {
+            res.send(result);
+        } else {
+            res.send({ err: "Sadly something went wrong"});
+        }
+    });
+
+});
 
 //==========================================================================================//
 //                                      API Listener                                        //

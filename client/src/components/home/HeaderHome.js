@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
 import search from '../../assets/images/search.svg';
@@ -6,6 +6,8 @@ import Modal from '../Modal';
 import Login from '../Login';
 
 const HeaderHome = () => {
+
+    const [keyword, setKeyword] = useState('');
 
     useEffect(() => {
         fetch("http://localhost:5000/api/login", {
@@ -51,8 +53,7 @@ const HeaderHome = () => {
             x.className = "hidden";
         }
     }
-  
-    
+
 
     return (
         <div>
@@ -74,8 +75,8 @@ const HeaderHome = () => {
                                         <h1 className="flex py-1 text-2xl">ygeia</h1>
                                     </Link>
                                     <div className="flex flex-row md:w-full" id="search">
-                                        <input type="search" placeholder="Search.." className="rounded-xl pl-4 w-2/5 md:w-full"/>
-                                        <img src={search} alt="search" className="h-6 sm:h-8 sm:w-8 ml-2 mt-2"/>
+                                        <input type="search" placeholder="Search.." className="rounded-xl pl-4 w-2/5 md:w-full text-black" onChange={(e) => {setKeyword(e.target.value)}}/>
+                                        <Link to={`/search/${keyword}`}> <button><img src={search} alt="search" className="h-6 sm:h-8 sm:w-8 ml-2 mt-2"/></button></Link>     
                                     </div>
                                 </div>
                             </div>

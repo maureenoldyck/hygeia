@@ -1,6 +1,7 @@
-import React from 'react';
+import React,{useState, useEffect}  from 'react';
 
 import Header from '../components/Header.js';
+import HeaderHome from '../components/home/HeaderHome.js';
 import Footer from '../components/Footer.js';
 
 import chatting from '../assets/images/chatting.svg'
@@ -8,10 +9,32 @@ import road from '../assets/images/road.svg'
 import team from '../assets/images/team.svg'
 
 const AboutUs = () => {
+
+    const [LandingNav, setLandingNav] = useState('');
+
+    useEffect(() => {
+        fetch("http://localhost:5000/api/login", {
+            method: 'GET',
+            headers: {
+                "Content-Type": 'application/json,  charset=UTF-8', 
+                'Accept': 'application/json, text/html',
+            },
+            credentials: 'include', 
+        })
+        .then(res => res.json())
+        .then((res) => { 
+            if (res.user) {
+                setLandingNav(<Header user={res.user[0].id} />)
+            } else {
+                setLandingNav(<HeaderHome />)
+            }
+        });
+    }, []);
+
     return (
         <>
             <div>
-                <Header />
+                {LandingNav}
             </div>
 
             <div className="flex justify-between bg-brown-white flex-col min-h-screen text-blue-naval">

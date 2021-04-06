@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/images/logo.svg';
 import feed from '../assets/images/feed.svg';
@@ -12,9 +12,11 @@ import messages from '../assets/images/messages-none.svg';
 
 import search from '../assets/images/search.svg';
 import finger from '../assets/images/finger.svg';
-//TODO: Add dropdown menu to the profile div
+
 
 const Header = ({user}) => {
+
+    const [keyword, setKeyword] = useState('');
     
     const seeMenu = () => {
         const x = document.getElementById("mobile-menu");
@@ -49,8 +51,11 @@ const Header = ({user}) => {
         .then(res => res.json())
         .then(res => console.log(res));
 
+        localStorage.removeItem('loggedIn');
+        localStorage.removeItem('userID');
         window.location.href = "/";
     }
+
 
     return (
         <>
@@ -66,8 +71,8 @@ const Header = ({user}) => {
                                         <h1 className="flex py-1 text-2xl">ygeia</h1>
                                     </Link>
                                     <div className="flex flex-row md:w-full" id="search">
-                                        <input type="search" placeholder="Search.." className="rounded-xl pl-4 w-2/5 md:w-full"/>
-                                        <img src={search} alt="search" className="h-6 sm:h-8 sm:w-8 ml-2 mt-2"/>
+                                        <input type="search" placeholder="Search.." className="rounded-xl pl-4 w-2/5 md:w-full text-black" onChange={(e) => {setKeyword(e.target.value)}}/>
+                                        <Link to={`/search/${keyword}`}> <button><img src={search} alt="search" className="h-6 sm:h-8 sm:w-8 ml-2 mt-2"/></button></Link>     
                                     </div>
                                 </div>
                             </div>
@@ -171,7 +176,7 @@ const Header = ({user}) => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/profile">
+                            <Link to={`/profile/${user}`}>
                                 <div className="flex flex-row items-center rounded-xl cursor-pointer hover:bg-brown-yellow">
                                     <img src={settings} alt="settings" className="h-8 w-8 mx-8 my-2"/>
                                     <p>Settings</p>

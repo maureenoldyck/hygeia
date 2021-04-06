@@ -10,10 +10,13 @@ import Feed from './pages/Feed.js';
 import Help from './pages/documentation/Help.js';
 import Whatis from './pages/documentation/WhatIs.js';
 import Recovery from './pages/documentation/Recovery.js';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Search from './pages/documentation/Search.js';
+import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 
 function App() {
+
+  let loggedIn = localStorage.getItem('loggedIn');
 
 
   return (
@@ -27,15 +30,25 @@ function App() {
                 <Route path="/about-us" exact component={AboutUs} />
                 <Route path="/contact-us" exact component={ContactUs} />
                 <Route path="/documentation" exact component={Documentation} />
+                <Route path="/search/:keywords" component={Search} />
                 <Route path="/profile">
-                  <Route path="/:id" component={MyProfile}/>
+                  {!loggedIn ? <Redirect to="/" /> : <MyProfile /> }
                 </Route>
-                <Route path="/chatroom" component={Chatroom}/>
+                <Route path="/chatroom">
+                  {!loggedIn ? <Redirect to="/" /> : <Chatroom /> }
+                </Route>
                 <Route path="/help" component={Help}/> 
                 <Route path="/whatis" component={Whatis}/> 
                 <Route path="/recovery" component={Recovery}/> 
-                <Route path="/forums" component={Forum}/> 
-                <Route path="/feed" component={Feed}/>
+                <Route path="/forums" > 
+                  {!loggedIn ? <Redirect to="/" /> : <Forum /> }
+                </Route>
+                <Route path="/feed">
+                  {!loggedIn ? <Redirect to="/" /> : <Feed />}
+                </Route>  
+                <Route path="*"> 
+                  <Redirect to="/" />
+                </Route>
               </Switch>
           </div>
         </div>
@@ -44,5 +57,6 @@ function App() {
     </Router>
   );
 }
+
 
 export default App;

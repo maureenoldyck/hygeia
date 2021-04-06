@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Profile from '../components/profile/Profile.js';
 import ProfileForm from '../components/profile/Profile_form.js';
 import Details from '../components/profile/Details.js';
@@ -13,12 +13,45 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
 const MyProfile = () => {
+
+    const [LandingNav, setLandingNav] = useState('');
+  
+
+    if (window.location.href === "http://localhost:3000/profile" || window.location.href === "http://localhost:3000/profile/") {
+    
+        const userID = localStorage.getItem('userID');
+        window.location.href = "http://localhost:3000/profile/" + userID;
+
+    } 
+    
+    useEffect(() => {
+        fetch("http://localhost:5000/api/login", {
+            method: 'GET',
+            headers: {
+                "Content-Type": 'application/json,  charset=UTF-8', 
+                'Accept': 'application/json, text/html',
+            },
+            credentials: 'include', 
+        })
+        .then(res => res.json())
+        .then((res) => { 
+            if (res.user) {
+                setLandingNav(<Header user={res.user[0].id} />)
+            } else {
+                window.location.href = "/";
+            }
+
+            if (window.location.href !== "http://localhost:3000/profile/" + res.user[0].id) {
+                window.location.href = "http://localhost:3000/profile/" + res.user[0].id;
+            }
+        });
+    }, []);
+
     return (
         <>
             <div>
-                <Header />
+                {LandingNav}
             </div>
-
             <div className="flex justify-around bg-brown-white flex-col">
                 <div className="flex justify-around flex-row min-h-screen mb-32 lg:mt-20 mt-14 lg:px-12 px-4" >
                     <section className="bg-brown-sand bg-opacity-25 justify-around lg:w-screen w-full h-auto flex flex-col lg:flex-row" id="left">
