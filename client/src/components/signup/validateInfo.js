@@ -1,6 +1,6 @@
 export default function validateInfo(values) {
   let errors = {};
-
+  console.log({values});
 
   if (!values.email) {
     errors.email = 'Email required';
