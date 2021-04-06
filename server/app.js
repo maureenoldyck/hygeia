@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     // destination: 'client/public/uploads/',
     storage: storage,
-    limits : {fileSize : 1000000}
+    // limits : {fileSize : 1000000}
     // fileFilter: function(req, file, cb){
     //   checkFileType(file, cb);
     // }
@@ -101,43 +101,58 @@ app.post("/api/register", async (req, res) => {
         const u_email = req.body.email;
         const u_password = req.body.password;
         const saltRounds = 10;
-        const userExists = "";
         
-        console.log(userExists);
         const hashed = await bcrypt.hash(u_password, saltRounds);
-        const sqlEmail = "SELECT `u_email` FROM users_list WHERE (`u_email`) VALUE (?);"
-        await pool.query(sqlEmail, [u_email], (err, result) => {
-            if(result){
-                userExists = false;
-                
-            } else {
-                userExists = true;
-            }
-            return userExists;
-        })
 
         const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`) VALUE (?, ?);"
 
         await pool.query(sqlInsert, [u_email, hashed], (err, result) => {
-            console.log(err);
-            console.log(result);
+            // console.log(err);
+            // console.log(result);
         });
         res.status(200);
+        // console.log('added to db');
 
     } catch (error){
             const message = "Email already exists";
-            console.log(error);
-            res.status(500).send(message);
+            // console.log(error);
+            // console.log(message);
     }
-
-    
-
-    //res.send("");
-    
-
-    //const sqlQuestion = "SELECT * FROM users_list;"
-    
 })
+
+app.post("/api/register/checkuser", async (req, res, next) => {
+
+    try {
+        const u_email = req.body.email;
+        
+        
+        const sqlEmail = "SELECT `u_email` FROM users_list WHERE u_email = (?);";
+        
+
+        await pool.query(sqlEmail, [u_email], (err, result) => {
+            console.log(result[0]);
+            if(result[0].u_email === u_email){
+                res.send({userExists: true});
+                console.log(result[0]);
+
+            } else {
+                res.send({userExists: false});
+
+            }
+            
+        }) 
+
+        res.status(200);
+        
+        // console.log('added to db');
+
+    } catch (error){
+            console.log("Email already exists");
+            // console.log(error);
+            // console.log(message);
+    }
+})
+
 
 app.post("/api/details/:id", (req, res) => {
 
@@ -196,18 +211,28 @@ app.post("/api/login", (req, res) => {
     const email = req.body.email
     const password = req.body.password
 
-    const sqlInsert = "SELECT * FROM users_list WHERE u_email = ? AND u_password = ?";
+    const sqlInsert = "SELECT * FROM users_list WHERE u_email = ?";
 
-    pool.query(sqlInsert, [email, password], (err, result) => {
+
+    pool.query(sqlInsert, [email], (err, result) => {
+
         if (err) {
             res.send({err: err});
         } 
         
         if (result.length > 0) {
-            req.session.user = result;
-            res.send(result);
+
+            bcrypt.compare(password, result[0].u_password, function(err, response) {
+                if (response === true) {
+                    req.session.user = result;
+                    res.send(result);
+                } else {
+                    res.send({ err:"Sadly, your email and/or password combination doesn't seem correct. Please try again."});
+                }   
+            });
+           
         } else {
-            res.send({ err: "Sadly, your email and/or password doesn't seem correct. Please try again."});
+            res.send({ err: "Sadly, your email doesn't seem correct. Please try again or register if you don't have an account yet."});
         }
     });
 });
@@ -231,9 +256,10 @@ app.get("/api/profile/:id", (req, res,) => {
 
     const userId = req.params.id;
 
-    const sqlInsert = "SELECT * FROM users_list WHERE id = ?";
+    const sqlInsert = "SELECT * FROM users_list INNER JOIN mood_tracker ON users_list.id = mood_tracker.user_id WHERE user_id = ?";
 
     pool.query(sqlInsert, [userId], (err, result) => {
+
         if (err) {
             res.send({err: err});
         } 
@@ -260,6 +286,7 @@ app.post("/api/profile/:id", (req, res) => {
     const sqlInsert = "UPDATE users_list SET `name` = ?, `role` = ?, `quote` = ? WHERE id = ?;"
 
     pool.query(sqlInsert, [name, role, quote, id] , (err, result) => {
+        
         if (err) {
             console.log(err)
         }
@@ -270,16 +297,40 @@ app.post("/api/profile/:id", (req, res) => {
     });
 });
 
+app.post("/api/moodtracker/:id", (req, res) => {
 
-app.post("/api/profileImg/:id", upload.single('avatar'),(req, res) => {
 
-    // console.log(req.file);
-    if(req.file === undefined){
+    const feeling = req.body.feeling
+    const id = req.params.id
+
+    console.log(feeling)
+
+    const sqlInsert = "UPDATE mood_tracker SET `feeling` = ?  WHERE user_id = ?;"
+
+    pool.query(sqlInsert, [feeling, id] , (err, result) => {
+        
+        if (err) {
+            console.log(err)
+        }
+
+        if (result) {
+            console.log(result)
+            res.send(result);
+        }
+    });
+});
+
+
+app.post("/api/profileImg/:id", upload.single('avatar'),(req, res, err) => {
+
+    if (!req.file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
+        req.fileValidationError = 'Only image files are allowed!';
+        res.send({ msg:'Only image files (jpg, jpeg, png) are allowed!'})
+    } else if (!req.file) {
         res.send({
-        msg: 'Error: No File Selected!'
+            msg: 'Error: Please upload a valid image!'
         });
     } else {
-        console.log(req.file)
 
         const imgPath = req.file.filename;
         const id = req.params.id
@@ -289,13 +340,18 @@ app.post("/api/profileImg/:id", upload.single('avatar'),(req, res) => {
         pool.query(sqlInsert, [imgPath, id] , (err, result) => {
             if (err) {
                 console.log(err)
+                res.send({
+                    msg: err
+                })
             }
     
             if (result) {
+            
                 res.send({
                     data:result,
                     msg: 'Your avatar is updated!'
                 });
+        
             }
         });
     }
@@ -323,7 +379,7 @@ app.get("/api/documentation/:slug", (req, res,) => {
 
 });
 
-app.get('/api/search/:keywords', (req, res,) => {
+app.get('/api/search/:keywords', (req, res) => {
 
     const keywords = req.params.keywords;
     console.log(keywords)

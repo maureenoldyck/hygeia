@@ -3,11 +3,12 @@ import validateInfo from './validateInfo';
 import useForm from './useForm';
 
 const SignupForm = ( ) => {
-   const [emailRegister, setEmailRegister] = useState("");
-   const [passwordRegister, setPasswordRegister] = useState("");
-   const [passwordRegister2, setPasswordRegister2] = useState("");
-   //const [isSubmitting, setIsSubmitting] = useState(false);
-   const [errors, setErrors] = useState({});
+    
+    const [emailRegister, setEmailRegister] = useState("");
+    const [passwordRegister, setPasswordRegister] = useState("");
+    const [passwordRegister2, setPasswordRegister2] = useState("");
+    //const [isSubmitting, setIsSubmitting] = useState(false);
+    const [errors, setErrors] = useState({});
 
 
 
@@ -17,13 +18,13 @@ const SignupForm = ( ) => {
     
     const handleSubmit = (e) => {
 
-       e.preventDefault();
-       const values = {
-           email: emailRegister,
-           password: passwordRegister,
-           password2: passwordRegister2,
-       }
-       setErrors(validateInfo(values));
+        e.preventDefault();
+        const values = {
+            email: emailRegister,
+            password: passwordRegister,
+            password2: passwordRegister2,
+        }
+        setErrors(validateInfo(values));
 
         fetch("http://localhost:5000/api/register", {
             method: 'POST',
@@ -39,6 +40,7 @@ const SignupForm = ( ) => {
         })
         .then(res => res.json())
         .then(res => console.log(res));
+        //TODO look up useEffect needed?
 
     };
         
@@ -80,7 +82,7 @@ const SignupForm = ( ) => {
             </form>
         </div>
 
-        );
+    );
 };
 
 export default SignupForm;

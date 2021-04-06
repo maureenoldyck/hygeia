@@ -13,5 +13,6 @@
     "emmet.preferences": {
     
     },
-    "emmet.showSuggestionsAsSnippets": true
+    "emmet.showSuggestionsAsSnippets": true,
+    "workbench.colorTheme": "Monokai"
 }

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import tetris from '../../assets/images/tetris.jpg';
 import Modal from '../Modal'
 
 const showModal = () => {
@@ -107,7 +106,7 @@ const ProfileForm = () => {
             setAvatarStatus(data.msg);
         })
         .catch(error => {
-            console.error(error)
+            console.error(error)  
         })
     }
 

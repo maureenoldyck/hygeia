@@ -1,28 +1,35 @@
-export default function validateInfo(values) {
+
+
+const validateInfo = (values) => {
   let errors = {};
   console.log({values});
 
-  // fetch("http://localhost:5000/api/register", {
-  //           method: 'POST',
-  //           body: JSON.stringify({
-                
-  //           }),
-  //           headers: {
-  //               'Accept': 'application/json',
-  //               'Content-type': 'application/json; charset=UTF-8'
-  //           },
-  //           credentials: 'include', 
-  //       })
-  //       .then(res => res.json())
-  //       .then(res => console.log(res));
-        
+  fetch("http://localhost:5000/api/register/checkuser", {
+      method: 'POST',
+      body: JSON.stringify({
+        email: values.email
+      }),
+      headers: {
+          'Accept': 'application/json',
+          'Content-type': 'application/json; charset=UTF-8'
+      },
+      credentials: 'include', 
+  })
+  .then(res => res.json())
+  
+  .then((res) => {
+      if (res.userExists == true) {
+        errors.email = 'Email already in use!';
+      }
+      console.log(res)
+  })
+
 
   if (!values.email) {
     errors.email = 'Email required';
   } else if (!/\S+@\S+\.\S+/.test(values.email)) {
     errors.email = 'Email address is invalid';
   }
-  
   if (!values.password) {
     errors.password = 'Password is required';
   } else if (values.password.length < 6) {
@@ -36,3 +43,5 @@ export default function validateInfo(values) {
   }
   return errors;
 }
+
+export default validateInfo;

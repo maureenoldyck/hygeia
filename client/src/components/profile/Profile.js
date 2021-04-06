@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { Link, useParams } from 'react-router-dom';
-import tetris from '../../assets/images/tetris.jpg';
 import settings from '../../assets/images/settings.svg';
 import wave from '../../assets/images/wave.svg';
 
@@ -28,7 +27,6 @@ const Profile = () => {
             setName(res[0].name);
             setRole(res[0].role);
             setQuote(res[0].quote);
-            console.log(res);
             setAvatar('http://localhost:5000/' + res[0].profile_picture);
         });
     })
