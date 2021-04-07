@@ -8,8 +8,6 @@ We want Hygeia to be the place that people feel comfortable talking about their 
 
 <hr>
 
-<!-- Screenshots? -->
-
 ## Key Features
 
 * Chatrooms that users can create about a mental health topic of choice
@@ -17,6 +15,7 @@ We want Hygeia to be the place that people feel comfortable talking about their 
 * Profile where, they can personalise settings options like anonimity and profile visibility
 * Moodtracker where users can log their moods each day
 
+<!-- Screenshots? -->
 ## Future Features
 
 * Forums where different subjects can be discussed.
@@ -29,7 +28,7 @@ We want Hygeia to be the place that people feel comfortable talking about their 
 
 For this project we chose to work with ReactJS in frontend and NodeJS in backend. During our preparation, we quickly decided to choose these languages because not only are they suitable for our project (a social platform that will need speed, handle a lot of data and functionality), also because we had a great interest in learning how to use JavaScript for both frontend and backend.
 ### Frontend
-* ReactJS - ^17.0.1 - Frontend framework
+* ReactJS - ^17.0.1 - Frontend library
 * Tailwind CSS - ^2.0.3 - CSS framework
 ### Backend
 * NodeJS - ^14.15.4 - Runtime environment for the server
