@@ -140,7 +140,6 @@ app.post("/api/register", async (req, res) => {
             if (result.length > 0) {
 
                 return res.send({error: "User already exists!"})
-                
 
             } else {
                 const saltRounds = 10;
@@ -263,9 +262,12 @@ app.get("/api/profile/:id", (req, res,) => {
 
     const userId = req.params.id;
 
-    const sqlInsert = "SELECT * FROM users_list INNER JOIN mood_tracker ON users_list.id = mood_tracker.user_id WHERE user_id = ?";
+
+    const sqlInsert = "SELECT * FROM `users_list` WHERE id = ?";
 
     pool.query(sqlInsert, [userId], (err, result) => {
+
+        console.log(result)
 
         if (err) {
             res.send({err: err});
