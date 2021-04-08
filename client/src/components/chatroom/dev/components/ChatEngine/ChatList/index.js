@@ -1,22 +1,23 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { ChatEngineContext } from './dev/components/Context'
-import { getLatestChats } from './dev/actions/chats'
+
+import { ChatEngineContext } from '../../Context'
+
+import { getLatestChats } from '../../../actions/chats'
 
 import _ from 'lodash'
 
-import ChatCard from './dev/components/ChatEngine/ChatList'
-import ChatLoader from './dev/components/ChatEngine/ChatList'
+import ChatLoader from './ChatLoader'
+
+import ChatForm from './NewChatForm'
+import ChatCard from './ChatCard'
 
 let count = 13
 const interval = 13
 
-const List = (props) => {
+const ChatMap = props => {
     const didMountRef = useRef(false)
     const [hasMoreChats, setHasMoreChats] = useState(true)
     const { chats, setChats, activeChat, setActiveChat } = useContext(ChatEngineContext)
-
-
-    const prod = false // window.location.host.indexOf('chatengine.io') !== -1
 
     function renderChats(chats) {
         return chats.map((chat, index) => {
@@ -74,9 +75,12 @@ const List = (props) => {
 
     const chatList = sortChats(chats ? Object.values(chats) : [])
 
+    if (props.renderChatList) return props.renderChatList(props)
+
     return (
         <div style={styles.chatListContainer} className='ce-chat-list'>
             <div style={styles.chatsContainer} className='ce-chats-container'>
+                { props.renderNewChatForm ? props.renderNewChatForm(props) : <ChatForm  /> }
 
                 { renderChats(chatList) } 
 
@@ -84,7 +88,6 @@ const List = (props) => {
             </div>
         </div>
     )
-    
 }
 
 const styles={
@@ -104,4 +107,4 @@ const styles={
     },
 }
 
-export default List;
+export default ChatMap;
