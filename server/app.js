@@ -113,47 +113,54 @@ app.post("/api/register", async (req, res) => {
 
         if (!u_email) {
             return res.send({email: 'Email required'});
-        } else if (!/\S+@\S+\.\S+/.test(u_email)) {
-            return res.send({email: 'Email address is invalid'});
-        }
+        } 
 
         if (!u_password) {
             return res.send({password: 'Password is required'});
-        } else if (u_password.length < 6) {
-          return res.send({password: 'Password needs to be 6 characters or more'});
-        }
+        } 
     
         if (!passwordConfirm) {
             return res.send({password2: 'Password is required'});
-        } else if (passwordConfirm !== u_password) {
-          return res.send({password2: 'Passwords do not match'});
-        }
+        } 
+
 
     } else {
 
-        const sqlEmail = "SELECT * FROM users_list WHERE u_email = (?);";
+        if (!/\S+@\S+\.\S+/.test(u_email)) {
+            return res.send({email: 'Email address is invalid'});
+        } else if (u_password.length < 6) {
+            return res.send({password: 'Password needs to be 6 characters or more'});
+        } else if (passwordConfirm !== u_password) {
+            return res.send({password2: 'Passwords do not match'});
+        } else {
 
-        pool.query(sqlEmail, [u_email], async (err, result) => {
-        
-        // if (err) throw err;
+            const sqlEmail = "SELECT * FROM users_list WHERE u_email = (?);";
 
-            if (result.length > 0) {
-
-                return res.send({error: "User already exists!"})
-
-            } else {
-                const saltRounds = 10;
-                const hashed = await bcrypt.hash(u_password, saltRounds);
-                const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`) VALUE (?, ?);"
-
-                pool.query(sqlInsert, [u_email, hashed], (err, result) => {
+            pool.query(sqlEmail, [u_email], async (err, result) => {
             
-                res.send({success:"Huray, your account has been created!"})
+            // if (err) throw err;
+    
+                if (result.length > 0) {
+    
+                    return res.send({error: "User already exists!"})
+    
+                } else {
+                    const saltRounds = 10;
+                    const hashed = await bcrypt.hash(u_password, saltRounds);
+                    const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`) VALUE (?, ?);"
+    
+                    pool.query(sqlInsert, [u_email, hashed], (err, result) => {
+                
+                    res.send({success:"Huray, your account has been created!"})
+    
+                    });
+    
+                }
+            })
 
-                });
+        }
 
-            }
-        })
+      
 
     }
     

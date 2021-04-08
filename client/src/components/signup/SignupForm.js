@@ -42,22 +42,27 @@ const SignupForm = ( ) => {
         .then((res) => {
             console.log(res)
             if (res.email) {
+                setSuccess('')
                 setErrors({email: (res.email)});
             }
 
             if (res.password) {
+                setSuccess('')
                 setErrors({password: (res.password)});
             }
 
             if (res.password2) {
+                setSuccess('')
                 setErrors({password2: (res.password2)});
             }
 
             if (res.error) {
+                setSuccess('')
                 setErrors({email: (res.error)});
             }
 
             if (res.success) {
+                setErrors('');
                 setSuccess("Huray, your account has been created!");
             }
 
