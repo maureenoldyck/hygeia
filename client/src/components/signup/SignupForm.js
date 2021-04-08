@@ -1,6 +1,18 @@
 import React, {useState}from 'react';
 // import validateInfo from './validateInfo';
 
+const showModal = () => {
+    const modal = document.getElementById("loginModal");
+
+    if (modal.className === "hidden") {
+        modal.className += "block";
+    } else {
+        modal.className = "hidden";
+    }
+}
+
+
+
 const SignupForm = ( ) => {
     
     const [emailRegister, setEmailRegister] = useState("");
@@ -108,9 +120,8 @@ const SignupForm = ( ) => {
                     </button>
                    
                 </div>
-                {success && <p className="text-green-vrt">{success}</p>}
                 <span className="">
-                    Already have an account? Login <a href='?#'>here</a>
+                    <button onClick={showModal}> Already have an account? Login here </button>
                 </span>
             </form>
         </div>
