@@ -11,9 +11,9 @@ We want Hygeia to be the place that people feel comfortable talking about their 
 ## Key Features
 
 * Chatrooms that users can create about a mental health topic of choice
-* Well documentated information about mental health
+* Documentated information about mental health
+* Register and login, to access the hygeia community
 * Profile where, they can personalise settings options like anonimity and profile visibility
-* Moodtracker where users can log their moods each day
 
 <!-- Screenshots? -->
 ## Future Features
@@ -21,6 +21,7 @@ We want Hygeia to be the place that people feel comfortable talking about their 
 * Forums where different subjects can be discussed.
 * Personal Feed where the user can share their feelings, what is on their mind. Like a personal diary they can share with who they allow.
 * A personal calendar where they can see their past moods, have reminders about doctor appointments or future plans.
+* Moodtracker where users can log their moods each day
 
 <hr>
 
@@ -41,6 +42,7 @@ For this project we chose to work with ReactJS in frontend and NodeJS in backend
 * TablePlus 
 * Git
 * MAMP
+* Heroku 
 
 <hr>
 
