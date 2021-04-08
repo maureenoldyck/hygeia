@@ -1,6 +1,5 @@
 import React, {useState}from 'react';
-import validateInfo from './validateInfo';
-import useForm from './useForm';
+// import validateInfo from './validateInfo';
 
 const SignupForm = ( ) => {
     
@@ -9,7 +8,7 @@ const SignupForm = ( ) => {
     const [passwordRegister2, setPasswordRegister2] = useState("");
     //const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
-
+    const [success, setSuccess] = useState('');
 
 
         //======================================================================================//
@@ -19,18 +18,19 @@ const SignupForm = ( ) => {
     const handleSubmit = (e) => {
 
         e.preventDefault();
-        const values = {
-            email: emailRegister,
-            password: passwordRegister,
-            password2: passwordRegister2,
-        }
-        setErrors(validateInfo(values));
+        // const values = {
+        //     email: emailRegister,
+        //     password: passwordRegister,
+        //     password2: passwordRegister2,
+        // }
+        // setErrors(validateInfo(values));
 
         fetch("http://localhost:5000/api/register", {
             method: 'POST',
             body: JSON.stringify({
                 email: emailRegister,
                 password: passwordRegister,
+                password2: passwordRegister2
             }),
             headers: {
                 'Accept': 'application/json',
@@ -39,29 +39,56 @@ const SignupForm = ( ) => {
             credentials: 'include', 
         })
         .then(res => res.json())
-        .then(res => console.log(res));
+        .then((res) => {
+            console.log(res)
+            if (res.email) {
+                setErrors({email: (res.email)});
+            }
+
+            if (res.password) {
+                setErrors({password: (res.password)});
+            }
+
+            if (res.password2) {
+                setErrors({password2: (res.password2)});
+            }
+
+            if (res.error) {
+                setErrors({email: (res.error)});
+            }
+
+            if (res.success) {
+                setSuccess("Huray, your account has been created!");
+            }
+
+
+        })    
+        .catch((err) => {
+            console.log(err)
+        })
         //TODO look up useEffect needed?
 
     };
         
     return (
 
-        <div className="flex w-full mb-5 md:transform md:scale-90">
+        <div className="flex w-full mb-3 md:transform md:scale-90">
             <form onSubmit={handleSubmit} noValidate className="flex flex-col w-full ml-32 text-2xl">
+            {success && <p className="text-green-vrt mb-3">{success}</p>}
                 <div>
-                    <label className="mb-1">Email</label>
+                    <label className="mb-1 mr-2">Email</label>
                     <input type="email" name="email" value={emailRegister} onChange={(e) => {setEmailRegister(e.target.value)}} placeholder="Your Email ..." className="pl-2 py-2 mb-6 rounded-lg text-black"/>
                     {errors.email && <p className="text-red-500">{errors.email}</p>}
                 </div>
 
                 <div>
-                    <label className="mb-1">Password</label>
+                    <label className="mb-1 mr-2">Password</label>
                     <input value={passwordRegister} onChange={(e) => {setPasswordRegister(e.target.value)}} type="password" name="password" placeholder="Your password ..." className="pl-2 py-2 rounded-lg text-black"/>
                     {errors.password && <p className="text-red-500"> {errors.password}</p>}
                 </div>
 
                 <div>
-                    <label className="mb-1">Confirm password</label>
+                    <label className="mb-1 mr-2">Confirm password</label>
                     <input value={passwordRegister2} onChange={(e) => {setPasswordRegister2(e.target.value)}} type="password" name="password2" placeholder="Confirm your password ..." className="pl-2 py-2 rounded-lg text-black"/>
                     {errors.password2 && <p className="text-red-500">{errors.password2}</p>}
                 </div>
@@ -75,9 +102,10 @@ const SignupForm = ( ) => {
                     <button className="bg-blue-naval rounded-br-lg rounded-tl-lg p-3 mr-5 hover:underline" type='submit'>
                         Sign up
                     </button>
+                   
                 </div>
                 <span className="">
-                    Already have an account? Login <a href='#'>here</a>
+                    Already have an account? Login <a href='?#'>here</a>
                 </span>
             </form>
         </div>

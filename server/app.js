@@ -6,6 +6,14 @@ const mysql = require('mysql');
 const cors = require('cors');
 const { reset } = require('nodemon');
 const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
+const passport = require('passport')
+const passportLocal = require('passport-local').Strategy;
+const cookieParser = require('cookie-parser');
+
+
+app.use(cookieParser("keyboard cat"));
+app.use(passport.initialize());
+app.use(passport.session());
 
 const multer  = require('multer')
 const path = require('path');
@@ -97,60 +105,59 @@ app.get("/api/dev/test", (req, res) => {
 
 app.post("/api/register", async (req, res) => {
 
-    try {
-        const u_email = req.body.email;
-        const u_password = req.body.password;
-        const saltRounds = 10;
+    const u_email = req.body.email;
+    const u_password = req.body.password;
+    const passwordConfirm = req.body.password2;
+
+    if (!u_email, !u_password, !passwordConfirm) {
+
+        if (!u_email) {
+            return res.send({email: 'Email required'});
+        } else if (!/\S+@\S+\.\S+/.test(u_email)) {
+            return res.send({email: 'Email address is invalid'});
+        }
+
+        if (!u_password) {
+            return res.send({password: 'Password is required'});
+        } else if (u_password.length < 6) {
+          return res.send({password: 'Password needs to be 6 characters or more'});
+        }
+    
+        if (!passwordConfirm) {
+            return res.send({password2: 'Password is required'});
+        } else if (passwordConfirm !== u_password) {
+          return res.send({password2: 'Passwords do not match'});
+        }
+
+    } else {
+
+        const sqlEmail = "SELECT * FROM users_list WHERE u_email = (?);";
+
+        pool.query(sqlEmail, [u_email], async (err, result) => {
         
-        const hashed = await bcrypt.hash(u_password, saltRounds);
+        // if (err) throw err;
 
-        const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`) VALUE (?, ?);"
+            if (result.length > 0) {
 
-        await pool.query(sqlInsert, [u_email, hashed], (err, result) => {
-            // console.log(err);
-            // console.log(result);
-        });
-        res.status(200);
-        // console.log('added to db');
-
-    } catch (error){
-            const message = "Email already exists";
-            // console.log(error);
-            // console.log(message);
-    }
-})
-
-app.post("/api/register/checkuser", async (req, res, next) => {
-
-    try {
-        const u_email = req.body.email;
-        
-        
-        const sqlEmail = "SELECT `u_email` FROM users_list WHERE u_email = (?);";
-        
-
-        await pool.query(sqlEmail, [u_email], (err, result) => {
-            console.log(result[0]);
-            if(result[0].u_email === u_email){
-                res.send({userExists: true});
-                console.log(result[0]);
+                return res.send({error: "User already exists!"})
+                
 
             } else {
-                res.send({userExists: false});
+                const saltRounds = 10;
+                const hashed = await bcrypt.hash(u_password, saltRounds);
+                const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`) VALUE (?, ?);"
+
+                pool.query(sqlInsert, [u_email, hashed], (err, result) => {
+            
+                res.send({success:"Huray, your account has been created!"})
+
+                });
 
             }
-            
-        }) 
+        })
 
-        res.status(200);
-        
-        // console.log('added to db');
-
-    } catch (error){
-            console.log("Email already exists");
-            // console.log(error);
-            // console.log(message);
     }
+    
 })
 
 
