@@ -1,5 +1,6 @@
 
 
+
 const validateInfo = (values) => {
   let errors = {};
 
@@ -45,6 +46,6 @@ const validateInfo = (values) => {
     errors.password2 = 'Passwords do not match';
   }
   return errors;
-}
 
+}
 export default validateInfo;

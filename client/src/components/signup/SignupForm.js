@@ -72,8 +72,7 @@ const SignupForm = ( ) => {
             console.log(err)
         })
         //TODO look up useEffect needed?
-
-    };
+    }
         
     return (
 
@@ -109,13 +108,12 @@ const SignupForm = ( ) => {
                     </button>
                    
                 </div>
+                {success && <p className="text-green-vrt">{success}</p>}
                 <span className="">
                     Already have an account? Login <a href='?#'>here</a>
                 </span>
             </form>
         </div>
-
     );
 };
-
 export default SignupForm;
