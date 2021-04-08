@@ -9,6 +9,7 @@ const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
 
 const multer  = require('multer')
 const path = require('path');
+const { ENOTEMPTY } = require('constants');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -104,54 +105,34 @@ app.post("/api/register", async (req, res) => {
         
         const hashed = await bcrypt.hash(u_password, saltRounds);
 
+        const slqexists = "SELECT `u_email` FROM users_list WHERE u_email = (?);"
+
+        await pool.query(slqexists, [u_email], (err, result) => {
+
+                if(result[0].u_email == u_email){
+    
+                    res.send({userExists: true});
+                    return;
+                }
+        })
+
         const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`) VALUE (?, ?);"
 
         await pool.query(sqlInsert, [u_email, hashed], (err, result) => {
             // console.log(err);
             // console.log(result);
+            
+            res.status(200).send({success: true});
         });
-        res.status(200);
         // console.log('added to db');
+        
 
-    } catch (error){
-            const message = "Email already exists";
-            // console.log(error);
-            // console.log(message);
+    } catch (err){
+        res.status(400).json({
+            error: "Saving Comment in DB failed",
+        });
     }
 })
-
-// app.post("/api/register/checkuser", async (req, res, next) => {
-
-//     try {
-//         const u_email = req.body.email;
-        
-        
-//         const sqlEmail = "SELECT `u_email` FROM users_list WHERE u_email = (?);";
-        
-
-//         await pool.query(sqlEmail, [u_email], (err, result) => {
-//             console.log(result[0]);
-//             if(result[0].u_email === u_email){
-//                 res.send({userExists: true});
-//                 console.log(result[0]);
-
-//             } else {
-//                 res.send({userExists: false});
-
-//             }
-            
-//         }) 
-
-//         res.status(200);
-        
-//         // console.log('added to db');
-
-//     } catch (error){
-//             console.log("Email already exists");
-//             // console.log(error);
-//             // console.log(message);
-//     }
-// })
 
 
 app.post("/api/details/:id", (req, res) => {

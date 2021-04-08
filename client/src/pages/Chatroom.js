@@ -2,9 +2,10 @@ import React, {useState, useEffect} from 'react';
 
 import Header from '../components/Header.js';
 import Footer from '../components/Footer.js';
-import RoomCard from '../components/chatroom/RoomCard.js';
+import List from '../components/chatroom/List';
 
 import MoodTracker from '../components/MoodTracker.js';
+import { ChatCard, ChatEngineWrapper, ChatList, Socket } from 'react-chat-engine'
 
 
 
@@ -99,7 +100,30 @@ const Chatroom = () => {
                                     </div>
 
                                     <div className="w-full h-auto my-4" id="modal-container">
-                                        <RoomCard />
+                                        
+                                        <ChatEngineWrapper style={{ height: '100vh' }}>
+                                            <Socket 
+                                                projectID='3f78a1ff-b807-4a82-b8e1-aeab29b74a34'
+                                                userName='Tetris'
+                                                userSecret='123123'
+                                            />
+                                            
+                                            <ChatCard 
+                                                style={{ height: '100vh' }} 
+                                            />                        
+                                        </ChatEngineWrapper>
+                                        <ChatEngineWrapper style={{ height: '100vh' }}>
+                                            <Socket 
+                                                projectID='3f78a1ff-b807-4a82-b8e1-aeab29b74a34'
+                                                userName='Tetris'
+                                                userSecret='123123'
+                                            />
+                                            
+                                            <ChatList 
+                                                style={{ height: '100vh' }} 
+                                                renderChatCard={(chat, index) => <List />}
+                                            />                        
+                                        </ChatEngineWrapper>
                                     </div>
                                 </div>
                             </div>

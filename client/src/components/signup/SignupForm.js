@@ -9,6 +9,7 @@ const SignupForm = ( ) => {
     const [passwordRegister2, setPasswordRegister2] = useState("");
     //const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
+    const [success, setSuccess] = useState('');
 
 
 
@@ -39,10 +40,19 @@ const SignupForm = ( ) => {
             credentials: 'include', 
         })
         .then(res => res.json())
-        .then(res => console.log(res));
-        //TODO look up useEffect needed?
+        .then((res) => {
+            console.log(res)
+            if (res.userExists == true) {
+                setErrors({email: "Email already exists"});
+                
+            }
 
-    };
+            if (res.success == true) {
+                setSuccess("Account has been created!");
+                
+            }
+        })
+    }
         
     return (
 
@@ -76,13 +86,12 @@ const SignupForm = ( ) => {
                         Sign up
                     </button>
                 </div>
+                {success && <p className="text-green-vrt">{success}</p>}
                 <span className="">
                     Already have an account? Login <a href='#'>here</a>
                 </span>
             </form>
         </div>
-
     );
 };
-
 export default SignupForm;
