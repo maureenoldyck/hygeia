@@ -18,7 +18,7 @@ const validateInfo = (values) => {
   .then(res => res.json())
   
   .then((res) => {
-      if (res.userExists == true) {
+      if (res.userExists === true) {
         errors.email = 'Email already in use!';
       }
       console.log(res)

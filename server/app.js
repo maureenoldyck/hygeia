@@ -120,38 +120,38 @@ app.post("/api/register", async (req, res) => {
     }
 })
 
-app.post("/api/register/checkuser", async (req, res, next) => {
+// app.post("/api/register/checkuser", async (req, res, next) => {
 
-    try {
-        const u_email = req.body.email;
+//     try {
+//         const u_email = req.body.email;
         
         
-        const sqlEmail = "SELECT `u_email` FROM users_list WHERE u_email = (?);";
+//         const sqlEmail = "SELECT `u_email` FROM users_list WHERE u_email = (?);";
         
 
-        await pool.query(sqlEmail, [u_email], (err, result) => {
-            console.log(result[0]);
-            if(result[0].u_email === u_email){
-                res.send({userExists: true});
-                console.log(result[0]);
+//         await pool.query(sqlEmail, [u_email], (err, result) => {
+//             console.log(result[0]);
+//             if(result[0].u_email === u_email){
+//                 res.send({userExists: true});
+//                 console.log(result[0]);
 
-            } else {
-                res.send({userExists: false});
+//             } else {
+//                 res.send({userExists: false});
 
-            }
+//             }
             
-        }) 
+//         }) 
 
-        res.status(200);
+//         res.status(200);
         
-        // console.log('added to db');
+//         // console.log('added to db');
 
-    } catch (error){
-            console.log("Email already exists");
-            // console.log(error);
-            // console.log(message);
-    }
-})
+//     } catch (error){
+//             console.log("Email already exists");
+//             // console.log(error);
+//             // console.log(message);
+//     }
+// })
 
 
 app.post("/api/details/:id", (req, res) => {
