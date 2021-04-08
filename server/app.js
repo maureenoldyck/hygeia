@@ -174,7 +174,7 @@ app.post("/api/details/:id", (req, res) => {
     const sqlInsert = "UPDATE users_list SET `age` = ?, `gender` = ?, `language` = ?, `experience_id` = ?, `my_web` = ?, `my_soc` = ? WHERE id = ?;"
 
     pool.query(sqlInsert, [age, gender, languages, experiences, website, social, id] , (err, result) => {
-        console.log(result)
+
     });
 });
 
@@ -189,7 +189,6 @@ app.post("/api/settings/:id", (req, res) => {
     const bio = req.body.bio
     const id = req.params.id
 
-    console.log(anonymous, profileVisibility, openToConnect, dmAvailability, notifications, bio, id)
     const sqlInsert = "UPDATE users_list SET `anonymous` = ?, `profile_visible` = ?, `open_to_connect` = ?, `dm_available` = ?, `notifications` = ?, `bio` = ? WHERE id = ?;"
 
     pool.query(sqlInsert, [anonymous, profileVisibility, openToConnect, dmAvailability, notifications, bio, id] , (err, result) => {
@@ -250,7 +249,7 @@ app.get('/api/logout', (req, res) => {
 app.post('/api/logout', (req, res) => {
 
     req.session.destroy(session.user);
-    console.log("done");
+
     res.send;
 });
 
@@ -267,7 +266,7 @@ app.get("/api/profile/:id", (req, res,) => {
 
     pool.query(sqlInsert, [userId], (err, result) => {
 
-        console.log(result)
+
 
         if (err) {
             res.send({err: err});
@@ -306,28 +305,28 @@ app.post("/api/profile/:id", (req, res) => {
     });
 });
 
-app.post("/api/moodtracker/:id", (req, res) => {
+// app.post("/api/moodtracker/:id", (req, res) => {
 
 
-    const feeling = req.body.feeling
-    const id = req.params.id
+//     const feeling = req.body.feeling
+//     const id = req.params.id
 
-    console.log(feeling)
 
-    const sqlInsert = "UPDATE mood_tracker SET `feeling` = ?  WHERE user_id = ?;"
 
-    pool.query(sqlInsert, [feeling, id] , (err, result) => {
+//     const sqlInsert = "UPDATE mood_tracker SET `feeling` = ?  WHERE user_id = ?;"
+
+//     pool.query(sqlInsert, [feeling, id] , (err, result) => {
         
-        if (err) {
-            console.log(err)
-        }
+//         if (err) {
+//             console.log(err)
+//         }
 
-        if (result) {
-            console.log(result)
-            res.send(result);
-        }
-    });
-});
+//         if (result) {
+//             console.log(result)
+//             res.send(result);
+//         }
+//     });
+// });
 
 
 app.post("/api/profileImg/:id", upload.single('avatar'),(req, res, err) => {
@@ -391,10 +390,10 @@ app.get("/api/documentation/:slug", (req, res,) => {
 app.get('/api/search/:keywords', (req, res) => {
 
     const keywords = req.params.keywords;
-    console.log(keywords)
+
 
     const sqlInsert = "SELECT * from documentation WHERE `description` like '%" + keywords + "%'"
-    console.log(sqlInsert)
+
 
     pool.query(sqlInsert, (err, result) => {
         if (result) {

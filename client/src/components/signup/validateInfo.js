@@ -2,9 +2,8 @@
 
 const validateInfo = (values) => {
   let errors = {};
-  console.log({values});
 
-  fetch("http://localhost:5000/api/register/checkuser", {
+  fetch("http://localhost:5000/api/register", {
       method: 'POST',
       body: JSON.stringify({
         email: values.email
@@ -18,11 +17,14 @@ const validateInfo = (values) => {
   .then(res => res.json())
   
   .then((res) => {
-      if (res.userExists == true) {
+      if (res.userExists === true) {
         errors.email = 'Email already in use!';
       }
       console.log(res)
   })
+  .catch((err) => {
+    console.log(err)
+})
 
 
   if (!values.email) {
