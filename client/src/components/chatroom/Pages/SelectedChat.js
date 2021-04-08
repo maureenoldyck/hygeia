@@ -1,17 +1,16 @@
-import React, {useState, useEffect} from 'react';
+  
+import React, { useState, useEffect } from 'react'
 
-import Header from '../components/Header.js';
-import Footer from '../components/Footer.js';
+import Header from '../../Header'
+import Footer from '../../Footer'
+import MoodTracker from '../../MoodTracker'
 
-import RoomCard from '../components/chatroom/RoomCard'
+import { ChatEngineWrapper, MessageBubble, Socket, ChatFeed } from 'react-chat-engine'
 
-import MoodTracker from '../components/MoodTracker.js';
-import { ChatCard, ChatEngineWrapper, ChatList, Socket } from 'react-chat-engine'
+const ChatRooms = () => {
 
-
-
-const Chatroom = () => {
     const [LandingNav, setLandingNav] = useState('');
+    
 
     useEffect(() => {
         fetch("http://localhost:5000/api/login", {
@@ -31,7 +30,7 @@ const Chatroom = () => {
             }
         });
     }, []);
-    
+
     return (
         <>
             <div>
@@ -91,16 +90,21 @@ const Chatroom = () => {
                             <div className="bg-transparent w-full h-full " id="rooms">
 
                                 <div className="relative flex flex-col w-full h-full text-sm" id="chatrooms">
-                                    <div className="absolute right-0 top-0">
-                                        <button className="bg-green-vrt hover:bg-green-vrtdark text-white p-2 rounded-full shadow-lg">Create Room</button>
-                                    </div>
-
+                                    
                                     <div className="flex justify-around w-full">
                                         <h1 className="flex text-center text-4xl font-bold">Chatrooms</h1>
                                     </div>
 
                                     <div className="w-full h-auto my-4" id="modal-container">
-                                        <RoomCard />
+                                    <ChatEngineWrapper style="height: 100%">
+                                        <Socket 
+                                            projectID='3f78a1ff-b807-4a82-b8e1-aeab29b74a34'
+                                            userName='Tetris'
+                                            userSecret='123123'
+                                        />
+                                        
+                                        <ChatFeed chatID={12999} />                
+                                    </ChatEngineWrapper>
                                     </div>
                                 </div>
                             </div>
@@ -121,4 +125,4 @@ const Chatroom = () => {
     );
 }
 
-export default Chatroom;
+export default ChatRooms;

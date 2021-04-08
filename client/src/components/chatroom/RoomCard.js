@@ -1,19 +1,18 @@
 import React from 'react';
 import tag from '../../../src/assets/images/tag.svg';
-import voteup from '../../../src/assets/images/voteup.svg';
-import votedown from '../../../src/assets/images/votedown.svg';
 
 
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 
 const RoomCard = () => {
+
     return (
         <>
         <div className="relative bg-brown-white hover:bg-brown-sand lg:w-full w-nine rounded-lg lg:mx-4 h-auto shadow-lg cursor-pointer">
 
             <div className="flex flex-row w-full">
-                <Link to="#">
+                <Link to="chatroom/12999">
                     <div className="flex flex-col ml-6 w-nine" id="room-description">
                         <div className="flex flex-row py-4" id="chat-title">
                             <h1 className="text-xl font-bold px-2">Title</h1>

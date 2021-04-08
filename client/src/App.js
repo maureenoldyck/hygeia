@@ -5,6 +5,7 @@ import ContactUs from './pages/ContactUs.js';
 import Documentation from './pages/documentation/Documentation.js';
 import MyProfile from './pages/MyProfile.js';
 import Chatroom from './pages/Chatroom.js';
+import SelectedChat from './components/chatroom/Pages/SelectedChat'
 import Forum from './pages/Forum.js';
 import Feed from './pages/Feed.js';
 import Help from './pages/documentation/Help.js';
@@ -36,6 +37,9 @@ function App() {
                 </Route>
                 <Route path="/chatroom">
                   {!loggedIn ? <Redirect to="/" /> : <Chatroom /> }
+                </Route>
+                <Route path="/chatroom/12999">
+                  {!loggedIn ? <Redirect to="/" /> : <SelectedChat /> }
                 </Route>
                 <Route path="/help" component={Help}/> 
                 <Route path="/whatis" component={Whatis}/> 
