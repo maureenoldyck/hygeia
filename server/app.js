@@ -3,7 +3,7 @@ const session = require('express-session');
 const router = express.Router();
 const app = express();
 const port = process.env.PORT || 5000;
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const cors = require('cors');
 const { reset } = require('nodemon');
 const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
@@ -47,15 +47,15 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 
 //TODO: Need to find a way to change this hard coding into a variable
 
-// Instead of using the const "database", "pool" will be the one 
-const pool = mysql.createPool({
+// Instead of using the const "database", "connect" will be the one 
+const connect = mysql.createConnection({
     connectionLimit : 10,
     host            : process.env.REACT_APP_DB_SERVER_HOST,
     user            : process.env.REACT_APP_DB_SERVER_USER,
     password        : process.env.REACT_APP_DB_SERVER_PASSWORD,
     database        : process.env.REACT_APP_DB_SERVER_NAME,
     port            : process.env.REACT_APP_DB_SERVER_PORT,
-    insecureAuth    : true,
+    // insecureAuth    : true,
 });
 
 app.use(cors({
@@ -84,7 +84,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader('Acces-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
     res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
     res.header(
@@ -119,7 +119,7 @@ passport.use(
     // Match Username
     let sqlInsert = 'SELECT * FROM `users_list` WHERE u_email = ?';
         
-    pool.query(sqlInsert, [email], (err, user) => {
+    connect.query(sqlInsert, [email], (err, user) => {
     
     if (err)
         return done(err);
@@ -161,7 +161,7 @@ passport.deserializeUser(function(user, done) {
   });
   // used to deserialize the user
 //   passport.deserializeUser((id, done) => {
-//     pool.query('SELECT * FROM `users_list` WHERE id = ?', [id], (err, result) => {
+//     connect.query('SELECT * FROM `users_list` WHERE id = ?', [id], (err, result) => {
 //       done(err, result[0]);
 //     });
 // });
@@ -186,7 +186,7 @@ passport.deserializeUser(function(user, done) {
 app.get("/api/dev/test", (req, res) => {
     res.send("stuff");
     const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`, `u_id`) VALUE ('test@email.com', 'password', '22');"
-    pool.query(sqlInsert , (err, result) => {
+    connect.query(sqlInsert , (err, result) => {
         console.log(err)
     });
 })
@@ -224,7 +224,7 @@ app.post("/api/register", async (req, res) => {
 
             const sqlEmail = "SELECT * FROM users_list WHERE u_email = (?);";
 
-            pool.query(sqlEmail, [u_email], async (err, result) => {
+            connect.query(sqlEmail, [u_email], async (err, result) => {
             
             // if (err) throw err;
     
@@ -237,7 +237,7 @@ app.post("/api/register", async (req, res) => {
                     const hashed = await bcrypt.hash(u_password, saltRounds);
                     const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`) VALUE (?, ?);"
     
-                    pool.query(sqlInsert, [u_email, hashed], (err, result) => {
+                    connect.query(sqlInsert, [u_email, hashed], (err, result) => {
                 
                     res.send({success:"Huray, your account has been created!"})
     
@@ -268,7 +268,7 @@ app.post("/api/details/:id", (req, res) => {
 
     const sqlInsert = "UPDATE users_list SET `age` = ?, `gender` = ?, `language` = ?, `experience_id` = ?, `my_web` = ?, `my_soc` = ? WHERE id = ?;"
 
-    pool.query(sqlInsert, [age, gender, languages, experiences, website, social, id] , (err, result) => {
+    connect.query(sqlInsert, [age, gender, languages, experiences, website, social, id] , (err, result) => {
 
     });
 });
@@ -286,7 +286,7 @@ app.post("/api/settings/:id", (req, res) => {
 
     const sqlInsert = "UPDATE users_list SET `anonymous` = ?, `profile_visible` = ?, `open_to_connect` = ?, `dm_available` = ?, `notifications` = ?, `bio` = ? WHERE id = ?;"
 
-    pool.query(sqlInsert, [anonymous, profileVisibility, openToConnect, dmAvailability, notifications, bio, id] , (err, result) => {
+    connect.query(sqlInsert, [anonymous, profileVisibility, openToConnect, dmAvailability, notifications, bio, id] , (err, result) => {
         res.send(result);
     });
 });
@@ -315,13 +315,13 @@ app.post("/api/login", (req, res) => {
     const sqlInsert = "SELECT * FROM users_list WHERE u_email = ?";
 
 
-    pool.query(sqlInsert, [email], (err, result) => {
+    connect.query(sqlInsert, [email], (err, result) => {
 
         if (err) {
-            res.send({err: err});
+            res.send(err);
         } 
         
-        if (result.length > 0) {
+        if (result) {
 
             bcrypt.compare(password, result[0].u_password, function(err, response) {
                 if (response === true) {
@@ -333,7 +333,8 @@ app.post("/api/login", (req, res) => {
             });
            
         } else {
-            res.send({ err: "Sadly, your email doesn't seem correct. Please try again or register if you don't have an account yet."});
+            res.send('hello world')
+            // res.send({ err: "Sadly, your email doesn't seem correct. Please try again or register if you don't have an account yet."});
         }
     });
 });
@@ -373,7 +374,7 @@ app.get("/api/profile/:id", (req, res,) => {
 
     const sqlInsert = "SELECT * FROM `users_list` WHERE id = ?";
 
-    pool.query(sqlInsert, [userId], (err, result) => {
+    connect.query(sqlInsert, [userId], (err, result) => {
 
 
 
@@ -402,7 +403,7 @@ app.post("/api/profile/:id", (req, res) => {
 
     const sqlInsert = "UPDATE users_list SET `name` = ?, `role` = ?, `quote` = ? WHERE id = ?;"
 
-    pool.query(sqlInsert, [name, role, quote, id] , (err, result) => {
+    connect.query(sqlInsert, [name, role, quote, id] , (err, result) => {
         
         if (err) {
             console.log(err)
@@ -424,7 +425,7 @@ app.post("/api/profile/:id", (req, res) => {
 
 //     const sqlInsert = "UPDATE mood_tracker SET `feeling` = ?  WHERE user_id = ?;"
 
-//     pool.query(sqlInsert, [feeling, id] , (err, result) => {
+//     connect.query(sqlInsert, [feeling, id] , (err, result) => {
         
 //         if (err) {
 //             console.log(err)
@@ -454,7 +455,7 @@ app.post("/api/profileImg/:id", upload.single('avatar'),(req, res, err) => {
     
         const sqlInsert = "UPDATE users_list SET `profile_picture` = ? WHERE id = ?;"
     
-        pool.query(sqlInsert, [imgPath, id] , (err, result) => {
+        connect.query(sqlInsert, [imgPath, id] , (err, result) => {
             if (err) {
                 console.log(err)
                 res.send({
@@ -482,7 +483,7 @@ app.get("/api/documentation/:slug", (req, res,) => {
 
     const sqlInsert = "SELECT * FROM documentation WHERE `slug` = ?";
 
-    pool.query(sqlInsert, [slug], (err, result) => {
+    connect.query(sqlInsert, [slug], (err, result) => {
         if (err) {
             res.send({err: err});
         } 
@@ -504,7 +505,7 @@ app.get('/api/search/:keywords', (req, res) => {
     const sqlInsert = "SELECT * from documentation WHERE `description` like '%" + keywords + "%'"
 
 
-    pool.query(sqlInsert, (err, result) => {
+    connect.query(sqlInsert, (err, result) => {
         if (result) {
             res.send(result);
         } else {

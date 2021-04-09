@@ -32,10 +32,10 @@ const Login = () => {
             if (res.err) {
                 setLoginStatus(res.err);
             } else {
-                localStorage.setItem("loggedIn", true);
-                localStorage.setItem("userID", res[0].id);
-                window.location.href = '/';
-                console.log(document.cookie);
+                // localStorage.setItem("loggedIn", true);
+                // localStorage.setItem("userID", res[0].id);
+                // window.location.href = '/';
+                console.log(res);
             }
         }).catch(err => {
             console.log(err);
