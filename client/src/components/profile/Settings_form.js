@@ -32,12 +32,18 @@ const SettingsForm = () => {
         })
         .then(res => res.json())
         .then((res) => { 
-            if (profileVisibility === "") {setProfileVisibilty(res[0].profile_visible)};
-            if (dmAvailability === "") {setDmAvailability(res[0].dm_available)};
-            if (notifications === "") {setNotifications(res[0].notifications)};
-            if (bio === "") {setBio(res[0].bio)};
+            if (res[0].anonymous === "1") {
+                setAnonymous(res[0].anonymous = true);
+            }
+            if (res[0].open_to_connect === "1") {
+                setOpenToConnect(res[0].anonymous = true);
+            }
+            setProfileVisibilty(res[0].profile_visible)
+            setDmAvailability(res[0].dm_available)
+            setNotifications(res[0].notifications)
+            setBio(res[0].bio)
         })
-    })
+    }, [id]);
 
     const handleSettingsSubmit = () => {
         
@@ -116,7 +122,7 @@ const SettingsForm = () => {
                         <div className="bg-gray-input rounded-xl bg-opacity-25 w-3/5 lg:p-4 p-1">
                             <ul>
                                 <li className="flex flex-row items-center">
-                                    <input name="anonymous" type="checkbox" className="anonymous opacity-0 absolute w-8" checked={anonymous === true } onChange={toggleAnonymous} />
+                                    <input id='anonymous' name="anonymous" type="checkbox" className="anonymous opacity-0 absolute w-8 "  onChange={toggleAnonymous} />
                                     <label htmlFor="anonymous">
                                     { anonymous ? <svg height="30" viewBox="0 -107 512 512" width="30" xmlns="http://www.w3.org/2000/svg"><path d="m362.667969 0h-213.335938c-82.324219 0-149.332031 66.988281-149.332031 149.332031 0 82.347657 67.007812 149.335938 149.332031 149.335938h213.335938c82.324219 0 149.332031-66.988281 149.332031-149.335938 0-82.34375-67.007812-149.332031-149.332031-149.332031zm0 0" fill="#3B82F6"/><path d="m234.667969 149.332031c0 47.128907-38.207031 85.335938-85.335938 85.335938-47.128906 0-85.332031-38.207031-85.332031-85.335938 0-47.128906 38.203125-85.332031 85.332031-85.332031 47.128907 0 85.335938 38.203125 85.335938 85.332031zm0 0" fill="#fafafa"/></svg>
                                     : <svg className="fill-current text-gray-400" height="30" viewBox="0 -107 512 512" width="30" xmlns="http://www.w3.org/2000/svg"><path d="m0 149.332031c0 82.347657 67.007812 149.335938 149.332031 149.335938h213.335938c82.324219 0 149.332031-66.988281 149.332031-149.335938 0-82.34375-67.007812-149.332031-149.332031-149.332031h-213.335938c-82.324219 0-149.332031 66.988281-149.332031 149.332031zm277.332031 0c0-47.058593 38.273438-85.332031 85.335938-85.332031 47.058593 0 85.332031 38.273438 85.332031 85.332031 0 47.0625-38.273438 85.335938-85.332031 85.335938-47.0625 0-85.335938-38.273438-85.335938-85.335938zm0 0"/></svg> }

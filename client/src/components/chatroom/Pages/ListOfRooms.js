@@ -1,6 +1,5 @@
 import React from 'react'
-import ChatMap from '../components/ChatEngine/ChatList/index'
-import { ChatEngineWrapper, ChatList, Socket } from 'react-chat-engine'
+import { ChatCard, ChatEngineWrapper, ChatList, Socket } from 'react-chat-engine'
 
 
 const Chats = () => {
@@ -15,7 +14,7 @@ const Chats = () => {
                 
                 <ChatList 
                     style={{ height: '100vh' }} 
-                    renderChatCard={(chat, index) => <ChatMap />}
+                    renderChatCard={(chat, index) => <ChatCard />}
                 />                        
             </ChatEngineWrapper>
             

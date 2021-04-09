@@ -5,7 +5,6 @@ import { useParams } from 'react-router';
 const Article = () => {
 
     const {slug} = useParams();
-    console.log(slug)
     // const post = Articles[slug];
     // let { title, date, author, subtitle, description } = post;
 

@@ -4,17 +4,18 @@ import { getLatestChats } from './dev/actions/chats'
 
 import _ from 'lodash'
 
-import ChatCard from './dev/components/ChatEngine/ChatList'
+import ChatCard from './'
 import ChatLoader from './dev/components/ChatEngine/ChatList'
 
 let count = 13
 const interval = 13
 
 const List = (props) => {
+    
     const didMountRef = useRef(false)
     const [hasMoreChats, setHasMoreChats] = useState(true)
     const { chats, setChats, activeChat, setActiveChat } = useContext(ChatEngineContext)
-
+    console.log(chats);
 
     const prod = false // window.location.host.indexOf('chatengine.io') !== -1
 
