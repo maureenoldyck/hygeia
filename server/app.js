@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const router = express.Router();
 const app = express();
+const port = process.env.PORT || 5000;
 const mysql = require('mysql');
 const cors = require('cors');
 const { reset } = require('nodemon');
@@ -37,7 +38,7 @@ const upload = multer({
     // }
 })
 
-app.use('/', express.static(path.join(__dirname, '/public')));
+app.use('/', express.static(path.join(__dirname, 'client/build')));
 
 //==========================================================================================//
 //                                  Create connection + config                              //
@@ -243,7 +244,7 @@ app.post("/api/login", (req, res) => {
                     res.send({ err:"Sadly, your email and/or password combination doesn't seem correct. Please try again."});
                 }   
             });
-           
+
         } else {
             res.send({ err: "Sadly, your email doesn't seem correct. Please try again or register if you don't have an account yet."});
         }
@@ -418,6 +419,6 @@ app.get('/api/search/:keywords', (req, res) => {
 //==========================================================================================//
 
 
-app.listen(5000, () => {
+app.listen(port, () => {
     console.log("Running..")
 })

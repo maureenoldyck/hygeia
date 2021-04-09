@@ -35,7 +35,7 @@ function App() {
                 <Route path="/profile/:id">
                   {!loggedIn ? <Redirect to="/" /> : <MyProfile /> }
                 </Route>
-                <Route path="/chatroom">
+                <Route path="/chatroom" exact>
                   {!loggedIn ? <Redirect to="/" /> : <Chatroom /> }
                 </Route>
                 <Route path="/chatroom/12999">

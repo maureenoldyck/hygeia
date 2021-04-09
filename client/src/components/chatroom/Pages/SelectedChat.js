@@ -6,6 +6,7 @@ import Footer from '../../Footer'
 import MoodTracker from '../../MoodTracker'
 
 import { ChatEngineWrapper, MessageBubble, Socket, ChatFeed } from 'react-chat-engine'
+import HeaderHome from '../../home/HeaderHome'
 
 const ChatRooms = () => {
 

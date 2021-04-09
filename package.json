@@ -1,0 +1,21 @@
+{
+  "name": "hygeia",
+  "version": "1.0.0",
+  "description": "Hygeia is a social mental health platform where you can talk openly about how you are <i>really</i> feeling. This platform is designed with anonimity as first priority as we know that it is, for most of us, not easy to talk about your own mental health.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maureenoldyck/hygeia.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maureenoldyck/hygeia/issues"
+  },
+  "homepage": "https://github.com/maureenoldyck/hygeia#readme"
+}
