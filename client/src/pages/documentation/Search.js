@@ -15,7 +15,7 @@ const Search = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/search/${keywords}`, {
+        fetch(`https://hygeia-app.herokuapp.com:5000/api/search/${keywords}`, {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 
@@ -32,7 +32,7 @@ const Search = () => {
 
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/login", {
+        fetch("https://hygeia-app.herokuapp.com:5000/api/login", {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 

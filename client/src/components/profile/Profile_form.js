@@ -42,7 +42,7 @@ const ProfileForm = () => {
     //==========================================================================================//
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/profile/${id}`, {
+        fetch(`https://hygeia-app.herokuapp.com:5000/api/profile/${id}`, {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 
@@ -55,7 +55,7 @@ const ProfileForm = () => {
             if (name === "") {setName(res[0].name)};
             if (role === "") {setRole(res[0].role)};
             if (quote === "") {setQuote(res[0].quote)};
-            if (avatar === "") {setAvatar('http://localhost:5000/' + res[0].profile_picture)};
+            if (avatar === "") {setAvatar('https://hygeia-app.herokuapp.com:5000/' + res[0].profile_picture)};
         });
     })
 
@@ -66,7 +66,7 @@ const ProfileForm = () => {
         //======================================================================================//
         
 
-        fetch(`http://localhost:5000/api/profile/${id}`, {
+        fetch(`https://hygeia-app.herokuapp.com:5000/api/profile/${id}`, {
             method: 'POST',
             body: JSON.stringify({
                 name: name,
@@ -92,7 +92,7 @@ const ProfileForm = () => {
         const formData = new FormData()
         formData.append('avatar', file)   
  
-        fetch(`http://localhost:5000/api/profileImg/${id}`, {
+        fetch(`https://hygeia-app.herokuapp.com:5000/api/profileImg/${id}`, {
             method: 'POST',
             body: formData,
             headers: {

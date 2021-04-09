@@ -17,15 +17,15 @@ const MyProfile = () => {
     const [LandingNav, setLandingNav] = useState('');
   
 
-    if (window.location.href === "http://localhost:3000/profile" || window.location.href === "http://localhost:3000/profile/") {
+    if (window.location.href === "https://hygeia-app.herokuapp.com:3306/profile" || window.location.href === "https://hygeia-app.herokuapp.com:3306/profile/") {
     
         const userID = localStorage.getItem('userID');
-        window.location.href = "http://localhost:3000/profile/" + userID;
+        window.location.href = "https://hygeia-app.herokuapp.com:3306/profile/" + userID;
 
     } 
     
     useEffect(() => {
-        fetch("http://localhost:5000/api/login", {
+        fetch("https://hygeia-app.herokuapp.com:5000/api/login", {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 
@@ -41,8 +41,8 @@ const MyProfile = () => {
                 window.location.href = "/";
             }
 
-            if (window.location.href !== "http://localhost:3000/profile/" + res.user[0].id) {
-                window.location.href = "http://localhost:3000/profile/" + res.user[0].id;
+            if (window.location.href !== "https://hygeia-app.herokuapp.com:3306/profile/" + res.user[0].id) {
+                window.location.href = "https://hygeia-app.herokuapp.com:3306/profile/" + res.user[0].id;
             }
         });
     }, []);

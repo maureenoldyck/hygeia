@@ -3,13 +3,15 @@ const session = require('express-session');
 const router = express.Router();
 const app = express();
 const port = process.env.PORT || 5000;
-const mysql = require('mysql2');
+const mysql = require('mysql');
 const cors = require('cors');
 const { reset } = require('nodemon');
 const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
+require('dotenv').config();
+
 
 
 app.use(cookieParser("keyboard cat"));
@@ -58,6 +60,10 @@ const connect = mysql.createConnection({
     // insecureAuth    : true,
 });
 
+// console.log(process.env.REACT_APP_DB_SERVER_HOST);
+// connect.connect()
+
+
 app.use(cors({
     origin: true,
     methods: ["GET", "POST"],
@@ -84,7 +90,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", "https://hygeia-app.herokuapp.com:3306");
     res.setHeader('Acces-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
     res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
     res.header(
@@ -332,10 +338,11 @@ app.post("/api/login", (req, res) => {
                 }   
             });
            
-        } else {
-            res.send('hello world')
-            // res.send({ err: "Sadly, your email doesn't seem correct. Please try again or register if you don't have an account yet."});
-        }
+        } 
+        // else {
+        //     res.send('hello world')
+        //     // res.send({ err: "Sadly, your email doesn't seem correct. Please try again or register if you don't have an account yet."});
+        // }
     });
 });
 
