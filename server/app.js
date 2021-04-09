@@ -50,7 +50,7 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 //TODO: Need to find a way to change this hard coding into a variable
 
 // Instead of using the const "database", "connect" will be the one 
-const connect = mysql.createConnection({
+const connect = mysql.createPool({
     connectionLimit : 10,
     host            : process.env.REACT_APP_DB_SERVER_HOST,
     user            : process.env.REACT_APP_DB_SERVER_USER,
@@ -61,7 +61,7 @@ const connect = mysql.createConnection({
 });
 
 // console.log(process.env.REACT_APP_DB_SERVER_HOST);
-// connect.connect()
+
 
 
 app.use(cors({
