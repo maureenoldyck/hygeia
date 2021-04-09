@@ -1,2 +1,2 @@
 web: npm start
-web: npm client
+web.2: npm client
