@@ -25,7 +25,7 @@ const Home = () => {
         })
         .then(res => res.json())
         .then((res) => { 
-            if (res.user) {
+            if (res.loggedIn === true) {
                 setLandingNav(<Header user={res.user[0].id} />)
                 setHideRegister()
                 setFooter(<HomeFooterLoggedIn/>)

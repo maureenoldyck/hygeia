@@ -19,7 +19,6 @@ function App() {
 
   let loggedIn = localStorage.getItem('loggedIn');
 
-
   return (
     <Router>
       <div className="App m-auto w-screen max-w-Large h-auto">
