@@ -17,10 +17,10 @@ const MyProfile = () => {
     const [LandingNav, setLandingNav] = useState('');
   
 
-    if (window.location.href === "http://localhost:3000/profile" || window.location.href === "http://localhost:3000/profile/") {
+    if (window.location.href === "/profile" || window.location.href === "/profile/") {
     
         const userID = localStorage.getItem('userID');
-        window.location.href = "http://localhost:3000/profile/" + userID;
+        window.location.href = "/profile/" + userID;
 
     } 
     
@@ -32,8 +32,8 @@ const MyProfile = () => {
                 'Accept': 'application/json, text/html',
             },
             credentials: 'include', 
-referrerPolicy: 'origin',
-mode: 'cors' 
+            referrerPolicy: 'origin',
+            mode: 'cors' 
         })
         .then(res => res.json())
         .then((res) => { 
@@ -43,8 +43,8 @@ mode: 'cors'
                 window.location.href = "/";
             }
 
-            if (window.location.href !== "http://localhost:3000/profile/" + res.user[0].id) {
-                window.location.href = "http://localhost:3000/profile/" + res.user[0].id;
+            if (window.location.href !== "/profile/" + res.user[0].id) {
+                window.location.href = "/profile/" + res.user[0].id;
             }
         });
     }, []);
