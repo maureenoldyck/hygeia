@@ -67,6 +67,9 @@ app.use(cors({
     "preflightContinue": false,
     "optionsSuccessStatus": 204
 }));
+
+app.options("*",cors());
+
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "https://hydreia.netlify.app/");
     res.setHeader('Acces-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
