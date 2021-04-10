@@ -61,11 +61,7 @@ const pool = mysql.createPool({
     insecureAuth    : true,
 });
 
-app.use(cors({
-    origin: "https://hygeia-app.herokuapp.com/",
-    methods: ["GET", "POST"],
-    // credentials: true,
-}));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
@@ -80,15 +76,7 @@ app.use(session({
     cookie: { maxAge: 48*60*60*1000, secure: false}
 }));
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader('Acces-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
-    res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
-    res.header(
-        'Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, X-Api-Key'
-    );
-    next();
-});
+
 
 
 //==========================================================================================//
