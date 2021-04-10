@@ -12,7 +12,6 @@ const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
 // const cookieParser = require('cookie-parser');
 const path = require('path');
 
-app.use('/', express.static(path.join(__dirname, '/')));
 
 
 // app.use(cookieParser("keyboard cat"));
@@ -67,18 +66,23 @@ const pool = mysql.createPool({
 //     "optionsSuccessStatus": 204
 // }));
 
-app.use ( ( r, _, n ) => { console.log ( r.headers ); n ( ) }, cors ( ) )
+app.use ( ( r, _, n ) => { console.log ( r.headers ); n ( ) }, cors (
+    { origin: ( origin, fn ) => { console.log ( `origin:`, origin ), fn ( _, origin ) },
+      methods: [ 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS' ],
+      credentials: true
+  }))
 
 
-app.options("*",cors({
-    "origin": true,
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-    "preflightContinue": false,
-    "optionsSuccessStatus": 204
-}));
+// app.options("*",cors({
+//     "origin": true,
+//     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+//     "preflightContinue": false,
+//     "optionsSuccessStatus": 204
+// }));
 
 
 
+app.use('/', express.static(path.join(__dirname, '/')));
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "https://hydreia.netlify.app/");
