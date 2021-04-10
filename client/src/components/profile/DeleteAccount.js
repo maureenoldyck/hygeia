@@ -20,7 +20,7 @@ const DeleteAccount = () => {
                 'Accept': 'application/json',
                 'Content-type': 'application/json; charset=UTF-8'
             },
-            credentials: 'include', 
+            // credentials: 'include', 
         })
         .then(res => res.json())
         .then(res => console.log(res));

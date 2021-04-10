@@ -19,7 +19,7 @@ const AboutUs = () => {
                 "Content-Type": 'application/json,  charset=UTF-8', 
                 'Accept': 'application/json, text/html',
             },
-            credentials: 'include', 
+            // credentials: 'include', 
         })
         .then(res => res.json())
         .then((res) => { 
