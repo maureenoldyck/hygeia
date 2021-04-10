@@ -48,7 +48,9 @@ const ProfileForm = () => {
                 "Content-Type": 'application/json,  charset=UTF-8', 
                 'Accept': 'application/json, text/html',
             },
-            // credentials: 'include',
+            credentials: 'include', 
+            referrerPolicy: 'origin',
+            mode: 'cors'
         })
         .then(res => res.json())
         .then((res) => { 
@@ -76,7 +78,10 @@ const ProfileForm = () => {
             headers: {
                 'Accept': 'application/json',
                 'Content-type': 'application/json; charset=UTF-8'
-            }
+            },
+            credentials: 'include', 
+            referrerPolicy: 'origin',
+            mode: 'cors'
 
         })
         .then(res => res.json())
@@ -98,7 +103,9 @@ const ProfileForm = () => {
             headers: {
                 'Accept': 'multipart/form-data',
             },
-            // credentials: 'include',
+            credentials: 'include', 
+referrerPolicy: 'origin',
+mode: 'cors'
         })
         .then(res => res.json())
         .then(data => {
