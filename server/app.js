@@ -61,7 +61,7 @@ const pool = mysql.createPool({
     insecureAuth    : true,
 });
 
-app.use(cors({
+app.use( ( req, _, nx )=>{ console.log ( req.headers ); nx () }, cors({
     "origin": true,
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
     "preflightContinue": false,
@@ -74,6 +74,9 @@ app.options("*",cors({
     "preflightContinue": false,
     "optionsSuccessStatus": 204
 }));
+
+
+
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "https://hydreia.netlify.app/");
