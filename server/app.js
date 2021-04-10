@@ -64,7 +64,7 @@ const pool = mysql.createPool({
 app.use(cors({
     origin: true,
     methods: ["GET", "POST"],
-    credentials: true,
+    // credentials: true,
 }));
 app.use(express.json());
 app.use(express.urlencoded({
