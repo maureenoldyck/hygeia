@@ -62,7 +62,7 @@ const pool = mysql.createPool({
 });
 
 app.use(cors({
-    origin: true,
+    origin: "https://hygeia-app.herokuapp.com/",
     methods: ["GET", "POST"],
     // credentials: true,
 }));
@@ -81,12 +81,11 @@ app.use(session({
 }));
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://hygeia.netlify.app/");
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader('Acces-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
     res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
     res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
+        'Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, X-Api-Key'
     );
     next();
 });
