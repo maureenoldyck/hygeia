@@ -23,7 +23,7 @@ const Search = () => {
             },
             credentials: 'include', 
 referrerPolicy: 'origin',
-mode: 'cors' 
+mode: 'no-cors' 
         })
         .then(res => res.json())
         .then((res) => {
@@ -42,7 +42,7 @@ mode: 'cors'
             },
             credentials: 'include', 
 referrerPolicy: 'origin',
-mode: 'cors' 
+mode: 'no-cors' 
         })
         .then(res => res.json())
         .then((res) => { 
