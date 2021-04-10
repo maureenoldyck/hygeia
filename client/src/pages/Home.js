@@ -14,7 +14,7 @@ const Home = () => {
     const [hideregister, setHideRegister] = useState();
     const [footer, setFooter] = useState();
 
-    useEffect(() => {
+    useEffect(() => {    
         fetch("https://hygeia-app.herokuapp.com/api/login", {
             method: 'GET',
             headers: {
@@ -23,7 +23,8 @@ const Home = () => {
             },
             credentials: 'include', 
             referrerPolicy: 'origin',
-            mode: 'cors'
+            mode: 'cors',
+            referrer: document.location.origin
         })
         .then(res => res.json())
         .then((res) => { 

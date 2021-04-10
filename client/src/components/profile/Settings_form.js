@@ -30,7 +30,8 @@ const SettingsForm = () => {
             },
             credentials: 'include', 
             referrerPolicy: 'origin',
-            mode: 'cors'
+            mode: 'cors',
+referrer: document.location.origin
         })
         .then(res => res.json())
         .then((res) => { 
@@ -70,7 +71,8 @@ const SettingsForm = () => {
             },
             credentials: 'include', 
             referrerPolicy: 'origin',
-            mode: 'cors'
+            mode: 'cors',
+referrer: document.location.origin
 
         })
         .then(res => res.json())

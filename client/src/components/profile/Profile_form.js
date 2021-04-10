@@ -50,7 +50,8 @@ const ProfileForm = () => {
             },
             credentials: 'include', 
             referrerPolicy: 'origin',
-            mode: 'cors'
+            mode: 'cors',
+referrer: document.location.origin
         })
         .then(res => res.json())
         .then((res) => { 
@@ -81,7 +82,8 @@ const ProfileForm = () => {
             },
             credentials: 'include', 
             referrerPolicy: 'origin',
-            mode: 'cors'
+            mode: 'cors',
+referrer: document.location.origin
 
         })
         .then(res => res.json())
@@ -105,7 +107,8 @@ const ProfileForm = () => {
             },
             credentials: 'include', 
 referrerPolicy: 'origin',
-mode: 'cors'
+mode: 'cors',
+referrer: document.location.origin
         })
         .then(res => res.json())
         .then(data => {

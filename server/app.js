@@ -66,11 +66,11 @@ const pool = mysql.createPool({
 //     "optionsSuccessStatus": 204
 // }));
 
-app.use ( ( r, _, n ) => { console.log ( r.headers ); n ( ) }, cors (
-    { origin: ( origin, fn ) => { console.log ( `origin:`, origin ), fn ( _, origin ) },
-      methods: [ 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS' ],
-      credentials: true
-  }))
+app.use ( cors (
+    { origin:`https://hygeia.netlify.app$/ui`,
+      credentials: true,
+      methods: [ HEAD, GET, POST, PUT, PATCH, DELETE, OPTIONS ],
+    }))
 
 
 // app.options("*",cors({
@@ -85,7 +85,7 @@ app.use ( ( r, _, n ) => { console.log ( r.headers ); n ( ) }, cors (
 app.use('/', express.static(path.join(__dirname, '/')));
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://hydreia.netlify.app/");
+    res.setHeader("Access-Control-Allow-Origin", "https://hygeia.netlify.app/");
     res.setHeader('Acces-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
     res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
     res.header(
