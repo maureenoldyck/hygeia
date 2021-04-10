@@ -15,7 +15,6 @@ const path = require('path');
 app.use('/', express.static(path.join(__dirname, '/')));
 
 
-
 // app.use(cookieParser("keyboard cat"));
 // app.use(passport.initialize());
 // app.use(passport.session());
@@ -61,12 +60,15 @@ const pool = mysql.createPool({
     insecureAuth    : true,
 });
 
-app.use( ( req, _, nx )=>{ console.log ( req.headers ); nx () }, cors({
-    "origin": true,
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-    "preflightContinue": false,
-    "optionsSuccessStatus": 204
-}));
+// app.use( ( req, _, nx )=>{ console.log ( req.headers ); nx () }, cors({
+//     "origin": true,
+//     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+//     "preflightContinue": false,
+//     "optionsSuccessStatus": 204
+// }));
+
+app.use ( ( r, _, n ) => { console.log ( r.headers ); n ( ) }, cors ( ) )
+
 
 app.options("*",cors({
     "origin": true,
