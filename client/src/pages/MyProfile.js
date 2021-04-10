@@ -33,7 +33,7 @@ const MyProfile = () => {
             },
             credentials: 'include', 
 referrerPolicy: 'origin',
-mode: 'no-cors' 
+mode: 'cors' 
         })
         .then(res => res.json())
         .then((res) => { 
