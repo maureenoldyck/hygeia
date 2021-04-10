@@ -2,20 +2,18 @@ const express = require('express');
 const session = require('express-session');
 const router = express.Router();
 const app = express();
-const port = process.env.PORT || 5000;
 const mysql = require('mysql');
 const cors = require('cors');
 const { reset } = require('nodemon');
 const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
 const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy;
+const passportLocal = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
 
 
 app.use(cookieParser("keyboard cat"));
-// require("./passport")(passport);
-
-
+app.use(passport.initialize());
+app.use(passport.session());
 
 const multer  = require('multer')
 const path = require('path');
@@ -39,7 +37,7 @@ const upload = multer({
     // }
 })
 
-app.use('/', express.static(path.join(__dirname, '/public')));
+app.use('/', express.static(path.join(__dirname, '/')));
 
 //==========================================================================================//
 //                                  Create connection + config                              //
@@ -50,11 +48,11 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 // Instead of using the const "database", "pool" will be the one 
 const pool = mysql.createPool({
     connectionLimit : 10,
-    host            : process.env.REACT_APP_DB_SERVER_HOST,
-    user            : process.env.REACT_APP_DB_SERVER_USER,
-    password        : process.env.REACT_APP_DB_SERVER_PASSWORD,
-    database        : process.env.REACT_APP_DB_SERVER_NAME,
-    port            : process.env.REACT_APP_DB_SERVER_PORT,
+    host            : 'localhost',
+    user            : 'root',
+    password        : 'root',
+    database        : 'hygeia',
+    port            : 3306,
     insecureAuth    : true,
 });
 
@@ -68,8 +66,6 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-
-
 app.use(session({
     name: 'user',
     secret: 'keyboard cat',
@@ -78,10 +74,6 @@ app.use(session({
     saveUninitialized: false, 
     cookie: { maxAge: 48*60*60*1000, secure: false}
 }));
-app.set('trust proxy', 1)
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -89,90 +81,11 @@ app.use((req, res, next) => {
     res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
     res.header(
         "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept",
-        'Access-Control-Allow-Credentials', true
+        "Origin, X-Requested-With, Content-Type, Accept"
     );
     next();
 });
 
-if(process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'client/build')));
-    //
-    app.get('/', (req, res) => {
-      res.sendFile(path.join(__dirname = 'client/build/index.html'));
-    })
-  }
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname+'/client/public/index.html'));
-  });
-
-
-passport.use(
-    'local', new LocalStrategy(  
-    {
-        usernameField : 'email',
-        passwordField : 'password',
-    },
-    (email, password, done) => {
-
-    // Match Username
-    let sqlInsert = 'SELECT * FROM `users_list` WHERE u_email = ?';
-        
-    pool.query(sqlInsert, [email], (err, user) => {
-    
-    if (err)
-        return done(err);
-    if (!user) {
-        return done(null, false, {message: 'Wrong email!'});
-    }
-
-
-    //  Match Password
-    bcrypt.compare(password, user[0].u_password, function(err, match) {
-
-        if(err)
-        return done(err);
-        if(match === true){
-        return done(null, user);
-        } else {
-        return done(null, false, {message: 'Wrong password!'});
-        }
-        
-    });
-    
-    });
-}))
-
-    
-
-passport.serializeUser((user, done) => {
-    done(null, {
-        id: user["id"],
-        userName: user["name"],
-        email: user["u_email"],
-        engineID: user['engineID'],
-        uSecret: user['uSecret'],
-     });
-});
-
-passport.deserializeUser(function(user, done) {
-    done(null, user);
-  });
-  // used to deserialize the user
-//   passport.deserializeUser((id, done) => {
-//     pool.query('SELECT * FROM `users_list` WHERE id = ?', [id], (err, result) => {
-//       done(err, result[0]);
-//     });
-// });
-
-// const checkAuthenticated = (req, res, next) => {
-//     if (req.isAuthenticated()) {
-//         return next();
-//     } else {
-//         res.redirect('/');
-//     }
-// }
 
 //==========================================================================================//
 //                                 Create queries + req, res                                //
@@ -292,16 +205,15 @@ app.post("/api/settings/:id", (req, res) => {
 });
 
 
+
 // // // LOGIN GET REQUEST
 
 app.get('/api/login', (req, res) => {
-
     if (req.session.user) {
         res.send({loggedIn: true, user: req.session.user});
     } else { 
         res.send({loggedIn: false});
     }
-
 });
 
 
@@ -337,19 +249,6 @@ app.post("/api/login", (req, res) => {
         }
     });
 });
-
-
-    // passport.authenticate("local", ((req, res) => { 
-    
-        // console.log(res)
- 
-        // if (!user) {
-        //     res.send({err: "User not found!"});
-        //   } else {
-        //     res.send(req.user)
-        //   }
-// })))
-
 
 app.get('/api/logout', (req, res) => {
     res.send("test logout");
@@ -519,6 +418,6 @@ app.get('/api/search/:keywords', (req, res) => {
 //==========================================================================================//
 
 
-app.listen(port, () => {
+app.listen(5000, () => {
     console.log("Running..")
 })
