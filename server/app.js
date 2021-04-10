@@ -7,18 +7,18 @@ const mysql = require('mysql');
 const cors = require('cors');
 const { reset } = require('nodemon');
 const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
-const passport = require('passport')
-const passportLocal = require('passport-local').Strategy;
-const cookieParser = require('cookie-parser');
+// const passport = require('passport')
+// const passportLocal = require('passport-local').Strategy;
+// const cookieParser = require('cookie-parser');
 const path = require('path');
 
 app.use('/', express.static(path.join(__dirname, '/')));
 
 
 
-app.use(cookieParser("keyboard cat"));
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(cookieParser("keyboard cat"));
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 const multer  = require('multer')
 
@@ -67,6 +67,16 @@ app.use(cors({
     "preflightContinue": false,
     "optionsSuccessStatus": 204
 }));
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://hydreia.netlify.app/");
+    res.setHeader('Acces-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
+    res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+});
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
