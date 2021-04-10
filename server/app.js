@@ -61,7 +61,12 @@ const pool = mysql.createPool({
     insecureAuth    : true,
 });
 
-app.use(cors());
+app.use(cors({
+    "origin": "https://hygeia-app.herokuapp.com/",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+}));
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
