@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const router = express.Router();
 const app = express();
+const port = process.env.PORT || 5000;
 const mysql = require('mysql');
 const cors = require('cors');
 const { reset } = require('nodemon');
@@ -9,6 +10,9 @@ const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
 const passport = require('passport')
 const passportLocal = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
+const path = require('path');
+
+app.use('/', express.static(path.join(__dirname, '/')));
 
 
 app.use(cookieParser("keyboard cat"));
@@ -16,7 +20,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const multer  = require('multer')
-const path = require('path');
+
 const { ENOTEMPTY } = require('constants');
 
 const storage = multer.diskStorage({
@@ -37,7 +41,7 @@ const upload = multer({
     // }
 })
 
-app.use('/', express.static(path.join(__dirname, '/')));
+
 
 //==========================================================================================//
 //                                  Create connection + config                              //
@@ -48,11 +52,11 @@ app.use('/', express.static(path.join(__dirname, '/')));
 // Instead of using the const "database", "pool" will be the one 
 const pool = mysql.createPool({
     connectionLimit : 10,
-    host            : 'localhost',
-    user            : 'root',
-    password        : 'root',
-    database        : 'hygeia',
-    port            : 3306,
+    host            : process.env.SERVER_HOST,
+    user            : process.env.SERVER_USER,
+    password        : process.env.SERVER_PASSWORD,
+    database        : process.env.SERVER_DATABASE,
+    port            : process.env.PORT,
     insecureAuth    : true,
 });
 
@@ -76,7 +80,7 @@ app.use(session({
 }));
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.setHeader("Access-Control-Allow-Origin", "https://hygeia.netlify.app/");
     res.setHeader('Acces-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
     res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
     res.header(
@@ -418,6 +422,6 @@ app.get('/api/search/:keywords', (req, res) => {
 //==========================================================================================//
 
 
-app.listen(5000, () => {
+app.listen(port, () => {
     console.log("Running..")
 })
