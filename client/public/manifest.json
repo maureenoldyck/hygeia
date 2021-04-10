@@ -21,5 +21,11 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "permissions": [
+    "https://hygeia-app.herokuapp.com/*",
+    "https://www.hygeia-app.herokuapp.com/*",
+    "http://hygeia-app.herokuapp.com/*",
+    "http://www.hygeia-app.herokuapp.com/*"
+ ]
 }
