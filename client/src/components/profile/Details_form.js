@@ -23,7 +23,7 @@ const DetailsForm = () => {
     //                                 HandleSubmit: Button event                               //
     //==========================================================================================//
     useEffect(() => {
-        fetch(`http://localhost:5000/api/profile/${id}`, {
+        fetch(`https://hygeia-app.herokuapp.com/api/profile/${id}`, {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 
@@ -50,7 +50,7 @@ const DetailsForm = () => {
         //======================================================================================//
 
 
-        fetch(`http://localhost:5000/api/details/${id}`, {
+        fetch(`https://hygeia-app.herokuapp.com/api/details/${id}`, {
             method: 'POST',
             body: JSON.stringify({
                 age: age,
