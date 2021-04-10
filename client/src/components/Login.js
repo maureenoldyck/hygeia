@@ -15,7 +15,7 @@ const Login = () => {
         //======================================================================================//
     
 
-        fetch("http://localhost:5000/api/login", {
+        fetch("https://hygeia-app.herokuapp.com/api/login", {
             method: 'POST',
             body: JSON.stringify({
                 email: email,
