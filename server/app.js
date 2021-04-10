@@ -62,7 +62,7 @@ const pool = mysql.createPool({
 });
 
 app.use(cors({
-    "origin": "https://hygeia-app.herokuapp.com/",
+    "origin": "https://hygeia.netlify.app",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "preflightContinue": false,
     "optionsSuccessStatus": 204
