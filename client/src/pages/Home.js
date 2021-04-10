@@ -15,7 +15,7 @@ const Home = () => {
     const [footer, setFooter] = useState();
 
     useEffect(() => {
-        fetch("https://hygeia-app.herokuapp.com/api/login", {
+        fetch("/api/login", {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 
