@@ -20,7 +20,7 @@ const Forum = () => {
             },
             credentials: 'include', 
             referrerPolicy: 'origin',
-            mode: 'cors',
+            mode: 'no-cors',
 referrer: document.location.origin 
         })
         .then(res => res.json())

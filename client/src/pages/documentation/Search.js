@@ -23,7 +23,7 @@ const Search = () => {
             },
             credentials: 'include', 
 referrerPolicy: 'origin',
-mode: 'cors',
+mode: 'no-cors',
 referrer: document.location.origin 
         })
         .then(res => res.json())
@@ -43,7 +43,7 @@ referrer: document.location.origin
             },
             credentials: 'include', 
 referrerPolicy: 'origin',
-mode: 'cors',
+mode: 'no-cors',
 referrer: document.location.origin 
         })
         .then(res => res.json())
