@@ -32,6 +32,7 @@ const Login = () => {
         })
         .then(res => res.json())
         .then((res) => {
+            console.log(res)
             if (res.err) {
                 setLoginStatus(res.err);
             } else {

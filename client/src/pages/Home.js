@@ -13,6 +13,8 @@ const Home = () => {
     const [LandingNav, setLandingNav] = useState('');
     const [hideregister, setHideRegister] = useState();
     const [footer, setFooter] = useState();
+    const [activeState, setActiveState] = useState(false);
+    const [userId, setUserId] = useState();
 
     useEffect(() => {    
         fetch("http://localhost:5000/api/login", {
@@ -30,16 +32,31 @@ const Home = () => {
         .then((res) => { 
             console.log(res)
             if (res.loggedIn === true) {
-                setLandingNav(<Header user={res.user[0].id} />)
+                setActiveState(true)
+                setUserId(50)
+            } else {
+                setActiveState(false)
+            }
+        });
+
+         switch(activeState){
+             case true:
+                setLandingNav(<Header user={userId} />)
                 setHideRegister()
                 setFooter(<HomeFooterLoggedIn/>)
-            } else {
+                break;
+             case false: 
                 setLandingNav(<HeaderHome />)
                 setHideRegister(<Community />)
                 setFooter(<FooterHome />)
-            }
-        });
-    }, []);
+                break;
+             default:
+                setLandingNav(<HeaderHome />)
+                setHideRegister(<Community />)
+                setFooter(<FooterHome />)
+                break;
+         }
+    }, [activeState, userId]);
 
     return (
         <div className="min-h-screen bg-brown-sand">
