@@ -120,6 +120,13 @@ app.get("/", (req, res) => {
     res.send("Hello World!")
 })
 
+app.get("/users", (req, res) => {
+    const sqlUsers = "SELECT * FROM `users_list`;"
+    pool.query(sqlUsers, (err, result) => {
+        res.send({result});
+    })
+})
+
 // Problem (FIXED): use backticks when naming the tabel collumns!
 
 // when you want a new app.post(), use "api/<your component>"
