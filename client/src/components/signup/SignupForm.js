@@ -37,7 +37,7 @@ const SignupForm = ( ) => {
         // }
         // setErrors(validateInfo(values));
 
-        fetch("https://hygeia-app.herokuapp.com/api/register", {
+        fetch("http://localhost:5000/api/register", {
             method: 'POST',
             body: JSON.stringify({
                 email: emailRegister,

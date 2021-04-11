@@ -16,7 +16,7 @@ const Article = () => {
     const [description, setDescription] = useState('');
 
     useEffect(() => {
-        fetch(`https://hygeia-app.herokuapp.com/api/documentation/${slug}`, {
+        fetch(`http://localhost:5000/api/documentation/${slug}`, {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 

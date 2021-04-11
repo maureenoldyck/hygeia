@@ -40,7 +40,7 @@ const Header = ({user}) => {
 
     const logOut = () => {
 
-        fetch("https://hygeia-app.herokuapp.com/api/logout", {
+        fetch("http://localhost:5000/api/logout", {
             method: 'POST',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 

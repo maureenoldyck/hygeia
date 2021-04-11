@@ -13,7 +13,7 @@ const AboutUs = () => {
     const [LandingNav, setLandingNav] = useState('');
 
     useEffect(() => {
-        fetch("https://hygeia-app.herokuapp.com/api/login", {
+        fetch("http://localhost:5000/api/login", {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 

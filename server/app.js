@@ -51,11 +51,11 @@ const upload = multer({
 // Instead of using the const "database", "pool" will be the one 
 const pool = mysql.createPool({
     connectionLimit : 10,
-    host            : process.env.SERVER_HOST,
-    user            : process.env.SERVER_USER,
-    password        : process.env.SERVER_PASSWORD,
-    database        : process.env.SERVER_DATABASE,
-    port            : process.env.PORT,
+    host            : 'localhost',
+    user            : 'root',
+    password        : 'root',
+    database        : 'hygeia',
+    port            : 3306,
     insecureAuth    : true,
 });
 
@@ -133,7 +133,7 @@ app.get("/", (req, res) => {
 app.get("/users", (req, res) => {
 
     const sqlUsers = "SELECT * FROM `users_list`;"
-    client.query(sqlUsers, (err, result) => {
+    pool.query(sqlUsers, (err, result) => {
         res.send({message: result});
     })
 
@@ -184,7 +184,7 @@ app.post("/api/register", async (req, res) => {
 
             const sqlEmail = "SELECT * FROM users_list WHERE u_email = (?);";
 
-            client.query(sqlEmail, [u_email], async (err, result) => {
+            pool.query(sqlEmail, [u_email], async (err, result) => {
             
             // if (err) throw err;
     
@@ -197,7 +197,7 @@ app.post("/api/register", async (req, res) => {
                     const hashed = await bcrypt.hash(u_password, saltRounds);
                     const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`) VALUE (?, ?);"
     
-                    client.query(sqlInsert, [u_email, hashed], (err, result) => {
+                    pool.query(sqlInsert, [u_email, hashed], (err, result) => {
                 
                     res.send({success:"Huray, your account has been created!"})
     
@@ -228,7 +228,7 @@ app.post("/api/details/:id", (req, res) => {
 
     const sqlInsert = "UPDATE users_list SET `age` = ?, `gender` = ?, `language` = ?, `experience_id` = ?, `my_web` = ?, `my_soc` = ? WHERE id = ?;"
 
-    client.query(sqlInsert, [age, gender, languages, experiences, website, social, id] , (err, result) => {
+    pool.query(sqlInsert, [age, gender, languages, experiences, website, social, id] , (err, result) => {
 
     });
 });
@@ -246,7 +246,7 @@ app.post("/api/settings/:id", (req, res) => {
 
     const sqlInsert = "UPDATE users_list SET `anonymous` = ?, `profile_visible` = ?, `open_to_connect` = ?, `dm_available` = ?, `notifications` = ?, `bio` = ? WHERE id = ?;"
 
-    client.query(sqlInsert, [anonymous, profileVisibility, openToConnect, dmAvailability, notifications, bio, id] , (err, result) => {
+    pool.query(sqlInsert, [anonymous, profileVisibility, openToConnect, dmAvailability, notifications, bio, id] , (err, result) => {
         res.send(result);
     });
 });
@@ -267,7 +267,7 @@ app.get("/api/login", (req, res) => {
     const sqlInsert = "SELECT * FROM users_list WHERE u_email = ?";
 
 
-    client.query(sqlInsert, [email], (err, result) => {
+    pool.query(sqlInsert, [email], (err, result) => {
 
         if (err) {
             res.send({err: err});
@@ -319,7 +319,7 @@ app.get("/api/profile/:id", (req, res,) => {
 
     const sqlInsert = "SELECT * FROM `users_list` WHERE id = ?";
 
-    client.query(sqlInsert, [userId], (err, result) => {
+    pool.query(sqlInsert, [userId], (err, result) => {
 
 
 
@@ -348,7 +348,7 @@ app.post("/api/profile/:id", (req, res) => {
 
     const sqlInsert = "UPDATE users_list SET `name` = ?, `role` = ?, `quote` = ? WHERE id = ?;"
 
-    client.query(sqlInsert, [name, role, quote, id] , (err, result) => {
+    pool.query(sqlInsert, [name, role, quote, id] , (err, result) => {
         
         if (err) {
             console.log(err)
@@ -400,7 +400,7 @@ app.post("/api/profileImg/:id", upload.single('avatar'),(req, res, err) => {
     
         const sqlInsert = "UPDATE users_list SET `profile_picture` = ? WHERE id = ?;"
     
-        client.query(sqlInsert, [imgPath, id] , (err, result) => {
+        pool.query(sqlInsert, [imgPath, id] , (err, result) => {
             if (err) {
                 console.log(err)
                 res.send({
@@ -428,7 +428,7 @@ app.get("/api/documentation/:slug", (req, res,) => {
 
     const sqlInsert = "SELECT * FROM documentation WHERE `slug` = ?";
 
-    client.query(sqlInsert, [slug], (err, result) => {
+    pool.query(sqlInsert, [slug], (err, result) => {
         if (err) {
             res.send({err: err});
         } 
@@ -450,7 +450,7 @@ app.get('/api/search/:keywords', (req, res) => {
     const sqlInsert = "SELECT * from documentation WHERE `description` like '%" + keywords + "%'"
 
 
-    client.query(sqlInsert, (err, result) => {
+    pool.query(sqlInsert, (err, result) => {
         if (result) {
             res.send(result);
         } else {
