@@ -14,5 +14,5 @@
     
     },
     "emmet.showSuggestionsAsSnippets": true,
-    "workbench.colorTheme": "Monokai"
+    // "workbench.colorTheme": "Monokai"
 }

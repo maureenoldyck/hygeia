@@ -17,21 +17,24 @@ const MyProfile = () => {
     const [LandingNav, setLandingNav] = useState('');
   
 
-    if (window.location.href === "http://localhost:3000/profile" || window.location.href === "http://localhost:3000/profile/") {
+    if (window.location.href === "/profile" || window.location.href === "/profile/") {
     
         const userID = localStorage.getItem('userID');
-        window.location.href = "http://localhost:3000/profile/" + userID;
+        window.location.href = "/profile/" + userID;
 
     } 
     
     useEffect(() => {
-        fetch("http://localhost:5000/api/login", {
+        fetch("https://hygeia-app.herokuapp.com/api/login", {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 
                 'Accept': 'application/json, text/html',
             },
             credentials: 'include', 
+            referrerPolicy: 'origin',
+            mode: 'cors',
+referrer: document.location.origin 
         })
         .then(res => res.json())
         .then((res) => { 
@@ -41,8 +44,8 @@ const MyProfile = () => {
                 window.location.href = "/";
             }
 
-            if (window.location.href !== "http://localhost:3000/profile/" + res.user[0].id) {
-                window.location.href = "http://localhost:3000/profile/" + res.user[0].id;
+            if (window.location.href !== "/profile/" + res.user[0].id) {
+                window.location.href = "/profile/" + res.user[0].id;
             }
         });
     }, []);

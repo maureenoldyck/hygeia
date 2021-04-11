@@ -15,5 +15,6 @@ yarn-error.log*
 # node
 /node_modules
 
-.gitignore 
+.gitignore
+
 .vscode

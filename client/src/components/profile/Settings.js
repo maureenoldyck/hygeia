@@ -15,13 +15,16 @@ const Settings = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/profile/${id}`, {
+        fetch(`https://hygeia-app.herokuapp.com/api/profile/${id}`, {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 
                 'Accept': 'application/json, text/html',
             },
-            credentials: 'include',
+            credentials: 'include', 
+            referrerPolicy: 'origin',
+            mode: 'cors',
+referrer: document.location.origin
         })
         .then(res => res.json())
         .then((res) => { 

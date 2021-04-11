@@ -14,18 +14,21 @@ const Home = () => {
     const [hideregister, setHideRegister] = useState();
     const [footer, setFooter] = useState();
 
-    useEffect(() => {
-        fetch("http://localhost:5000/api/login", {
+    useEffect(() => {    
+        fetch("https://hygeia-app.herokuapp.com/api/login", {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 
                 'Accept': 'application/json, text/html',
             },
             credentials: 'include', 
+            referrerPolicy: 'origin',
+            mode: 'cors',
+            referrer: document.location.origin
         })
         .then(res => res.json())
         .then((res) => { 
-            if (res.user) {
+            if (res.loggedIn === true) {
                 setLandingNav(<Header user={res.user[0].id} />)
                 setHideRegister()
                 setFooter(<HomeFooterLoggedIn/>)

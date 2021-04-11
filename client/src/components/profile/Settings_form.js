@@ -22,13 +22,16 @@ const SettingsForm = () => {
     //==========================================================================================//
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/profile/${id}`, {
+        fetch(`https://hygeia-app.herokuapp.com/api/profile/${id}`, {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 
                 'Accept': 'application/json, text/html',
             },
-            credentials: 'include',
+            credentials: 'include', 
+            referrerPolicy: 'origin',
+            mode: 'cors',
+referrer: document.location.origin
         })
         .then(res => res.json())
         .then((res) => { 
@@ -52,7 +55,7 @@ const SettingsForm = () => {
         //======================================================================================//
         
 
-        fetch(`http://localhost:5000/api/settings/${id}`, {
+        fetch(`https://hygeia-app.herokuapp.com/api/settings/${id}`, {
             method: 'POST',
             body: JSON.stringify({
                 anonymous: anonymous,
@@ -65,7 +68,11 @@ const SettingsForm = () => {
             headers: {
                 'Accept': 'application/json',
                 'Content-type': 'application/json; charset=UTF-8'
-            }
+            },
+            credentials: 'include', 
+            referrerPolicy: 'origin',
+            mode: 'cors',
+referrer: document.location.origin
 
         })
         .then(res => res.json())

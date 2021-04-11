@@ -11,7 +11,7 @@ const DeleteAccount = () => {
         //                         Fetch API location + POST body-properties                    //
         //======================================================================================//
         
-        fetch(`http://localhost:5000/api/delete/${id}`, {
+        fetch(`https://hygeia-app.herokuapp.com/api/delete/${id}`, {
             method: 'POST',
             body: JSON.stringify({
                 id : {id}
@@ -21,6 +21,9 @@ const DeleteAccount = () => {
                 'Content-type': 'application/json; charset=UTF-8'
             },
             credentials: 'include', 
+            referrerPolicy: 'origin',
+            mode: 'cors',
+referrer: document.location.origin 
         })
         .then(res => res.json())
         .then(res => console.log(res));

@@ -10,13 +10,16 @@ const MoodTracker = () => {
     // // const [motivation, setMotivation] = useState('');
 
     // useEffect(() => {
-    //     fetch(`http://localhost:5000/api/profile/${id}`, {
+    //     fetch(`https://hygeia-app.herokuapp.com/api/profile/${id}`, {
     //         method: 'GET',
     //         headers: {
     //             "Content-Type": 'application/json,  charset=UTF-8', 
     //             'Accept': 'application/json, text/html',
     //         },
     //         credentials: 'include', 
+// referrerPolicy: 'origin',
+// mode: 'cors',
+// referrer: document.location.origin 
     //     })
     //     .then(res => res.json())
     //     .then((res) => {
@@ -28,7 +31,7 @@ const MoodTracker = () => {
 
     //     // console.log(mood.feeling)
  
-    //     fetch(`http://localhost:5000/api/moodtracker/${id}`, {
+    //     fetch(`https://hygeia-app.herokuapp.com/api/moodtracker/${id}`, {
     //         method: 'POST',
     //         body:  JSON.stringify({
     //             // feeling: mood.feeling,
@@ -37,7 +40,10 @@ const MoodTracker = () => {
     //         headers: {
     //             'Accept': 'multipart/form-data',
     //         },
-    //         credentials: 'include',
+    //         credentials: 'include', 
+// referrerPolicy: 'origin',
+// mode: 'cors',
+// referrer: document.location.origin
     //     })
     //     .then(res => res.json())
     //     .then(data => {console.log(data)})

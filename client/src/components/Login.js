@@ -15,7 +15,7 @@ const Login = () => {
         //======================================================================================//
     
 
-        fetch("http://localhost:5000/api/login", {
+        fetch("https://hygeia-app.herokuapp.com/api/login", {
             method: 'POST',
             body: JSON.stringify({
                 email: email,
@@ -26,6 +26,9 @@ const Login = () => {
                 'Content-type': 'application/json; charset=UTF-8'
             },
             credentials: 'include', 
+            referrerPolicy: 'origin',
+            mode: 'cors',
+referrer: document.location.origin 
         })
         .then(res => res.json())
         .then((res) => {
@@ -35,6 +38,7 @@ const Login = () => {
                 localStorage.setItem("loggedIn", true);
                 localStorage.setItem("userID", res[0].id);
                 window.location.href = '/';
+                console.log(document.cookie);
             }
         }).catch(err => {
             console.log(err);
@@ -58,10 +62,10 @@ const Login = () => {
                         <h2 className="text-red-500 mb-4"> {loginStatus}</h2>
                     
                         <label className="mb-1">Email</label>
-                        <input placeholder="Your Email ..." className="pl-2 py-2 mb-6 rounded-lg" onChange={(e) => {setEmail(e.target.value)}}/>
+                        <input name="email" placeholder="Your Email ..." className="pl-2 py-2 mb-6 rounded-lg" onChange={(e) => {setEmail(e.target.value)}}/>
 
                         <label className="mb-1">Password</label>
-                        <input type="password" placeholder="Your password ..." className="pl-2 py-2 rounded-lg" onChange={(e) => {setPassword(e.target.value)}}/>
+                        <input name="password" type="password" placeholder="Your password ..." className="pl-2 py-2 rounded-lg" onChange={(e) => {setPassword(e.target.value)}}/>
 
                         <Link to="/" className="flex justify-end text-base mb-4"><span>Forgot password?</span></Link>
 

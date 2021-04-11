@@ -42,20 +42,23 @@ const ProfileForm = () => {
     //==========================================================================================//
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/profile/${id}`, {
+        fetch(`https://hygeia-app.herokuapp.com/api/profile/${id}`, {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 
                 'Accept': 'application/json, text/html',
             },
-            credentials: 'include',
+            credentials: 'include', 
+            referrerPolicy: 'origin',
+            mode: 'cors',
+referrer: document.location.origin
         })
         .then(res => res.json())
         .then((res) => { 
             if (name === "") {setName(res[0].name)};
             if (role === "") {setRole(res[0].role)};
             if (quote === "") {setQuote(res[0].quote)};
-            if (avatar === "") {setAvatar('http://localhost:5000/' + res[0].profile_picture)};
+            if (avatar === "") {setAvatar('https://hygeia-app.herokuapp.com/' + res[0].profile_picture)};
         });
     })
 
@@ -66,7 +69,7 @@ const ProfileForm = () => {
         //======================================================================================//
         
 
-        fetch(`http://localhost:5000/api/profile/${id}`, {
+        fetch(`https://hygeia-app.herokuapp.com/api/profile/${id}`, {
             method: 'POST',
             body: JSON.stringify({
                 name: name,
@@ -76,7 +79,11 @@ const ProfileForm = () => {
             headers: {
                 'Accept': 'application/json',
                 'Content-type': 'application/json; charset=UTF-8'
-            }
+            },
+            credentials: 'include', 
+            referrerPolicy: 'origin',
+            mode: 'cors',
+referrer: document.location.origin
 
         })
         .then(res => res.json())
@@ -92,13 +99,16 @@ const ProfileForm = () => {
         const formData = new FormData()
         formData.append('avatar', file)   
  
-        fetch(`http://localhost:5000/api/profileImg/${id}`, {
+        fetch(`https://hygeia-app.herokuapp.com/api/profileImg/${id}`, {
             method: 'POST',
             body: formData,
             headers: {
                 'Accept': 'multipart/form-data',
             },
-            credentials: 'include',
+            credentials: 'include', 
+referrerPolicy: 'origin',
+mode: 'cors',
+referrer: document.location.origin
         })
         .then(res => res.json())
         .then(data => {
