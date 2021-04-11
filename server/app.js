@@ -82,8 +82,12 @@ const client = new Client({
     database        : process.env.SERVER_DATABASE,
     port            : process.env.PORT,
     connectionString: process.env.DATABASE_URL,
-    ssl             : true
+    ssl             :{
+        rejectUnauthorized: false
+    }
 });
+
+console.log(process.env.DATABASE_URL)
 
 client.connect();
 
