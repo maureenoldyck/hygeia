@@ -6,7 +6,7 @@ const port = process.env.PORT || 5000;
 const mysql = require('mysql');
 const cors = require('cors');
 const { reset } = require('nodemon');
-const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
+const bcrypt = require("bcryptjs");
 const passport = require('passport')
 const passportLocal = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
@@ -234,7 +234,7 @@ app.post("/api/login", (req, res) => {
             res.send({err: err});
         } 
         
-        if (result.length > 0) {
+        if (result) {
 
             bcrypt.compare(password, result[0].u_password, function(err, response) {
                 if (response === true) {
