@@ -33,7 +33,7 @@ const Home = () => {
             console.log(res)
             if (res.loggedIn === true) {
                 setActiveState(true)
-                setUserId(res.user[0].id)
+                setUserId(50)
             } else {
                 setActiveState(false)
             }
