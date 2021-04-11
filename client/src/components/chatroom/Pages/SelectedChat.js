@@ -5,7 +5,7 @@ import Header from '../../Header'
 import Footer from '../../Footer'
 import MoodTracker from '../../MoodTracker'
 
-import { ChatEngineWrapper, MessageBubble, Socket, ChatFeed } from 'react-chat-engine'
+import { ChatEngineWrapper, MessageBubble, ChatSocket, ChatFeed } from 'react-chat-engine'
 
 const ChatRooms = () => {
 
@@ -99,9 +99,12 @@ referrer: document.location.origin
                                     </div>
 
                                     <div className="w-full h-auto my-4" id="modal-container">
-                                    <ChatEngineWrapper style="height: 100%">
-                                        <Socket 
+                                    <ChatEngineWrapper>
+                                        <ChatSocket 
                                             projectID='3f78a1ff-b807-4a82-b8e1-aeab29b74a34'
+                                            chatID={12999}
+                                            chatAccessKey="ca-590925fc-8973-4282-a8ab-f0961f6940cf"
+                                            senderUsername='Any Name You Want'
                                             userName='Tetris'
                                             userSecret='123123'
                                         />
