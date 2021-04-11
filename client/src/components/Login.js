@@ -16,7 +16,7 @@ const Login = () => {
     
 
         fetch("https://hygeia-app.herokuapp.com/api/login", {
-            method: 'POST',
+            method: 'GET',
             body: JSON.stringify({
                 email: email,
                 password: password,
@@ -28,7 +28,7 @@ const Login = () => {
             credentials: 'include', 
             referrerPolicy: 'origin',
             mode: 'no-cors',
-referrer: document.location.origin 
+            referrer: document.location.origin 
         })
         .then(res => res.json())
         .then((res) => {

@@ -248,7 +248,7 @@ app.get('/api/login', (req, res) => {
 
 // USER LOGIN/LOGOUT POST REQUESTS 
 
-app.post("/api/login", (req, res) => {
+app.get("/api/login", (req, res) => {
     const email = req.body.email
     const password = req.body.password
 
