@@ -243,13 +243,6 @@ app.post("/api/settings/:id", (req, res) => {
 
 // // // LOGIN GET REQUEST
 
-app.get('/api/login', (req, res) => {
-    if (req.session.user) {
-        res.send({loggedIn: true, user: req.session.user});
-    } else { 
-        res.send({loggedIn: false});
-    }
-});
 
 
 
@@ -283,6 +276,12 @@ app.get("/api/login", (req, res) => {
             res.send({ err: "Sadly, your email doesn't seem correct. Please try again or register if you don't have an account yet."});
         }
     });
+
+    if (req.session.user) {
+        res.send({loggedIn: true, user: req.session.user});
+    } else { 
+        res.send({loggedIn: false});
+    }
 });
 
 app.get('/api/logout', (req, res) => {
