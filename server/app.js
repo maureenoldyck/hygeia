@@ -308,7 +308,6 @@ app.post('/api/logout', (req, res) => {
                       
     pool.query(sql, [id] , (err, response) => {
         
-        res.send(result);
     });
 });
 
