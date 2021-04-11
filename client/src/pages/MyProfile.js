@@ -15,12 +15,12 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 const MyProfile = () => {
 
   
-    if (window.location.href === "/profile" || window.location.href === "/profile/") {
+    // if (window.location.href === "/profile" || window.location.href === "/profile/") {
     
-        const userID = localStorage.getItem('userID');
-        window.location.href = "/profile/" + userID;
+    //     const userID = localStorage.getItem('userID');
+    //     window.location.href = "/profile/" + userID;
 
-    } 
+    // } 
     
     useEffect(() => {
         fetch("http://localhost:5000/api/login", {
@@ -36,13 +36,9 @@ const MyProfile = () => {
         })
         .then(res => res.json())
         .then((res) => { 
-            if (res.user) {
-
-                window.location.href = "/profile/" + 50;
-
-            } else {
+            if (!res.user) {
                 window.location.href = "/";
-            }
+            } 
         });
     }, []);
 

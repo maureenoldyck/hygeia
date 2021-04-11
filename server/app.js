@@ -303,9 +303,13 @@ app.get('/api/logout', (req, res) => {
 
 app.post('/api/logout', (req, res) => {
 
-    req.session.destroy(session.user);
-
-    res.send;
+    const id = 50;
+    const sql = "UPDATE users_list SET `logged_in` = false WHERE id = ?;"
+                      
+    pool.query(sql, [id] , (err, response) => {
+        
+        res.send(result);
+    });
 });
 
 
