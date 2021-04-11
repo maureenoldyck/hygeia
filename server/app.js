@@ -69,8 +69,9 @@ const pool = mysql.createPool({
 app.use ( cors (
     { origin:`https://hygeia.netlify.app`,
       credentials: true,
-      methods: [ HEAD, GET, POST, PUT, PATCH, DELETE, OPTIONS ],
-    }))
+      methods: [ GET, POST, PUT, PATCH, DELETE, OPTIONS ],
+    }
+))
 
 
 // app.options("*",cors({
