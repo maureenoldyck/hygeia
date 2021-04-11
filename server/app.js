@@ -123,7 +123,7 @@ app.get("/", (req, res) => {
 app.get("/users", (req, res) => {
     const sqlUsers = "SELECT * FROM `users_list`;"
     pool.query(sqlUsers, (err, result) => {
-        res.send.JSON(result);
+        res.send({message: result});
     })
 })
 
