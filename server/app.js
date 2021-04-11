@@ -2,7 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const router = express.Router();
 const app = express();
-const port = process.env.PORT || 5000;
+const port = 5000;
 const mysql = require('mysql');
 const cors = require('cors');
 const { reset } = require('nodemon');
@@ -50,11 +50,11 @@ const upload = multer({
 // Instead of using the const "database", "pool" will be the one 
 const pool = mysql.createPool({
     connectionLimit : 10,
-    host            : process.env.SERVER_HOST,
-    user            : process.env.SERVER_USER,
-    password        : process.env.SERVER_PASSWORD,
-    database        : process.env.SERVER_DATABASE,
-    port            : process.env.PORT,
+    host            : 'localhost',
+    user            : 'root',
+    password        : 'root',
+    database        : 'hygeia',
+    port            : 3306,
     insecureAuth    : true,
 });
 
@@ -66,9 +66,9 @@ const pool = mysql.createPool({
 // }));
 
 app.use ( cors (
-    { origin:`https://hygeia.netlify.app$/ui`,
-      credentials: true,
-      methods: [ HEAD, GET, POST, PUT, PATCH, DELETE, OPTIONS ],
+    { origin:`https://hygeia.netlify.app`,
+        credentials: true,
+        methods: "HEAD, GET, POST, PUT, PATCH, DELETE, OPTIONS",
     }))
 
 
@@ -83,16 +83,16 @@ app.use ( cors (
 
 app.use('/', express.static(path.join(__dirname, '/')));
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://hygeia.netlify.app/");
-    res.setHeader('Acces-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
-    res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
-    res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-});
+// app.use((req, res, next) => {
+//     res.setHeader("Access-Control-Allow-Origin", "https://hygeia.netlify.app/");
+//     res.setHeader('Acces-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
+//     res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
+//     res.header(
+//         "Access-Control-Allow-Headers",
+//         "Origin, X-Requested-With, Content-Type, Accept"
+//     );
+//     next();
+// });
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
@@ -231,19 +231,15 @@ app.post("/api/settings/:id", (req, res) => {
 
 // // // LOGIN GET REQUEST
 
-app.get('/api/login', (req, res) => {
-    if (req.session.user) {
-        res.send({loggedIn: true, user: req.session.user});
-    } else { 
-        res.send({loggedIn: false});
-    }
-});
+// app.get('/api/login', (req, res) => {
+
+// });
 
 
 
 // USER LOGIN/LOGOUT POST REQUESTS 
 
-app.post("/api/login", (req, res) => {
+app.get("/api/login", (req, res) => {
     const email = req.body.email
     const password = req.body.password
 
@@ -271,6 +267,12 @@ app.post("/api/login", (req, res) => {
             res.send({ err: "Sadly, your email doesn't seem correct. Please try again or register if you don't have an account yet."});
         }
     });
+
+    if (req.session.user) {
+        res.send({loggedIn: true, user: req.session.user});
+    } else { 
+        res.send({loggedIn: false});
+    }
 });
 
 app.get('/api/logout', (req, res) => {
