@@ -67,7 +67,7 @@ const pool = mysql.createPool({
 // }));
 
 app.use ( cors (
-    { origin:`https://hygeia.netlify.app$/ui`,
+    { origin:`https://hygeia.netlify.app`,
       credentials: true,
       methods: [ HEAD, GET, POST, PUT, PATCH, DELETE, OPTIONS ],
     }))
@@ -84,16 +84,16 @@ app.use ( cors (
 
 app.use('/', express.static(path.join(__dirname, '/')));
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://hygeia.netlify.app/");
-    res.setHeader('Acces-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
-    res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
-    res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-});
+// app.use((req, res, next) => {
+//     res.setHeader("Access-Control-Allow-Origin", "https://hygeia.netlify.app/");
+//     res.setHeader('Acces-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
+//     res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
+//     res.header(
+//         "Access-Control-Allow-Headers",
+//         "Origin, X-Requested-With, Content-Type, Accept"
+//     );
+//     next();
+// });
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
@@ -115,6 +115,9 @@ app.use(session({
 //                                 Create queries + req, res                                //
 //==========================================================================================//
 
+app.get("/", (req, res) => {
+    res.send("Hello World!")
+})
 
 // Problem (FIXED): use backticks when naming the tabel collumns!
 
