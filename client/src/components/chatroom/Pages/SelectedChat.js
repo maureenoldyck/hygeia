@@ -104,9 +104,7 @@ referrer: document.location.origin
                                             projectID='3f78a1ff-b807-4a82-b8e1-aeab29b74a34'
                                             chatID={12999}
                                             chatAccessKey="ca-590925fc-8973-4282-a8ab-f0961f6940cf"
-                                            senderUsername='Any Name You Want'
-                                            userName='Tetris'
-                                            userSecret='123123'
+                                            senderUsername='Tetris'
                                         />
                                         
                                         <ChatFeed chatID={12999} />                
