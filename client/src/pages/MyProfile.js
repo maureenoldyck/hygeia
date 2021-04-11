@@ -39,13 +39,13 @@ referrer: document.location.origin
         .then(res => res.json())
         .then((res) => { 
             if (res.user) {
-                setLandingNav(<Header user={res.user[0].id} />)
+                setLandingNav(<Header user={50} />)
             } else {
                 window.location.href = "/";
             }
 
-            if (window.location.href !== "/profile/" + res.user[0].id) {
-                window.location.href = "/profile/" + res.user[0].id;
+            if (window.location.href !== "/profile/" + 50) {
+                window.location.href = "/profile/" + 50;
             }
         });
     }, []);

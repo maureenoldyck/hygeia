@@ -28,7 +28,7 @@ referrer: document.location.origin
         .then(res => res.json())
         .then((res) => { 
             if (res.user) {
-                setLandingNav(<Header user={res.user[0].id} />)
+                setLandingNav(<Header user={50} />)
             } else {
                 window.location.href = "/";
             }

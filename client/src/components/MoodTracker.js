@@ -19,7 +19,7 @@ const MoodTracker = () => {
     //         credentials: 'include', 
 // referrerPolicy: 'origin',
 // mode: 'cors',
-referrer: document.location.origin 
+// referrer: document.location.origin 
     //     })
     //     .then(res => res.json())
     //     .then((res) => {
@@ -43,7 +43,7 @@ referrer: document.location.origin
     //         credentials: 'include', 
 // referrerPolicy: 'origin',
 // mode: 'cors',
-referrer: document.location.origin
+// referrer: document.location.origin
     //     })
     //     .then(res => res.json())
     //     .then(data => {console.log(data)})

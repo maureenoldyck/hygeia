@@ -274,10 +274,11 @@ app.post("/api/login", (req, res) => {
                         // console.log(result[0].id)
                         // req.session.user = result;
                         // console.log(result)
-                        const id = result[0].id
+                        const id = result[0].id || 50;
                         const sql = "UPDATE users_list SET `logged_in` = true WHERE id = ?;"
                       
-                        pool.query(sql, [result[0].id] , (err, response) => {
+                        pool.query(sql, [id] , (err, response) => {
+                            
                             res.send(result);
                         });
                     } else {
