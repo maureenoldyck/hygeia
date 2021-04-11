@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import Profile from '../components/profile/Profile.js';
 import ProfileForm from '../components/profile/Profile_form.js';
 import Details from '../components/profile/Details.js';
@@ -14,9 +14,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const MyProfile = () => {
 
-    const [LandingNav, setLandingNav] = useState('');
   
-
     if (window.location.href === "/profile" || window.location.href === "/profile/") {
     
         const userID = localStorage.getItem('userID');
@@ -39,7 +37,7 @@ const MyProfile = () => {
         .then(res => res.json())
         .then((res) => { 
             if (res.user) {
-                setLandingNav(<Header user={50} />)
+
                 window.location.href = "/profile/" + 50;
 
             } else {
@@ -51,7 +49,7 @@ const MyProfile = () => {
     return (
         <>
             <div>
-                {LandingNav}
+                <Header user={50} />
             </div>
             <div className="flex justify-around bg-brown-white flex-col">
                 <div className="flex justify-around flex-row min-h-screen mb-32 lg:mt-20 mt-14 lg:px-12 px-4" >
