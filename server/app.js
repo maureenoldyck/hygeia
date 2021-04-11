@@ -7,16 +7,8 @@ const mysql = require('mysql');
 const cors = require('cors');
 const { reset } = require('nodemon');
 const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
-// const passport = require('passport')
-// const passportLocal = require('passport-local').Strategy;
-// const cookieParser = require('cookie-parser');
 const path = require('path');
 
-
-
-// app.use(cookieParser("keyboard cat"));
-// app.use(passport.initialize());
-// app.use(passport.session());
 
 const multer  = require('multer')
 
@@ -59,12 +51,6 @@ const pool = mysql.createPool({
     insecureAuth    : true,
 });
 
-// app.use( ( req, _, nx )=>{ console.log ( req.headers ); nx () }, cors({
-//     "origin": true,
-//     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-//     "preflightContinue": false,
-//     "optionsSuccessStatus": 204
-// }));
 
 app.use ( cors (
     { origin:`https://hygeia.netlify.app`,
@@ -84,14 +70,6 @@ const client = new Client({
 
 client.connect();
 
-// app.options("*",cors({
-//     "origin": true,
-//     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-//     "preflightContinue": false,
-//     "optionsSuccessStatus": 204
-// }));
-
-
 
 app.use('/', express.static(path.join(__dirname, '/')));
 
@@ -109,14 +87,17 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
+app.set('trust proxy', 1) // trust first proxy
+
 
 app.use(session({
     name: 'user',
     secret: 'keyboard cat',
-    resave: false, 
+    resave: true, 
+    httpOnly: true,
     path: '/',
-    saveUninitialized: false, 
-    cookie: { maxAge: 48*60*60*1000, secure: false}
+    saveUninitialized: true, 
+    cookie: { maxAge: 60000, secure:false}
 }));
 
 
@@ -254,12 +235,19 @@ app.post("/api/settings/:id", (req, res) => {
 
 
 // // // LOGIN GET REQUEST
-app.get("/api/login", (req, res) => {
-    if (req.session.user) {
-        res.send({loggedIn: true, user: req.session.user});
-    } else { 
-        res.send({loggedIn: false});
-    }
+app.post("/api/home", (req, res) => {
+
+    const email = req.body.email
+    const sqlInsert = "SELECT * FROM users_list WHERE u_email = ? AND logged_in = true";
+    
+    pool.query(sqlInsert, [email] , (err, response) => {
+        if (response) {
+            res.send({loggedIn: true, user: response[0]});
+        } else { 
+            res.send({loggedIn: false});
+        }
+    });
+        
 })
 
 
@@ -274,16 +262,23 @@ app.post("/api/login", (req, res) => {
 
 
     pool.query(sqlInsert, [email], (err, result) => {
-
         if (err) {
             res.send({err: err});
         } else {
             if (result.length > 0) {
-
+                
                 bcrypt.compare(password, result[0].u_password, function(err, response) {
+                   
                     if (response === true) {
-                        req.session.user = result;
-                        res.send(result);
+                        // console.log(result[0].id)
+                        // req.session.user = result;
+                        // console.log(result)
+                        const id = result[0].id
+                        const sql = "UPDATE users_list SET `logged_in` = true WHERE id = ?;"
+                      
+                        pool.query(sql, [result[0].id] , (err, response) => {
+                            res.send(result);
+                        });
                     } else {
                         res.send({ err:"Sadly, your email and/or password combination doesn't seem correct. Please try again."});
                     }   

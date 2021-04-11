@@ -15,8 +15,8 @@ const Home = () => {
     const [footer, setFooter] = useState();
 
     useEffect(() => {    
-        fetch("http://localhost:5000/api/login", {
-            method: 'GET',
+        fetch("http://localhost:5000/api/home", {
+            method: 'POST',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 
                 'Accept': 'application/json, text/html',
