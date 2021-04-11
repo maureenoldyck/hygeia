@@ -259,29 +259,30 @@ app.get("/api/login", (req, res) => {
 
         if (err) {
             res.send({err: err});
-        } 
-        
-        if (result) {
-
-            bcrypt.compare(password, result[0].u_password, function(err, response) {
-                if (response === true) {
-                    req.session.user = result;
-                    res.send(result);
-                } else {
-                    res.send({ err:"Sadly, your email and/or password combination doesn't seem correct. Please try again."});
-                }   
-            });
-           
         } else {
-            res.send({ err: "Sadly, your email doesn't seem correct. Please try again or register if you don't have an account yet."});
+            if (result.length > 0) {
+
+                bcrypt.compare(password, result[0].u_password, function(err, response) {
+                    if (response === true) {
+                        req.session.user = result;
+                        res.send(result);
+                    } else {
+                        res.send({ err:"Sadly, your email and/or password combination doesn't seem correct. Please try again."});
+                    }   
+                });
+               
+            } else {
+                res.send({ err: "Sadly, your email doesn't seem correct. Please try again or register if you don't have an account yet."});
+            }
         }
+        
     });
 
-    if (req.session.user) {
-        res.send({loggedIn: true, user: req.session.user});
-    } else { 
-        res.send({loggedIn: false});
-    }
+    // if (req.session.user) {
+    //     res.send({loggedIn: true, user: req.session.user});
+    // } else { 
+    //     res.send({loggedIn: false});
+    // }
 });
 
 app.get('/api/logout', (req, res) => {
