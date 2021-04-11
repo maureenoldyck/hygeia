@@ -235,10 +235,11 @@ app.post("/api/settings/:id", (req, res) => {
 
 
 // // // LOGIN GET REQUEST
-app.post("/api/home", (req, res) => {
+app.get("/api/login", (req, res) => {
     
     const sqlActive = "SELECT * FROM users_list WHERE id = ? AND logged_in = true";
-    const id = req.body.id
+    const id = 50;
+
 
     pool.query(sqlActive, [id] , (err, response) => {
         
