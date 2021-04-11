@@ -126,10 +126,10 @@ app.get("/", (req, res) => {
 
 app.get("/api/dev/test", (req, res) => {
     res.send("stuff");
-    const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`, `u_id`) VALUE ('test@email.com', 'password', '22');"
-    pool.query(sqlInsert , (err, result) => {
-        console.log(err)
-    });
+    // const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`, `u_id`) VALUE ('test@email.com', 'password', '22');"
+    // pool.query(sqlInsert , (err, result) => {
+    //     console.log(err)
+    // });
 })
 
 app.post("/api/register", async (req, res) => {
@@ -261,7 +261,7 @@ app.post("/api/login", (req, res) => {
             res.send({err: err});
         } 
         
-        if (result.length > 0) {
+        if (result) {
 
             bcrypt.compare(password, result[0].u_password, function(err, response) {
                 if (response === true) {
