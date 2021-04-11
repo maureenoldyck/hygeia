@@ -34,18 +34,16 @@ const MyProfile = () => {
             credentials: 'include', 
             referrerPolicy: 'origin',
             mode: 'cors',
-referrer: document.location.origin 
+            referrer: document.location.origin 
         })
         .then(res => res.json())
         .then((res) => { 
             if (res.user) {
                 setLandingNav(<Header user={50} />)
+                window.location.href = "/profile/" + 50;
+
             } else {
                 window.location.href = "/";
-            }
-
-            if (window.location.href !== "/profile/" + 50) {
-                window.location.href = "/profile/" + 50;
             }
         });
     }, []);
