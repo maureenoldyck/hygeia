@@ -254,13 +254,19 @@ app.post("/api/settings/:id", (req, res) => {
 
 
 // // // LOGIN GET REQUEST
-
+app.get("/api/login", (req, res) => {
+    if (req.session.user) {
+        res.send({loggedIn: true, user: req.session.user});
+    } else { 
+        res.send({loggedIn: false});
+    }
+})
 
 
 
 // USER LOGIN/LOGOUT POST REQUESTS 
 
-app.get("/api/login", (req, res) => {
+app.post("/api/login", (req, res) => {
     const email = req.body.email
     const password = req.body.password
 
@@ -290,11 +296,7 @@ app.get("/api/login", (req, res) => {
         
     });
 
-    // if (req.session.user) {
-    //     res.send({loggedIn: true, user: req.session.user});
-    // } else { 
-    //     res.send({loggedIn: false});
-    // }
+ 
 });
 
 app.get('/api/logout', (req, res) => {

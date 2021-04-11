@@ -16,7 +16,7 @@ const Login = () => {
     
 
         fetch("http://localhost:5000/api/login", {
-            method: 'GET',
+            method: 'POST',
             body: JSON.stringify({
                 email: email,
                 password: password,
