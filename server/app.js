@@ -76,10 +76,13 @@ app.use ( cors (
 const { Client } = require('pg');
 
 const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
+    host            : process.env.SERVER_HOST,
+    user            : process.env.SERVER_USER,
+    password        : process.env.SERVER_PASSWORD,
+    database        : process.env.SERVER_DATABASE,
+    port            : process.env.PORT,
+    connectionString: process.env.DATABASE_URL,
+    ssl             : true
 });
 
 client.connect();
