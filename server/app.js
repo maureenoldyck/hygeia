@@ -82,7 +82,7 @@ const client = new Client({
     }
 });
 
-
+client.connect();
 
 // app.options("*",cors({
 //     "origin": true,
@@ -131,7 +131,6 @@ app.get("/", (req, res) => {
 })
 
 app.get("/users", (req, res) => {
-    client.connect();
 
     const sqlUsers = "SELECT * FROM `users_list`;"
     client.query(sqlUsers, (err, result) => {
