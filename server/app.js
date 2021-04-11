@@ -76,11 +76,6 @@ app.use ( cors (
 const { Client } = require('pg');
 
 const client = new Client({
-    host            : process.env.SERVER_HOST,
-    user            : process.env.SERVER_USER,
-    password        : process.env.SERVER_PASSWORD,
-    database        : process.env.SERVER_DATABASE,
-    port            : process.env.PORT,
     connectionString: process.env.DATABASE_URL,
     ssl             :{
         rejectUnauthorized: false
@@ -88,7 +83,6 @@ const client = new Client({
 });
 
 
-client.connect();
 
 // app.options("*",cors({
 //     "origin": true,
@@ -137,10 +131,14 @@ app.get("/", (req, res) => {
 })
 
 app.get("/users", (req, res) => {
+    client.connect();
+
     const sqlUsers = "SELECT * FROM `users_list`;"
     client.query(sqlUsers, (err, result) => {
         res.send({message: result});
     })
+
+    client.end();
 })
 
 // Problem (FIXED): use backticks when naming the tabel collumns!
