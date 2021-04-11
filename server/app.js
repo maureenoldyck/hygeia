@@ -235,20 +235,11 @@ app.post("/api/settings/:id", (req, res) => {
 
 
 // // // LOGIN GET REQUEST
-app.post("/api/home", (req, res) => {
+// app.post("/api/home", (req, res) => {
 
-    const email = req.body.email
-    const sqlInsert = "SELECT * FROM users_list WHERE u_email = ? AND logged_in = true";
     
-    pool.query(sqlInsert, [email] , (err, response) => {
-        if (response) {
-            res.send({loggedIn: true, user: response[0]});
-        } else { 
-            res.send({loggedIn: false});
-        }
-    });
         
-})
+// })
 
 
 
@@ -291,6 +282,15 @@ app.post("/api/login", (req, res) => {
         
     });
 
+    const sqlActive = "SELECT * FROM users_list WHERE u_email = ? AND logged_in = true";
+    
+    pool.query(sqlActive, [email] , (err, response) => {
+        if (response) {
+            res.send({loggedIn: true, user: response[0]});
+        } else { 
+            res.send({loggedIn: false});
+        }
+    });
  
 });
 
