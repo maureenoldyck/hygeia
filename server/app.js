@@ -138,7 +138,6 @@ app.get("/users", (req, res) => {
         res.send({message: result});
     })
 
-    client.end();
 })
 
 // Problem (FIXED): use backticks when naming the tabel collumns!
