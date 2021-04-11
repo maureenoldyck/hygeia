@@ -22,7 +22,7 @@ const Profile = () => {
             },
             credentials: 'include', 
             referrerPolicy: 'origin',
-            mode: 'no-cors',
+            mode: 'cors',
 referrer: document.location.origin
         })
         .then(res => res.json())
