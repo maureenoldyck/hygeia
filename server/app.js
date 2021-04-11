@@ -67,10 +67,21 @@ const pool = mysql.createPool({
 
 app.use ( cors (
     { origin:`https://hygeia.netlify.app`,
-        credentials: true,
-        methods: "HEAD, GET, POST, PUT, PATCH, DELETE, OPTIONS",
-    }))
+      credentials: true,
+      "methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    }
+))
 
+const { Client } = require('pg');
+
+const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl             :{
+        rejectUnauthorized: false
+    }
+});
+
+client.connect();
 
 // app.options("*",cors({
 //     "origin": true,
@@ -114,6 +125,18 @@ app.use(session({
 //                                 Create queries + req, res                                //
 //==========================================================================================//
 
+app.get("/", (req, res) => {
+    res.send("Hello World!")
+})
+
+app.get("/users", (req, res) => {
+
+    const sqlUsers = "SELECT * FROM `users_list`;"
+    pool.query(sqlUsers, (err, result) => {
+        res.send({message: result});
+    })
+
+})
 
 // Problem (FIXED): use backticks when naming the tabel collumns!
 
@@ -121,10 +144,10 @@ app.use(session({
 
 app.get("/api/dev/test", (req, res) => {
     res.send("stuff");
-    const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`, `u_id`) VALUE ('test@email.com', 'password', '22');"
-    pool.query(sqlInsert , (err, result) => {
-        console.log(err)
-    });
+    // const sqlInsert = "INSERT INTO users_list (`u_email`, `u_password`, `u_id`) VALUE ('test@email.com', 'password', '22');"
+    // pool.query(sqlInsert , (err, result) => {
+    //     console.log(err)
+    // });
 })
 
 app.post("/api/register", async (req, res) => {
@@ -230,16 +253,19 @@ app.post("/api/settings/:id", (req, res) => {
 
 
 // // // LOGIN GET REQUEST
-
-// app.get('/api/login', (req, res) => {
-
-// });
+app.get("/api/login", (req, res) => {
+    if (req.session.user) {
+        res.send({loggedIn: true, user: req.session.user});
+    } else { 
+        res.send({loggedIn: false});
+    }
+})
 
 
 
 // USER LOGIN/LOGOUT POST REQUESTS 
 
-app.get("/api/login", (req, res) => {
+app.post("/api/login", (req, res) => {
     const email = req.body.email
     const password = req.body.password
 
@@ -250,29 +276,26 @@ app.get("/api/login", (req, res) => {
 
         if (err) {
             res.send({err: err});
-        } 
-        
-        if (result) {
-
-            bcrypt.compare(password, result[0].u_password, function(err, response) {
-                if (response === true) {
-                    req.session.user = result;
-                    res.send(result);
-                } else {
-                    res.send({ err:"Sadly, your email and/or password combination doesn't seem correct. Please try again."});
-                }   
-            });
-
         } else {
-            res.send({ err: "Sadly, your email doesn't seem correct. Please try again or register if you don't have an account yet."});
+            if (result.length > 0) {
+
+                bcrypt.compare(password, result[0].u_password, function(err, response) {
+                    if (response === true) {
+                        req.session.user = result;
+                        res.send(result);
+                    } else {
+                        res.send({ err:"Sadly, your email and/or password combination doesn't seem correct. Please try again."});
+                    }   
+                });
+               
+            } else {
+                res.send({ err: "Sadly, your email doesn't seem correct. Please try again or register if you don't have an account yet."});
+            }
         }
+        
     });
 
-    if (req.session.user) {
-        res.send({loggedIn: true, user: req.session.user});
-    } else { 
-        res.send({loggedIn: false});
-    }
+ 
 });
 
 app.get('/api/logout', (req, res) => {

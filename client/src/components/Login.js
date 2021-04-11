@@ -28,7 +28,7 @@ const Login = () => {
             credentials: 'include', 
             referrerPolicy: 'origin',
             mode: 'cors',
-referrer: document.location.origin 
+            referrer: document.location.origin 
         })
         .then(res => res.json())
         .then((res) => {
@@ -38,7 +38,6 @@ referrer: document.location.origin
                 localStorage.setItem("loggedIn", true);
                 localStorage.setItem("userID", res[0].id);
                 window.location.href = '/';
-                console.log(document.cookie);
             }
         }).catch(err => {
             console.log(err);

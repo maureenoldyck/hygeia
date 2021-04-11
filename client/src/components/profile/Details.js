@@ -23,9 +23,9 @@ const Details = () => {
                 'Accept': 'application/json, text/html',
             },
             credentials: 'include', 
-referrerPolicy: 'origin',
-mode: 'cors',
-referrer: document.location.origin
+            referrerPolicy: 'origin',
+            mode: 'cors',
+            referrer: document.location.origin
         })
         .then(res => res.json())
         .then((res) => { 
