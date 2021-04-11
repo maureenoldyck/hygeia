@@ -24,7 +24,7 @@ const Settings = () => {
             credentials: 'include', 
             referrerPolicy: 'origin',
             mode: 'cors',
-referrer: document.location.origin
+            referrer: document.location.origin
         })
         .then(res => res.json())
         .then((res) => { 
@@ -36,7 +36,7 @@ referrer: document.location.origin
             setBio(res[0].bio);
         })
 
-    })
+    }, [id])
 
     return (
         <div className="flex flex-col w-full h-auto lg:text-xl pb-4" id="detailsCard">

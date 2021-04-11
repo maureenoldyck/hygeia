@@ -32,7 +32,7 @@ const Profile = () => {
             setQuote(res[0].quote);
             setAvatar('http://localhost:5000/' + res[0].profile_picture);
         });
-    })
+    }, [id]);
 
     return (
         <div className="flex flex-row w-auto h-full lg:text-xl pb-2" id="profileCard">

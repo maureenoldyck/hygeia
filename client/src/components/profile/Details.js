@@ -36,7 +36,7 @@ const Details = () => {
             setWebsite(res[0].my_web);
             setSocial(res[0].my_soc);
         });
-    })
+    }, [id])
 
     return (    
         <div className="flex flex-col w-full h-full lg:text-xl" id="detailsCard">
