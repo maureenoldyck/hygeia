@@ -31,17 +31,11 @@ const Home = () => {
         .then(res => res.json())
         .then((res) => { 
             console.log(res)
-            setUserId(res.user[0].id)
             if (res.loggedIn === true) {
                 setActiveState(true)
-                setLandingNav(<Header user={res.user[0].id} />)
-                setHideRegister()
-                setFooter(<HomeFooterLoggedIn/>)
+                setUserId(res.user[0].id)
             } else {
                 setActiveState(false)
-                setLandingNav(<HeaderHome />)
-                setHideRegister(<Community />)
-                setFooter(<FooterHome />)
             }
         });
 
