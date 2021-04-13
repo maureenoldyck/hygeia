@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import Profile from '../components/profile/Profile.js';
 import ProfileForm from '../components/profile/Profile_form.js';
 import Details from '../components/profile/Details.js';
@@ -14,15 +14,13 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const MyProfile = () => {
 
-    const [LandingNav, setLandingNav] = useState('');
   
-
-    if (window.location.href === "/profile" || window.location.href === "/profile/") {
+    // if (window.location.href === "/profile" || window.location.href === "/profile/") {
     
-        const userID = localStorage.getItem('userID');
-        window.location.href = "/profile/" + userID;
+    //     const userID = localStorage.getItem('userID');
+    //     window.location.href = "/profile/" + userID;
 
-    } 
+    // } 
     
     useEffect(() => {
         fetch("http://localhost:5000/api/login", {
@@ -34,26 +32,20 @@ const MyProfile = () => {
             credentials: 'include', 
             referrerPolicy: 'origin',
             mode: 'cors',
-referrer: document.location.origin 
+            referrer: document.location.origin 
         })
         .then(res => res.json())
         .then((res) => { 
-            if (res.user) {
-                setLandingNav(<Header user={res.user[0].id} />)
-            } else {
+            if (!res.user) {
                 window.location.href = "/";
-            }
-
-            if (window.location.href !== "/profile/" + res.user[0].id) {
-                window.location.href = "/profile/" + res.user[0].id;
-            }
+            } 
         });
     }, []);
 
     return (
         <>
             <div>
-                {LandingNav}
+                <Header user={52} />
             </div>
             <div className="flex justify-around bg-brown-white flex-col">
                 <div className="flex justify-around flex-row min-h-screen mb-32 lg:mt-20 mt-14 lg:px-12 px-4" >

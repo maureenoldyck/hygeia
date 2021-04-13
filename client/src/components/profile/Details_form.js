@@ -30,9 +30,9 @@ const DetailsForm = () => {
                 'Accept': 'application/json, text/html',
             },
             credentials: 'include', 
-referrerPolicy: 'origin',
-mode: 'cors',
-referrer: document.location.origin
+            referrerPolicy: 'origin',
+            mode: 'cors',
+            referrer: document.location.origin
         })
         .then(res => res.json())
         .then((res) => { 
@@ -43,7 +43,7 @@ referrer: document.location.origin
             if (website === "") {setWebsite(res[0].my_web)};
             if (social === "") {setSocial(res[0].my_soc)};
         });
-    })
+    }, [age, gender, languages, experiences, website, social, id]);
 
     const handleDetailsSubmit = () => {
 

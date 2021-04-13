@@ -6,7 +6,10 @@ import Footer from '../../Footer'
 import MoodTracker from '../../MoodTracker'
 
 import { ChatEngineWrapper, MessageBubble, ChatSocket, ChatFeed } from 'react-chat-engine'
+<<<<<<< HEAD
 import HeaderHome from '../../home/HeaderHome'
+=======
+>>>>>>> d4ccac12681d0d6772c1e7d4a3ae7e12353d4b01
 
 const ChatRooms = () => {
 
@@ -28,7 +31,7 @@ referrer: document.location.origin
         .then(res => res.json())
         .then((res) => { 
             if (res.user) {
-                setLandingNav(<Header user={res.user[0].id} />)
+                setLandingNav(<Header user={50} />)
             } else {
                 window.location.href = "/";
             }
@@ -100,6 +103,7 @@ referrer: document.location.origin
                                     </div>
 
                                     <div className="w-full h-auto my-4" id="modal-container">
+<<<<<<< HEAD
                                         <div>
                                         <ChatEngineWrapper className="flex flex-col h-full mx-48" style={{ height: '100%'}}>
                                             <ChatSocket 
@@ -112,6 +116,18 @@ referrer: document.location.origin
                                             <ChatFeed activeChat={12999} className="" />
                                         </ChatEngineWrapper>
                                         </div>
+=======
+                                    <ChatEngineWrapper>
+                                        <ChatSocket 
+                                            projectID='3f78a1ff-b807-4a82-b8e1-aeab29b74a34'
+                                            chatID={12999}
+                                            chatAccessKey="ca-590925fc-8973-4282-a8ab-f0961f6940cf"
+                                            senderUsername='Tetris'
+                                        />
+                                        
+                                        <ChatFeed chatID={12999} />                
+                                    </ChatEngineWrapper>
+>>>>>>> d4ccac12681d0d6772c1e7d4a3ae7e12353d4b01
                                     </div>
                                 </div>
                             </div>
