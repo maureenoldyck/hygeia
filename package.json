@@ -9,7 +9,7 @@
     "client-install": "npm install --prefix client",
     "server": "cd server && nodemon app.js",
     "client": "cd client && npm start --prefix client",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
