@@ -20,7 +20,7 @@
     "postinstall": "npm run build",
     "start": "nodemon app.js",
     "build": "webpack --mode=production",
-    "heroku-postbuild": "npm install && npm run build",
+    "heroku-postbuild": "npm install",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production",
     "watch": "webpack --watch",
