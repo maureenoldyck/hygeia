@@ -39,8 +39,8 @@ const Home = () => {
             }
         });
 
-         switch(activeState){
-             case true:
+        switch(activeState){
+            case true:
                 setLandingNav(<Header user={userId} />)
                 setHideRegister()
                 setFooter(<HomeFooterLoggedIn/>)

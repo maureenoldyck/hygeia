@@ -2,7 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const router = express.Router();
 const app = express();
-const port = process.env.PORT || 5000;
+const port = 5000;
 const mysql = require('mysql');
 const { Pool } = require('pg');
 const cors = require('cors');
@@ -32,7 +32,6 @@ const upload = multer({
     //   checkFileType(file, cb);
     // }
 })
-
 
 
 //==========================================================================================//
@@ -243,7 +242,7 @@ app.post("/api/settings/:id", (req, res) => {
 app.get("/api/login", (req, res) => {
     
     const sqlActive = "SELECT * FROM users_list WHERE id = ? AND logged_in = true";
-    const id = 50;
+    const id = 52;
 
 
     pool.query(sqlActive, [id] , (err, response) => {
@@ -279,7 +278,7 @@ app.post("/api/login", (req, res) => {
                         // console.log(result[0].id)
                         // req.session.user = result;
                         // console.log(result)
-                        const id = result[0].id || 50;
+                        const id = result[0].id || 52;
                         const sql = "UPDATE users_list SET `logged_in` = true WHERE id = ?;"
                       
                         pool.query(sql, [id] , (err, response) => {

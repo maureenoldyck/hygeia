@@ -37,7 +37,7 @@ const Login = () => {
                 setLoginStatus(res.err);
             } else {
                 localStorage.setItem("loggedIn", true);
-                localStorage.setItem("userID", 50);
+                localStorage.setItem("userID", 52);
                 window.location.href = '/';
             }
         }).catch(err => {

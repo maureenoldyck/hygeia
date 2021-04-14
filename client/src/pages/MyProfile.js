@@ -45,7 +45,7 @@ const MyProfile = () => {
     return (
         <>
             <div>
-                <Header user={50} />
+                <Header user={52} />
             </div>
             <div className="flex justify-around bg-brown-white flex-col">
                 <div className="flex justify-around flex-row min-h-screen mb-32 lg:mt-20 mt-14 lg:px-12 px-4" >

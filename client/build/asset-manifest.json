@@ -1,5 +1,17 @@
 {
   "files": {
+<<<<<<< HEAD
+    "main.css": "/static/css/main.c5885ad2.chunk.css",
+    "main.js": "/static/js/main.1c63629c.chunk.js",
+    "main.js.map": "/static/js/main.1c63629c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5af95656.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5af95656.js.map",
+    "static/js/2.9f0feb39.chunk.js": "/static/js/2.9f0feb39.chunk.js",
+    "static/js/2.9f0feb39.chunk.js.map": "/static/js/2.9f0feb39.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.c5885ad2.chunk.css.map": "/static/css/main.c5885ad2.chunk.css.map",
+    "static/js/2.9f0feb39.chunk.js.LICENSE.txt": "/static/js/2.9f0feb39.chunk.js.LICENSE.txt",
+=======
     "main.css": "/static/css/main.184af925.chunk.css",
     "main.js": "/static/js/main.42fb4a45.chunk.js",
     "main.js.map": "/static/js/main.42fb4a45.chunk.js.map",
@@ -10,6 +22,7 @@
     "index.html": "/index.html",
     "static/css/main.184af925.chunk.css.map": "/static/css/main.184af925.chunk.css.map",
     "static/js/2.96a31e2b.chunk.js.LICENSE.txt": "/static/js/2.96a31e2b.chunk.js.LICENSE.txt",
+>>>>>>> d4ccac12681d0d6772c1e7d4a3ae7e12353d4b01
     "static/media/ask.e7adb30c.svg": "/static/media/ask.e7adb30c.svg",
     "static/media/athome.3ecdac26.svg": "/static/media/athome.3ecdac26.svg",
     "static/media/canitgoaway.e9331fa4.svg": "/static/media/canitgoaway.e9331fa4.svg",
@@ -21,7 +34,7 @@
     "static/media/feed.ccc1304e.svg": "/static/media/feed.ccc1304e.svg",
     "static/media/finger.540f8117.svg": "/static/media/finger.540f8117.svg",
     "static/media/index.css": "/static/media/footer.70037b90.svg",
-    "static/media/footerHome.8e2f68ff.svg": "/static/media/footerHome.8e2f68ff.svg",
+    "static/media/footerHome.72cd1b67.svg": "/static/media/footerHome.72cd1b67.svg",
     "static/media/forums.e98723f2.svg": "/static/media/forums.e98723f2.svg",
     "static/media/friends.449e2f5d.svg": "/static/media/friends.449e2f5d.svg",
     "static/media/helplines.f1dc5973.svg": "/static/media/helplines.f1dc5973.svg",
@@ -46,8 +59,14 @@
   },
   "entrypoints": [
     "static/js/runtime-main.5af95656.js",
+<<<<<<< HEAD
+    "static/js/2.9f0feb39.chunk.js",
+    "static/css/main.c5885ad2.chunk.css",
+    "static/js/main.1c63629c.chunk.js"
+=======
     "static/js/2.96a31e2b.chunk.js",
     "static/css/main.184af925.chunk.css",
     "static/js/main.42fb4a45.chunk.js"
+>>>>>>> d4ccac12681d0d6772c1e7d4a3ae7e12353d4b01
   ]
 }

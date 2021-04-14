@@ -27,7 +27,7 @@ referrer: document.location.origin
         .then(res => res.json())
         .then((res) => { 
             if (res.user) {
-                setLandingNav(<Header user={50} />)
+                setLandingNav(<Header user={52} />)
             } else {
                 setLandingNav(<HeaderHome />)
             }
