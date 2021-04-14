@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/maureenoldyck/hygeia/issues"
   },
-  "homepage": "https://github.com/maureenoldyck/hygeia#readme"
+  "homepage": "https://github.com/maureenoldyck/hygeia#readme",
+  "dependencies": {
+    "pg": "^8.6.0"
+  }
 }
