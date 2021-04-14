@@ -4,6 +4,7 @@ const router = express.Router();
 const app = express();
 const port = process.env.PORT || 5000;
 const mysql = require('mysql');
+const { Pool } = require('pg');
 const cors = require('cors');
 const { reset } = require('nodemon');
 const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
@@ -41,15 +42,20 @@ const upload = multer({
 //TODO: Need to find a way to change this hard coding into a variable
 
 // Instead of using the const "database", "pool" will be the one 
-const pool = mysql.createPool({
-    connectionLimit : 10,
-    host            : 'localhost',
-    user            : 'root',
-    password        : 'root',
-    database        : 'hygeia',
-    port            : 3306,
-    insecureAuth    : true,
+
+const pool = new Pool ({
+    connectionString    : process.env.DATABASE_URL,
+    ssl                 : {rejectUnauthorized:false},
+    // connectionLimit : 10,
+    // host            : 'localhost',
+    // user            : 'root',
+    // password        : 'root',
+    // database        : 'hygeia',
+    // port            : 3306,
+    // insecureAuth    : true,
 });
+
+pool.connect();
 
 
 app.use ( cors (
@@ -68,7 +74,6 @@ const client = new Client({
     }
 });
 
-client.connect();
 
 
 app.use('/', express.static(path.join(__dirname, '/')));
