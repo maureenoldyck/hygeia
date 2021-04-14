@@ -16,7 +16,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "npm run build && nodemon app.js",
+    "postinstall": "npm run build",
+    "start": "nodemon app.js",
     "build": "webpack --mode=development",
     "heroku-postbuild": "npm install && npm run build",
     "build:dev": "webpack --mode=development",
