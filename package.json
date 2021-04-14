@@ -4,9 +4,8 @@
   "description": "Hygeia is a social mental health platform where you can talk openly about how you are <i>really</i> feeling. This platform is designed with anonimity as first priority as we know that it is, for most of us, not easy to talk about your own mental health.",
   "main": "index.js",
   "scripts": {
-    "start": "cd server && npm start",
-    "server": "cd server && nodemon app.js",
-    "heroku-postbuild": "cd server && npm run build",
+    "start": "cd api && npm start",
+    "server": "cd api && nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -1,0 +1,72 @@
+{
+  "files": {
+<<<<<<< HEAD
+    "main.css": "/static/css/main.c5885ad2.chunk.css",
+    "main.js": "/static/js/main.1c63629c.chunk.js",
+    "main.js.map": "/static/js/main.1c63629c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5af95656.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5af95656.js.map",
+    "static/js/2.9f0feb39.chunk.js": "/static/js/2.9f0feb39.chunk.js",
+    "static/js/2.9f0feb39.chunk.js.map": "/static/js/2.9f0feb39.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.c5885ad2.chunk.css.map": "/static/css/main.c5885ad2.chunk.css.map",
+    "static/js/2.9f0feb39.chunk.js.LICENSE.txt": "/static/js/2.9f0feb39.chunk.js.LICENSE.txt",
+=======
+    "main.css": "/static/css/main.184af925.chunk.css",
+    "main.js": "/static/js/main.42fb4a45.chunk.js",
+    "main.js.map": "/static/js/main.42fb4a45.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5af95656.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5af95656.js.map",
+    "static/js/2.96a31e2b.chunk.js": "/static/js/2.96a31e2b.chunk.js",
+    "static/js/2.96a31e2b.chunk.js.map": "/static/js/2.96a31e2b.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.184af925.chunk.css.map": "/static/css/main.184af925.chunk.css.map",
+    "static/js/2.96a31e2b.chunk.js.LICENSE.txt": "/static/js/2.96a31e2b.chunk.js.LICENSE.txt",
+>>>>>>> d4ccac12681d0d6772c1e7d4a3ae7e12353d4b01
+    "static/media/ask.e7adb30c.svg": "/static/media/ask.e7adb30c.svg",
+    "static/media/athome.3ecdac26.svg": "/static/media/athome.3ecdac26.svg",
+    "static/media/canitgoaway.e9331fa4.svg": "/static/media/canitgoaway.e9331fa4.svg",
+    "static/media/chat.9ce9abb3.svg": "/static/media/chat.9ce9abb3.svg",
+    "static/media/chatroom.f74180bd.svg": "/static/media/chatroom.f74180bd.svg",
+    "static/media/chatting.d0f25331.svg": "/static/media/chatting.d0f25331.svg",
+    "static/media/community.219410c2.svg": "/static/media/community.219410c2.svg",
+    "static/media/documentation.5d63981c.svg": "/static/media/documentation.5d63981c.svg",
+    "static/media/feed.ccc1304e.svg": "/static/media/feed.ccc1304e.svg",
+    "static/media/finger.540f8117.svg": "/static/media/finger.540f8117.svg",
+    "static/media/index.css": "/static/media/footer.70037b90.svg",
+    "static/media/footerHome.72cd1b67.svg": "/static/media/footerHome.72cd1b67.svg",
+    "static/media/forums.e98723f2.svg": "/static/media/forums.e98723f2.svg",
+    "static/media/friends.449e2f5d.svg": "/static/media/friends.449e2f5d.svg",
+    "static/media/helplines.f1dc5973.svg": "/static/media/helplines.f1dc5973.svg",
+    "static/media/home.2f413533.svg": "/static/media/home.2f413533.svg",
+    "static/media/howtorecognize.c01944bd.svg": "/static/media/howtorecognize.c01944bd.svg",
+    "static/media/logo.1efbb09b.svg": "/static/media/logo.1efbb09b.svg",
+    "static/media/logout.d20bbba6.svg": "/static/media/logout.d20bbba6.svg",
+    "static/media/messages-none.3cf00d7c.svg": "/static/media/messages-none.3cf00d7c.svg",
+    "static/media/notifications-none.e660e760.svg": "/static/media/notifications-none.e660e760.svg",
+    "static/media/privacy.dfcd2062.svg": "/static/media/privacy.dfcd2062.svg",
+    "static/media/professionalhelp.2b0d5a97.svg": "/static/media/professionalhelp.2b0d5a97.svg",
+    "static/media/road.34b4a452.svg": "/static/media/road.34b4a452.svg",
+    "static/media/search.65dc4f86.svg": "/static/media/search.65dc4f86.svg",
+    "static/media/settings.fdbe98e0.svg": "/static/media/settings.fdbe98e0.svg",
+    "static/media/tag.b42e98cf.svg": "/static/media/tag.b42e98cf.svg",
+    "static/media/team.c6f4c44e.svg": "/static/media/team.c6f4c44e.svg",
+    "static/media/thingstolookoutfor.77fb4a8f.svg": "/static/media/thingstolookoutfor.77fb4a8f.svg",
+    "static/media/unavailable.69b7ec7c.png": "/static/media/unavailable.69b7ec7c.png",
+    "static/media/wave.e254269b.svg": "/static/media/wave.e254269b.svg",
+    "static/media/whatcanido.dce12ba3.svg": "/static/media/whatcanido.dce12ba3.svg",
+    "static/media/whatis.50e94d72.svg": "/static/media/whatis.50e94d72.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5af95656.js",
+<<<<<<< HEAD
+    "static/js/2.9f0feb39.chunk.js",
+    "static/css/main.c5885ad2.chunk.css",
+    "static/js/main.1c63629c.chunk.js"
+=======
+    "static/js/2.96a31e2b.chunk.js",
+    "static/css/main.184af925.chunk.css",
+    "static/js/main.42fb4a45.chunk.js"
+>>>>>>> d4ccac12681d0d6772c1e7d4a3ae7e12353d4b01
+  ]
+}
