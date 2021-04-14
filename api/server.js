@@ -48,6 +48,9 @@ const upload = multer({
 
 const pool = new Pool ({
     connectionString    : process.env.DATABASE_URL,
+    ssl                 : {
+        rejectUnauthorized: false
+    },
     user                : process.env.PG_USER || "root",      //postgres user
     host                : process.env.PG_ENDPOINT || "localhost",  //localhost (I also tried 127.0.0.1)
     database            : process.env.PG_DB || "hygeia",    //database name to connect to
