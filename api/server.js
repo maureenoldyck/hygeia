@@ -1,6 +1,7 @@
+const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
-const port = process.env.REACT_APP_DB_PORT || 5000;
+const port = 5000;
 const mysql = require('mysql');
 const cors = require('cors');
 const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
@@ -22,14 +23,16 @@ app.use ( cors (
     }
 ))
 
-const pool = mysql.createPool ({
-    user                : process.env.DB_USER || process.env.REACT_APP_DB_USER_DEV,     
-    host                : process.env.DB_ENDPOINT || process.env.REACT_APP_DB_ENDPOINT_DEV, 
-    database            : process.env.DB_DB || process.env.REACT_APP_DB_DB_DEV,   
-    password            : process.env.DB_PASS || process.env.REACT_APP_DB_PASS_DEV,  
-    port                : process.env.DB_PORT || process.env.REACT_APP_DB_PORT_DEV
+const pool = mysql.createConnection ({
+    user                : process.env.DB_USER, 
+    host                : process.env.DB_ENDPOINT, 
+    database            : process.env.DB_DB, 
+    password            : process.env.DB_PASS,  
+    port                : process.env.DB_PORT
 });
-
+console.log("Database connecting...")
+pool.connect();
+console.log("Connected!")
 
 app.use('/', express.static(path.join(__dirname, '/')));
 
@@ -84,7 +87,16 @@ const upload = multer({
 //==========================================================================================//
 
 app.get("/", (req, res) => {
-    res.send("Hello World!")
+
+    const sqlUsers = "SELECT * FROM `users_list`;"
+    pool.query(sqlUsers, (err, result) => {
+        if (err) {
+            res.send({message:err});
+        } else {
+            res.send({message: result});
+        }
+    })
+    // res.send("Hello World!")
 })
 
 app.get("/users", (req, res) => {
@@ -444,6 +456,6 @@ app.get('/api/search/:keywords', (req, res) => {
 //==========================================================================================//
 
 
-app.listen(port || 5000, "localhost", () => {
+app.listen(port || 5000, () => {
     console.log("Running..")
 })
