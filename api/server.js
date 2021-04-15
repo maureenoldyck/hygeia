@@ -7,25 +7,6 @@ const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
 const path = require('path');
 const multer  = require('multer')
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "public");},
-    filename: function(req, file, cb){
-        const ext = file.mimetype.split("/")[1];
-        cb(null, `uploads/${file.fieldname}-${Date.now()}.${ext}`);
-    }
-});
-
-const upload = multer({
-    // destination: 'client/public/uploads/',
-    storage: storage,
-    // limits : {fileSize : 1000000}
-    // fileFilter: function(req, file, cb){
-    //   checkFileType(file, cb);
-    // }
-})
-
-
 //==========================================================================================//
 //                                  Create connection + config                              //
 //==========================================================================================//
@@ -34,6 +15,13 @@ const upload = multer({
 
 // Instead of using the const "database", "pool" will be the one 
 
+app.use ( cors (
+    { origin:`https://hygeia.netlify.app`,
+      credentials: true,
+      "methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    }
+))
+
 const pool = mysql.createPool ({
     user                : process.env.DB_USER || process.env.REACT_APP_DB_USER_DEV,     
     host                : process.env.DB_ENDPOINT || process.env.REACT_APP_DB_ENDPOINT_DEV, 
@@ -41,14 +29,6 @@ const pool = mysql.createPool ({
     password            : process.env.DB_PASS || process.env.REACT_APP_DB_PASS_DEV,  
     port                : process.env.DB_PORT || process.env.REACT_APP_DB_PORT_DEV
 });
-
-
-app.use ( cors (
-    { origin:`https://hygeia.netlify.app`,
-      credentials: true,
-      "methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-    }
-))
 
 
 app.use('/', express.static(path.join(__dirname, '/')));
@@ -81,7 +61,23 @@ app.use(express.urlencoded({
 // }));
 
 
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "public");},
+    filename: function(req, file, cb){
+        const ext = file.mimetype.split("/")[1];
+        cb(null, `uploads/${file.fieldname}-${Date.now()}.${ext}`);
+    }
+});
 
+const upload = multer({
+    // destination: 'client/public/uploads/',
+    storage: storage,
+    // limits : {fileSize : 1000000}
+    // fileFilter: function(req, file, cb){
+    //   checkFileType(file, cb);
+    // }
+})
 
 //==========================================================================================//
 //                                 Create queries + req, res                                //
