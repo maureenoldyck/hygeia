@@ -35,14 +35,12 @@ const upload = multer({
 // Instead of using the const "database", "pool" will be the one 
 
 const pool = mysql.createPool ({
-    user                : process.env.DB_USER || process.env.REACT_APP_DB_USER,     
-    host                : process.env.DB_ENDPOINT || process.env.REACT_APP_DB_ENDPOINT, 
-    database            : process.env.DB_DB || process.env.REACT_APP_DB_DB,   
-    password            : process.env.DB_PASS || process.env.REACT_APP_DB_PASS,  
-    port                : process.env.DB_PORT || process.env.REACT_APP_DB_PORT
+    user                : process.env.DB_USER || process.env.REACT_APP_DB_USER_DEV,     
+    host                : process.env.DB_ENDPOINT || process.env.REACT_APP_DB_ENDPOINT_DEV, 
+    database            : process.env.DB_DB || process.env.REACT_APP_DB_DB_DEV,   
+    password            : process.env.DB_PASS || process.env.REACT_APP_DB_PASS_DEV,  
+    port                : process.env.DB_PORT || process.env.REACT_APP_DB_PORT_DEV
 });
-
-pool.connect();
 
 
 app.use ( cors (
