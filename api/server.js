@@ -1,23 +1,11 @@
-// import "core-js/stable";
-// import "regenerator-runtime/runtime";
-
 const express = require('express');
-
-const router = express.Router();
 const app = express();
-const port = process.env.DATABASE_URL || 5000;
-// const port = 5000;
+const port = process.env.REACT_APP_DB_PORT || 5000;
 const mysql = require('mysql');
-const { Pool } = require('pg').native;
 const cors = require('cors');
-const { reset } = require('nodemon');
 const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
 const path = require('path');
-
-
 const multer  = require('multer')
-
-const { ENOTEMPTY } = require('constants');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -46,23 +34,12 @@ const upload = multer({
 
 // Instead of using the const "database", "pool" will be the one 
 
-const pool = new Pool ({
-    connectionString    : process.env.DATABASE_URL,
-    ssl                 : {
-        rejectUnauthorized: false
-    },
-    user                : process.env.PG_USER || "root",      //postgres user
-    host                : process.env.PG_ENDPOINT || "localhost",  //localhost (I also tried 127.0.0.1)
-    database            : process.env.PG_DB || "hygeia",    //database name to connect to
-    password            : process.env.PG_PASS || "root",  //postgres user password
-    port                : process.env.PG_PORT || 3306
-    // connectionLimit : 10,
-    // host            : 'localhost',
-    // user            : 'root',
-    // password        : 'root',
-    // database        : 'hygeia',
-    // port            : 3306,
-    // insecureAuth    : true,
+const pool = mysql.createPool ({
+    user                : process.env.DB_USER || process.env.REACT_APP_DB_USER,     
+    host                : process.env.DB_ENDPOINT || process.env.REACT_APP_DB_ENDPOINT, 
+    database            : process.env.DB_DB || process.env.REACT_APP_DB_DB,   
+    password            : process.env.DB_PASS || process.env.REACT_APP_DB_PASS,  
+    port                : process.env.DB_PORT || process.env.REACT_APP_DB_PORT
 });
 
 pool.connect();
@@ -74,16 +51,6 @@ app.use ( cors (
       "methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
     }
 ))
-
-const { Client } = require('pg');
-
-const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl             :{
-        rejectUnauthorized: false
-    }
-});
-
 
 
 app.use('/', express.static(path.join(__dirname, '/')));
@@ -102,7 +69,7 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
-app.set('trust proxy', 1) // trust first proxy
+
 
 
 // app.use(session({
@@ -483,6 +450,6 @@ app.get('/api/search/:keywords', (req, res) => {
 //==========================================================================================//
 
 
-app.listen(process.env.PORT || 5000, "localhost", () => {
+app.listen(port || 5000, "localhost", () => {
     console.log("Running..")
 })
