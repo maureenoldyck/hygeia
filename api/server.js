@@ -30,12 +30,12 @@ const multer  = require('multer')
     //   return callback(null, true);
     // }
 //   }));
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "https://hygeia.netlify.app");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     res.header("Access-Control-Allow-Credentials", true);
-//     next();
-//   });
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://hygeia.netlify.app");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Credentials", true);
+    next();
+  });
 
 const pool = mysql.createConnection ({
     user                : process.env.DB_USER, 
