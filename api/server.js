@@ -35,7 +35,7 @@ console.log("Database connecting...")
 pool.connect();
 console.log("Connected!")
 
-// app.use('/', express.static(path.join(__dirname, '/')));
+app.use('/', express.static(path.join(__dirname, '/')));
 
 // app.use((req, res, next) => {
 //     res.setHeader("Access-Control-Allow-Origin", "https://hygeia.netlify.app/");
@@ -360,42 +360,42 @@ app.post("/api/profile/:id", (req, res) => {
 // });
 
 
-app.post("/api/profileImg/:id", upload.single('avatar'),(req, res, err) => {
+// app.post("/api/profileImg/:id", upload.single('avatar'),(req, res, err) => {
 
-    if (!req.file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
-        req.fileValidationError = 'Only image files are allowed!';
-        res.send({ msg:'Only image files (jpg, jpeg, png) are allowed!'})
-    } else if (!req.file) {
-        res.send({
-            msg: 'Error: Please upload a valid image!'
-        });
-    } else {
+//     if (!req.file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/)) {
+//         req.fileValidationError = 'Only image files are allowed!';
+//         res.send({ msg:'Only image files (jpg, jpeg, png) are allowed!'})
+//     } else if (!req.file) {
+//         res.send({
+//             msg: 'Error: Please upload a valid image!'
+//         });
+//     } else {
 
-        const imgPath = req.file.filename;
-        const id = req.params.id
+//         const imgPath = req.file.filename;
+//         const id = req.params.id
     
-        const sqlInsert = "UPDATE users_list SET `profile_picture` = ? WHERE id = ?;"
+//         const sqlInsert = "UPDATE users_list SET `profile_picture` = ? WHERE id = ?;"
     
-        pool.query(sqlInsert, [imgPath, id] , (err, result) => {
-            if (err) {
-                console.log(err)
-                res.send({
-                    msg: err
-                })
-            }
+//         pool.query(sqlInsert, [imgPath, id] , (err, result) => {
+//             if (err) {
+//                 console.log(err)
+//                 res.send({
+//                     msg: err
+//                 })
+//             }
     
-            if (result) {
+//             if (result) {
             
-                res.send({
-                    data:result,
-                    msg: 'Your avatar is updated!'
-                });
+//                 res.send({
+//                     data:result,
+//                     msg: 'Your avatar is updated!'
+//                 });
         
-            }
-        });
-    }
+//             }
+//         });
+//     }
     
-});
+// });
 
 
 app.get("/api/documentation/:slug", (req, res,) => {
