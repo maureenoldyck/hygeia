@@ -2,7 +2,7 @@ const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
 // const port = process.env.PORT || 5000;
-const port = process.env.PORT;
+const port = process.env.PORT || process.env.DB_PORT;
 const mysql = require('mysql');
 const cors = require('cors');
 const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
@@ -18,13 +18,18 @@ const multer  = require('multer')
 // Instead of using the const "database", "pool" will be the one 
 
 app.use(cors())
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 const pool = mysql.createConnection ({
     user                : process.env.DB_USER, 
     host                : process.env.DB_ENDPOINT, 
     database            : process.env.DB_DB, 
     password            : process.env.DB_PASS,  
-    port                : process.env.PORT
+    port                : process.env.DB_PORT
 });
 console.log("Database connecting...")
 pool.connect();
