@@ -14,9 +14,10 @@ import search from '../assets/images/search.svg';
 import finger from '../assets/images/finger.svg';
 
 
-const Header = ({user}) => {
+const Header = () => {
 
     const [keyword, setKeyword] = useState('');
+    const user = localStorage.getItem('userID')
     
     const seeMenu = () => {
         const x = document.getElementById("mobile-menu");
@@ -39,21 +40,6 @@ const Header = ({user}) => {
     }
 
     const logOut = () => {
-
-        fetch("http://localhost:5000/api/logout", {
-            method: 'POST',
-            headers: {
-                "Content-Type": 'application/json,  charset=UTF-8', 
-                'Accept': 'application/json, text/html',
-            },
-            credentials: 'include', 
-            referrerPolicy: 'origin',
-            mode: 'cors',
-referrer: document.location.origin 
-        })
-        .then(res => res.json())
-        .then(res => console.log(res));
-
         localStorage.removeItem('loggedIn');
         localStorage.removeItem('userID');
         window.location.href = "/";

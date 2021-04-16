@@ -23,7 +23,7 @@
   "theme_color": "#000000",
   "background_color": "#ffffff",
   "permissions": [
-    "http://localhost:5000/*",
+    "https://hygeia-test.herokuapp.com/*",
     "https://www.hygeia-app.herokuapp.com/*",
     "http://hygeia-app.herokuapp.com/*",
     "http://www.hygeia-app.herokuapp.com/*"

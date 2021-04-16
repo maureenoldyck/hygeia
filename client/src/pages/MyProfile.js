@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import Profile from '../components/profile/Profile.js';
 import ProfileForm from '../components/profile/Profile_form.js';
 import Details from '../components/profile/Details.js';
@@ -14,38 +14,21 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const MyProfile = () => {
 
-  
-    // if (window.location.href === "/profile" || window.location.href === "/profile/") {
-    
-    //     const userID = localStorage.getItem('userID');
-    //     window.location.href = "/profile/" + userID;
+    const [LandingNav, setLandingNav] = useState('');
+    const loggedIn = localStorage.getItem('loggedIn')
 
-    // } 
-    
     useEffect(() => {
-        fetch("http://localhost:5000/api/login", {
-            method: 'GET',
-            headers: {
-                "Content-Type": 'application/json,  charset=UTF-8', 
-                'Accept': 'application/json, text/html',
-            },
-            credentials: 'include', 
-            referrerPolicy: 'origin',
-            mode: 'cors',
-            referrer: document.location.origin 
-        })
-        .then(res => res.json())
-        .then((res) => { 
-            if (!res.user) {
-                window.location.href = "/";
-            } 
-        });
-    }, []);
+        if ( loggedIn === "true") {
+            setLandingNav(<Header user={loggedIn} />)
+        }  else {
+            window.location = "/";
+        }
+    }, [loggedIn]);
 
     return (
         <>
             <div>
-                <Header user={52} />
+                {LandingNav}
             </div>
             <div className="flex justify-around bg-brown-white flex-col">
                 <div className="flex justify-around flex-row min-h-screen mb-32 lg:mt-20 mt-14 lg:px-12 px-4" >

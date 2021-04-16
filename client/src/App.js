@@ -34,7 +34,7 @@ function App() {
                 <Route path="/documentation" exact component={Documentation} />
                 <Route path="/search/:keywords" component={Search} />
                 <Route path="/profile/:id">
-                  {!loggedIn ? <Redirect to="/" /> : <MyProfile /> }
+                  {!loggedIn ? <Redirect to="/" /> : <MyProfile userId={localStorage.getItem('userID')}/> }
                 </Route>
                 <Route path="/chatroom" exact>
                   {!loggedIn ? <Redirect to="/" /> : <Chatroom /> }

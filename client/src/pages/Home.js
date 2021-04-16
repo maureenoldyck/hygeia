@@ -16,36 +16,41 @@ const Home = () => {
     const [activeState, setActiveState] = useState(false);
     const [userId, setUserId] = useState();
 
+
     useEffect(() => {    
-        fetch("http://localhost:5000/api/login", {
-            method: 'GET',
-            headers: {
-                "Content-Type": 'application/json,  charset=UTF-8', 
-                'Accept': 'application/json, text/html',
-            },
-            credentials: 'include', 
-            referrerPolicy: 'origin',
-            mode: 'cors',
-            referrer: document.location.origin
-        })
-        .then(res => res.json())
-        .then((res) => { 
-            console.log(res)
-            if (res.loggedIn === true) {
-                setActiveState(true)
-                setUserId(50)
-            } else {
-                setActiveState(false)
-            }
-        });
+
+        setActiveState(localStorage.getItem('loggedIn'))
+
+        setUserId(localStorage.getItem('userID'))
+    //     fetch(`https://hygeia-test.herokuapp.com/api/login`, {
+    //         method: 'GET',
+    //         headers: {
+    //             "Content-Type": 'application/json,  charset=UTF-8', 
+    //             'Accept': 'application/json, text/html',
+    //         },
+    //         credentials: 'include', 
+    //         referrerPolicy: 'origin',
+    //         mode: 'cors',
+    //         referrer: document.location.origin
+    //     })
+    //     .then(res => res.json())
+    //     .then((res) => { 
+    //         console.log(res)
+    //         if (res.loggedIn === true) {
+    //             setActiveState(true)
+    //             setUserId(localStorage.getItem('userID'))
+    //         } else {
+    //             setActiveState(false)
+    //         }
+    //     });
 
         switch(activeState){
-            case true:
+            case "true":
                 setLandingNav(<Header user={userId} />)
                 setHideRegister()
                 setFooter(<HomeFooterLoggedIn/>)
                 break;
-             case false: 
+             case "false": 
                 setLandingNav(<HeaderHome />)
                 setHideRegister(<Community />)
                 setFooter(<FooterHome />)

@@ -4,7 +4,7 @@
 const validateInfo = (values) => {
   let errors = {};
 
-  fetch("http://localhost:5000/api/register", {
+  fetch("https://hygeia-test.herokuapp.com/api/register", {
       method: 'POST',
       body: JSON.stringify({
         email: values.email

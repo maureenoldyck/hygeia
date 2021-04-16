@@ -14,7 +14,7 @@ const Profile = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/profile/${id}`, {
+        fetch(`https://hygeia-test.herokuapp.com/api/profile/${id}`, {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 
@@ -30,7 +30,7 @@ const Profile = () => {
             setName(res[0].name);
             setRole(res[0].role);
             setQuote(res[0].quote);
-            setAvatar('http://localhost:5000/' + res[0].profile_picture);
+            setAvatar('https://hygeia-test.herokuapp.com/' + res[0].profile_picture);
         });
     }, [id]);
 

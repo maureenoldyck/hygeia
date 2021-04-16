@@ -16,7 +16,7 @@ const Details = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/profile/${id}`, {
+        fetch(`https://hygeia-test.herokuapp.com/api/profile/${id}`, {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 

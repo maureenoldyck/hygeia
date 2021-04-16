@@ -7,7 +7,7 @@ import FooterHome from '../../components/home/FooterHome'
 const Search = () => {
 
 
-    const [LandingNav, setLandingNav] = useState('');
+    
     const [articles, setArticles] = useState([]);
 
     console.log(useParams());
@@ -15,16 +15,16 @@ const Search = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/search/${keywords}`, {
+        fetch(`https://hygeia-test.herokuapp.com/api/search/${keywords}`, {
             method: 'GET',
             headers: {
                 "Content-Type": 'application/json,  charset=UTF-8', 
                 'Accept': 'application/json, text/html',
             },
             credentials: 'include', 
-referrerPolicy: 'origin',
-mode: 'cors',
-referrer: document.location.origin 
+            referrerPolicy: 'origin',
+            mode: 'cors',
+            referrer: document.location.origin 
         })
         .then(res => res.json())
         .then((res) => {
@@ -34,28 +34,16 @@ referrer: document.location.origin
 
 
 
-    useEffect(() => {
-        fetch("http://localhost:5000/api/login", {
-            method: 'GET',
-            headers: {
-                "Content-Type": 'application/json,  charset=UTF-8', 
-                'Accept': 'application/json, text/html',
-            },
-            credentials: 'include', 
-referrerPolicy: 'origin',
-mode: 'cors',
-referrer: document.location.origin 
-        })
-        .then(res => res.json())
-        .then((res) => { 
-            if (res.user) {
-                setLandingNav(<Header user={52} />)
-            } else {
-                setLandingNav(<HeaderHome />)
-            }
-        });
-    }, []);
+    const [LandingNav, setLandingNav] = useState('');
+    const loggedIn = localStorage.getItem('loggedIn')
 
+    useEffect(() => {
+        if ( loggedIn === "true") {
+            setLandingNav(<Header user={localStorage.getItem('userID')} />)
+        } else {
+            setLandingNav(<HeaderHome />)
+        }
+    }, [loggedIn]);
 
 
     return (

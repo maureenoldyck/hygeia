@@ -1,6 +1,7 @@
 const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
+// const port = process.env.PORT || 5000;
 const port = process.env.PORT || 5000;
 const mysql = require('mysql');
 const cors = require('cors');
@@ -17,7 +18,7 @@ const multer  = require('multer')
 // Instead of using the const "database", "pool" will be the one 
 
 app.use ( cors (
-    { origin:`https://hygeia.netlify.app`,
+    { origin:`https://hygeia.netlify.app/`,
       credentials: true,
       "methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
     }
@@ -222,24 +223,6 @@ app.post("/api/settings/:id", (req, res) => {
 
 
 
-// // // LOGIN GET REQUEST
-app.get("/api/login", (req, res) => {
-    
-    const sqlActive = "SELECT * FROM users_list WHERE id = ? AND logged_in = true";
-    const id = 52;
-
-
-    pool.query(sqlActive, [id] , (err, response) => {
-        
-        if (response.length > 0) {
-            res.send({loggedIn: true, user: response[0]});
-        } else { 
-            res.send({loggedIn: false});
-        }
-    });
-})
-
-
 
 // USER LOGIN/LOGOUT POST REQUESTS 
 
@@ -251,32 +234,17 @@ app.post("/api/login", (req, res) => {
 
 
     pool.query(sqlInsert, [email], (err, result) => {
-        if (err) {
-            res.send({err: err});
+     
+        if (result) { 
+            bcrypt.compare(password, result[0].u_password, function(err, match) {
+                if (match) {
+                    res.send({message: "Login succesful!", loggedIn: true, userId: result[0].id})
+                } else {
+                    res.send({message: "Wrong password!"})
+                }
+            })   
         } else {
-            if (result.length > 0) {
-                
-                bcrypt.compare(password, result[0].u_password, function(err, response) {
-                   
-                    if (response === true) {
-                        // console.log(result[0].id)
-                        // req.session.user = result;
-                        // console.log(result)
-                        const id = result[0].id || 52;
-                        const sql = "UPDATE users_list SET `logged_in` = true WHERE id = ?;"
-                      
-                        pool.query(sql, [id] , (err, response) => {
-                            
-                            res.send(result);
-                        });
-                    } else {
-                        res.send({ err:"Sadly, your email and/or password combination doesn't seem correct. Please try again."});
-                    }   
-                });
-               
-            } else {
-                res.send({ err: "Sadly, your email doesn't seem correct. Please try again or register if you don't have an account yet."});
-            }
+            res.send({message: "Wrong email!"})
         }
         
     });
@@ -285,19 +253,33 @@ app.post("/api/login", (req, res) => {
  
 });
 
+
+// // // LOGIN GET REQUEST
+// app.get("/api/login", (req, res) => {
+
+
+    
+    // const sqlActive = "SELECT * FROM users_list WHERE id = ? AND logged_in = true";
+    // const id;
+    // console.log({id: id});
+
+    // pool.query(sqlActive, [id] , (err, response) => {
+
+    //     if (response.length > 0) {
+    //         res.send({loggedIn: true, user: response[0]});
+    //     } else { 
+    //         res.send({loggedIn: false});
+    //     }
+    // });
+// })
+
+
+
 app.get('/api/logout', (req, res) => {
     res.send("test logout");
 })
 
-app.post('/api/logout', (req, res) => {
 
-    const id = 50;
-    const sql = "UPDATE users_list SET `logged_in` = false WHERE id = ?;"
-                      
-    pool.query(sql, [id] , (err, response) => {
-        
-    });
-});
 
 
 
@@ -306,19 +288,16 @@ app.post('/api/logout', (req, res) => {
 app.get("/api/profile/:id", (req, res,) => {
 
     const userId = req.params.id;
-
-
     const sqlInsert = "SELECT * FROM `users_list` WHERE id = ?";
 
     pool.query(sqlInsert, [userId], (err, result) => {
-
-
 
         if (err) {
             res.send({err: err});
         } 
        
         if (result.length > 0) {
+            console.log(result)
             res.send(result);
         } else {
             res.send({ err: "Sadly something went wrong"});
@@ -456,6 +435,6 @@ app.get('/api/search/:keywords', (req, res) => {
 //==========================================================================================//
 
 
-app.listen(port || 5000, () => {
+app.listen(5000, () => {
     console.log("Running..")
 })

@@ -7,32 +7,16 @@ import Unavailable from '../components/Unavailable.js';
 
 
 const Forum = () => {
-
     const [LandingNav, setLandingNav] = useState('');
-  
+    const loggedIn = localStorage.getItem('loggedIn')
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/login", {
-            method: 'GET',
-            headers: {
-                "Content-Type": 'application/json,  charset=UTF-8', 
-                'Accept': 'application/json, text/html',
-            },
-            credentials: 'include', 
-            referrerPolicy: 'origin',
-            mode: 'cors',
-referrer: document.location.origin 
-        })
-        .then(res => res.json())
-        .then((res) => { 
-            if (res.user) {
-                setLandingNav(<Header user={52} />)
-            } else {
-                window.location.href = "/";
-            }
-        });
-    }, []);
-    
+        if ( loggedIn === "true") {
+            setLandingNav(<Header user={localStorage.getItem('userID')} />)
+        }  else {
+            window.location = "/";
+        }
+    }, [loggedIn]);
     return (
         <>
             <div>

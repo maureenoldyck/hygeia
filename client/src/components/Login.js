@@ -15,7 +15,7 @@ const Login = () => {
         //======================================================================================//
     
 
-        fetch("http://localhost:5000/api/login", {
+        fetch("https://hygeia-test.herokuapp.com/api/login", {
             method: 'POST',
             body: JSON.stringify({
                 email: email,
@@ -32,14 +32,13 @@ const Login = () => {
         })
         .then(res => res.json())
         .then((res) => {
-            console.log(res)
-            if (res.err) {
-                setLoginStatus(res.err);
-            } else {
-                localStorage.setItem("loggedIn", true);
-                localStorage.setItem("userID", 52);
+             if (res.loggedIn) {
+                localStorage.setItem("loggedIn", res.loggedIn);
+                localStorage.setItem("userID", res.userId);
                 window.location.href = '/';
-            }
+             } else {
+                 setLoginStatus(res.message)
+             }
         }).catch(err => {
             console.log(err);
         });
