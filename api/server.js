@@ -17,12 +17,7 @@ const multer  = require('multer')
 
 // Instead of using the const "database", "pool" will be the one 
 
-app.use ( cors (
-    { origin:`https://hygeia.netlify.app/`,
-      credentials: true,
-      "methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-    }
-))
+app.use(cors())
 
 const pool = mysql.createConnection ({
     user                : process.env.DB_USER, 
