@@ -8,8 +8,6 @@ const cors = require('cors');
 const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
 const path = require('path');
 const multer  = require('multer')
-const allowedOrigins = ['http://localhost:3000',
-  'https://hygeia.netlify.app'];
 
 //==========================================================================================//
 //                                  Create connection + config                              //
