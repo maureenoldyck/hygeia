@@ -49,9 +49,9 @@ const ProfileForm = () => {
                 'Accept': 'application/json, text/html',
             },
             credentials: 'include', 
-            referrerPolicy: 'origin',
-            mode: 'no-cors',
-referrer: document.location.origin
+            refererPolicy: 'origin',
+            mode: 'cors',
+referer: document.location.origin
         })
         .then(res => res.json())
         .then((res) => { 
@@ -81,9 +81,9 @@ referrer: document.location.origin
                 'Content-type': 'application/json; charset=UTF-8'
             },
             credentials: 'include', 
-            referrerPolicy: 'origin',
-            mode: 'no-cors',
-referrer: document.location.origin
+            refererPolicy: 'origin',
+            mode: 'cors',
+referer: document.location.origin
 
         })
         .then(res => res.json())
@@ -106,9 +106,9 @@ referrer: document.location.origin
                 'Accept': 'multipart/form-data',
             },
             credentials: 'include', 
-referrerPolicy: 'origin',
-mode: 'no-cors',
-referrer: document.location.origin
+refererPolicy: 'origin',
+mode: 'cors',
+referer: document.location.origin
         })
         .then(res => res.json())
         .then(data => {

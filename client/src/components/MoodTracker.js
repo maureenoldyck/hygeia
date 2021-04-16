@@ -17,9 +17,9 @@ const MoodTracker = () => {
     //             'Accept': 'application/json, text/html',
     //         },
     //         credentials: 'include', 
-// referrerPolicy: 'origin',
-// mode: 'no-cors',
-// referrer: document.location.origin 
+// refererPolicy: 'origin',
+// mode: 'cors',
+// referer: document.location.origin 
     //     })
     //     .then(res => res.json())
     //     .then((res) => {
@@ -41,9 +41,9 @@ const MoodTracker = () => {
     //             'Accept': 'multipart/form-data',
     //         },
     //         credentials: 'include', 
-// referrerPolicy: 'origin',
-// mode: 'no-cors',
-// referrer: document.location.origin
+// refererPolicy: 'origin',
+// mode: 'cors',
+// referer: document.location.origin
     //     })
     //     .then(res => res.json())
     //     .then(data => {console.log(data)})

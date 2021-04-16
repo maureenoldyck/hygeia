@@ -23,9 +23,9 @@ const Article = () => {
                 'Accept': 'application/json, text/html',
             },
             credentials: 'include', 
-referrerPolicy: 'origin',
-mode: 'no-cors',
-referrer: document.location.origin
+refererPolicy: 'origin',
+mode: 'cors',
+referer: document.location.origin
         })
         .then(res => res.json())
         .then((res) => { 
