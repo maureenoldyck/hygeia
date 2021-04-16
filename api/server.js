@@ -87,18 +87,18 @@ const upload = multer({
 //                                 Create queries + req, res                                //
 //==========================================================================================//
 
-app.get("/", (req, res) => {
+// app.get("/", (req, res) => {
 
-    const sqlUsers = "SELECT * FROM `users_list`;"
-    pool.query(sqlUsers, (err, result) => {
-        if (err) {
-            res.send({message:err});
-        } else {
-            res.send({message: result});
-        }
-    })
-    // res.send("Hello World!")
-})
+//     const sqlUsers = "SELECT * FROM `users_list`;"
+//     pool.query(sqlUsers, (err, result) => {
+//         if (err) {
+//             res.send({message:err});
+//         } else {
+//             res.send({message: result});
+//         }
+//     })
+//     // res.send("Hello World!")
+// })
 
 app.get("/users", (req, res) => {
 
