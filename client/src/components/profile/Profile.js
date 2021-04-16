@@ -20,10 +20,7 @@ const Profile = () => {
                 "Content-Type": 'application/json,  charset=UTF-8', 
                 'Accept': 'application/json, text/html',
             },
-            credentials: 'include', 
-            refererPolicy: 'origin',
-            mode: 'cors',
-            referer: document.location.origin
+        
         })
         .then(res => res.json())
         .then((res) => { 
