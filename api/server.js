@@ -35,7 +35,7 @@ console.log("Database connecting...")
 pool.connect();
 console.log("Connected!")
 
-app.use('/', express.static(path.join(__dirname, '/')));
+// app.use('/', express.static(path.join(__dirname, '/')));
 
 // app.use((req, res, next) => {
 //     res.setHeader("Access-Control-Allow-Origin", "https://hygeia.netlify.app/");
@@ -51,7 +51,7 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
-
+console.log("here it still works! huray")
 
 
 // app.use(session({
@@ -65,23 +65,23 @@ app.use(express.urlencoded({
 // }));
 
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "public");},
-    filename: function(req, file, cb){
-        const ext = file.mimetype.split("/")[1];
-        cb(null, `uploads/${file.fieldname}-${Date.now()}.${ext}`);
-    }
-});
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, "public");},
+//     filename: function(req, file, cb){
+//         const ext = file.mimetype.split("/")[1];
+//         cb(null, `uploads/${file.fieldname}-${Date.now()}.${ext}`);
+//     }
+// });
 
-const upload = multer({
+// const upload = multer({
     // destination: 'client/public/uploads/',
-    storage: storage,
+    // storage: storage,
     // limits : {fileSize : 1000000}
     // fileFilter: function(req, file, cb){
     //   checkFileType(file, cb);
     // }
-})
+// })
 
 //==========================================================================================//
 //                                 Create queries + req, res                                //
