@@ -80,10 +80,6 @@ referer: document.location.origin
                 'Accept': 'application/json',
                 'Content-type': 'application/json; charset=UTF-8'
             },
-            credentials: 'include', 
-            refererPolicy: 'origin',
-            mode: 'cors',
-referer: document.location.origin
 
         })
         .then(res => res.json())
