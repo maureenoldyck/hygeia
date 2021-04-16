@@ -31,7 +31,7 @@ const DetailsForm = () => {
             },
             credentials: 'include', 
             referrerPolicy: 'origin',
-            mode: 'cors',
+            mode: 'no-cors',
             referrer: document.location.origin
         })
         .then(res => res.json())
@@ -69,7 +69,7 @@ const DetailsForm = () => {
             },
             credentials: 'include', 
             referrerPolicy: 'origin',
-            mode: 'cors',
+            mode: 'no-cors',
 referrer: document.location.origin
 
         })
