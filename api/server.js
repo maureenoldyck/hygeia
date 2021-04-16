@@ -101,7 +101,7 @@ const upload = multer({
 // })
 
 app.get("/", (req, res) => {
-
+    console.log("hello!")
     res.send("Hello world!")
 
 })
