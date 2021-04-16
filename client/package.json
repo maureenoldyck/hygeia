@@ -2,7 +2,7 @@
   "name": "hygeia",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://hygeia-test.herokuapp.com/",
+  "proxy": "https://hygeia-test.herokuapp.com",
   "dependencies": {
     "@craco/craco": "^6.1.1",
     "@testing-library/jest-dom": "^5.11.4",
