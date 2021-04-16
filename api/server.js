@@ -100,6 +100,12 @@ const upload = multer({
 //     // res.send("Hello World!")
 // })
 
+app.get("/", (req, res) => {
+
+    res.send("Hello world!")
+
+})
+
 app.get("/users", (req, res) => {
 
     const sqlUsers = "SELECT * FROM `users_list`;"
