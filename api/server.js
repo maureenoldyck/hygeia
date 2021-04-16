@@ -2,7 +2,7 @@ const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
 // const port = process.env.PORT || 5000;
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 const mysql = require('mysql');
 const cors = require('cors');
 const bcrypt = require("bcryptjs"); // Use bcryptjs when making use of async
@@ -29,7 +29,7 @@ const pool = mysql.createConnection ({
     host                : process.env.DB_ENDPOINT, 
     database            : process.env.DB_DB, 
     password            : process.env.DB_PASS,  
-    port                : process.env.DB_PORT
+    port                : process.env.PORT
 });
 console.log("Database connecting...")
 pool.connect();
@@ -103,7 +103,6 @@ console.log("here it still works! huray")
 app.get("/", (req, res) => {
     console.log("hello!")
     res.send("Hello world!")
-
 })
 
 app.get("/users", (req, res) => {
@@ -441,6 +440,6 @@ app.get('/api/search/:keywords', (req, res) => {
 //==========================================================================================//
 
 
-app.listen(5000, () => {
+app.listen(port, () => {
     console.log("Running..")
 })
