@@ -17,7 +17,7 @@ const multer  = require('multer')
 
 // Instead of using the const "database", "pool" will be the one 
 
-app.use(cors({
+// app.use(cors({
     // origin: function(origin, callback){
     //   // allow requests with no origin
     //   // (like mobile apps or curl requests)
@@ -29,7 +29,7 @@ app.use(cors({
     //   }
     //   return callback(null, true);
     // }
-  }));
+//   }));
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", "https://hygeia.netlify.app");
 //     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
